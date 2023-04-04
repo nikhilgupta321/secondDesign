@@ -50,7 +50,6 @@ export default function AdminArticle(props) {
       !article.page_num ||
       !article.reference_num ||
       !article.email ||
-      !article.mobile ||
       !article.title ||
       !article.abstract ||
       !pdffile
