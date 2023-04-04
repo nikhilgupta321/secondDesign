@@ -22,6 +22,7 @@ export default function Admin(props) {
   function handleSubmit(event) {
     event.preventDefault();
     const searchUrl = `/admin/search?q=${query}`;
+    setQuery("");
     navigate(searchUrl);
   }
 

@@ -13,6 +13,7 @@ function SearchBar(props) {
   function handleSubmit(event) {
     event.preventDefault();
     const searchUrl = `/search?q=${query}`;
+    setQuery("");
     navigate(searchUrl);
   }
 
