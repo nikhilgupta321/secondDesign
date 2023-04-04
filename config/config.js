@@ -1,10 +1,8 @@
-const cwd = __dirname.split("/")
-const rootDir = cwd.slice(0, cwd.length-1).join("/")
-
-require('dotenv').config({ path: rootDir + '/.env' });
-
 const fs = require('fs');
 import { Sequelize } from 'sequelize';
+
+const cwd = __dirname.split("/")
+const rootDir = cwd.slice(0, cwd.length-1).join("/")
 
 const assetsFolder = process.env.ASSETS_FOLDER;
 const assetsDir = process.env.ASSETS_DIR + '/' + assetsFolder;
