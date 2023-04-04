@@ -1,4 +1,8 @@
-require('dotenv').config();
+const cwd = __dirname.split("/")
+const rootDir = cwd.slice(0, cwd.length-1).join("/")
+
+require('dotenv').config({ path: rootDir + '/.env' });
+
 const fs = require('fs');
 import { Sequelize } from 'sequelize';
 
@@ -11,8 +15,6 @@ const dbPass = process.env.DB_PASS;
 const jwtSecret = process.env.JWT_SECRET;
 const textlocalApi = process.env.TEXT_LOCAL_API;
 
-const cwd = __dirname.split("/")
-const rootDir = cwd.slice(0, cwd.length-1).join("/")
 const archivesDir = assetsDir + '/archives'
 const imagesDir = assetsDir + '/images'
 const editorsDir = assetsDir + '/editors'
