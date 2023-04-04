@@ -65,7 +65,7 @@ export default function Search(props) {
                   <div><b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b></div>
                   <div>{article.author_name}</div>
                   <div className="abstract">
-                    <Link to={`/archives/${article.reference_num}`}>
+                    <Link to={`/archives/${article.year}/vol${article.volume}/issue${article.issue}/${article.reference_num}`}>
                       <b>Abstract</b>
                     </Link>
                     &nbsp;|&nbsp;
