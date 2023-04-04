@@ -1,0 +1,8 @@
+{
+  "verbose": false,
+  "watch": [
+    "./server",
+    "./client"
+  ],
+  "exec": "webpack --config webpack.config.client.js && webpack --mode=development --config webpack.config.server.js && DB_NAME='allsubjectjournalcom' FOLDER_NAME='allsubjectjournalcom' PORT=3005 node ./dist/server.generated.js"
+}
