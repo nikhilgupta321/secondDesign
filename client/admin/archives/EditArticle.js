@@ -185,6 +185,7 @@ export default function AdminArticle(props) {
           <div>REFERENCE NUMBER *</div>
           <input
             onChange={handleChange('reference_num')}
+            readOnly
             value={article.reference_num}
             className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.reference_num === '' ? 'border-b-red-500' : ''}`}
             type="text"
