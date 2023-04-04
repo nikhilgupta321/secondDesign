@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { verifyCredential } from '../helper/api-auth.js'
 import auth from '../helper/auth-helper'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Navigate } from "react-router-dom"
 
 export default function LogIn(props) {
   const [values, setValues] = useState({
@@ -9,7 +9,7 @@ export default function LogIn(props) {
     password: '',
     error: ''
   })
-
+  
   const navigate = useNavigate();
 
 
@@ -44,6 +44,9 @@ export default function LogIn(props) {
   }
 
   return (<>
+    {auth.isAuthenticated() && (                        
+      <Navigate to="/admin" replace={true} />    
+    )}                                           
     <div className='min-h-screen bg-gray-100'>
       <div className="flex items-center justify-center pt-40">
         <div className="p-6 flex flex-col gap-4 items-center justify-center shadow-lg bg-white">
@@ -57,7 +60,7 @@ export default function LogIn(props) {
           <input type="text" placeholder="password" value={values.password} onChange={handleChange('password')}
             className="w-44 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" />
           <button type="submit"
-            className="px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-900">Sign In</button>
+            className="px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-900">Log In</button>
           </form>
         </div>
       </div>
