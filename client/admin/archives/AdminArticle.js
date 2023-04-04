@@ -66,9 +66,9 @@ export default function AdminArticle(props) {
       issue: issue,
       file: `${articleData.reference_num}.pdf`,
       status: 'enabled',
-      modified_by: jwt.user.username,
+      modified_by: jwt.user,
       modified_at: new Date(),
-      created_by: jwt.user.username,
+      created_by: jwt.user,
       created_at: new Date(),
     }
 

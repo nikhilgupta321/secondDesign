@@ -59,7 +59,7 @@ export default function AdminArticle(props) {
     
     data = {
       ...data,
-      modified_by: jwt.user.username,
+      modified_by: jwt.user,
       modified_at: new Date(),
     }
 
