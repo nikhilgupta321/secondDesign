@@ -5,7 +5,7 @@
   "main": "./dist/server.generated.js",
   "scripts": {
     "development": "nodemon",
-    "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
+    "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js"
   },
   "author": "Aditya",
   "license": "ISC",

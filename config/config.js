@@ -2,7 +2,8 @@ require('dotenv').config();
 const fs = require('fs');
 import { Sequelize } from 'sequelize';
 
-const folderName = process.env.FOLDER_NAME;
+const assetsFolder = process.env.ASSETS_FOLDER;
+const assetsDir = process.env.ASSETS_DIR + '/' + assetsFolder;
 const port = process.env.PORT;
 const dbName = process.env.DB_NAME;
 const dbUser = process.env.DB_USER;
@@ -12,14 +13,9 @@ const textlocalApi = process.env.TEXT_LOCAL_API;
 
 const cwd = __dirname.split("/")
 const rootDir = cwd.slice(0, cwd.length-1).join("/")
-
-const assetsDir = rootDir + '/assets/' + folderName;
 const archivesDir = assetsDir + '/archives'
 const imagesDir = assetsDir + '/images'
 const editorsDir = assetsDir + '/editors'
-
-if(!fs.existsSync(assetsDir))
-  fs.mkdirSync(assetsDir, { recursive: true })
 
 if(!fs.existsSync(archivesDir))
   fs.mkdirSync(archivesDir, { recursive: true })
