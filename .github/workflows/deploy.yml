@@ -1,0 +1,20 @@
+name: Deploying
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.UBUNTU_VPS_HOST }}
+          username: ${{ secrets.UBUNTU_VPS_USER }}
+          key: ${{ secrets.UBUNTU_VPS_PRIVATE_KEY }}
+          script: sh /home/nikhil/all-journals-deploy.sh
