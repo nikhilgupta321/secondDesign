@@ -76,8 +76,9 @@ export default function AdminArticle(props) {
       else {
         setFlash({
           normal: true,
-          msg: <div className="flex flex-col gap-4">
+          msg: <div className="flex flex-col">
             <div><b>Dear Author,</b></div>
+            <br/>
             <div>
               <div><b>1. We have updated your article. Kindly check the given link.</b></div>
               <div className="flex gap-1">

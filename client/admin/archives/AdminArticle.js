@@ -79,33 +79,37 @@ export default function AdminArticle(props) {
       else {
         setFlash({
           normal: true,
-          msg: <div className="flex flex-col gap-4">
+          msg: <div className="flex flex-col">
             <div><b>Dear Author,</b></div>
+            <br/>
             <div>
               <div><b>1. Your article has been published, kindly download pdf, certificate and coverpage from the given link.</b></div>
               <div className="flex gap-1">
-                <div>Link:</div>
+                <div>Link:&nbsp;</div>
                 <Link to={`/pdf?refno=${article.reference_num}`}>{`https://www.${settings.domain}/pdf?refno=${article.reference_num}`}</Link>
               </div>
             </div>
+            <br/>
             <div>
               <div><b>2. Also add your article in Google Scholar for citation</b></div>
               <div className="flex gap-1">
-                <div>Link:</div>
+                <div>Link:&nbsp;</div>
                 <Link to='https://scholar.google.com'>https://scholar.google.com</Link>
               </div>
             </div>
+            <br/>
             <div>
               <div>3. Watch video on how to create Google Scholar profile</div>
               <div className="flex gap-1">
-                <div>Link:</div>
+                <div>Link:&nbsp;</div>
                 <Link to='https://www.youtube.com/watch?v=6JZ6TQoWc58'>https://www.youtube.com/watch?v=6JZ6TQoWc58</Link>
               </div>
             </div>
+            <br/>
             <div>
               <div>4. Watch video on how to upload published article in Google Scholar</div>
               <div className="flex gap-1">
-                <div>Link:</div>
+                <div>Link:&nbsp;</div>
                 <Link to='https://www.youtube.com/watch?v=VMjncGlNn0w'>https://www.youtube.com/watch?v=VMjncGlNn0w</Link>
               </div>
             </div>
