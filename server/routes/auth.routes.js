@@ -12,4 +12,7 @@ router.route('/auth/verifyOtp')
 router.route('/auth/authenticate')
   .post(authCtrl.authenticate)
 
+router.route('/auth/verify-token')
+  .get(authCtrl.requireSignin, authCtrl.verifyToken)
+
 export default router

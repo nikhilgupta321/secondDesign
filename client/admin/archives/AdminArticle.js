@@ -211,11 +211,11 @@ export default function AdminArticle(props) {
           />
         </div>
         <div>
-          <div>PHONE *</div>
+          <div>PHONE</div>
           <input
             onChange={handleChange('mobile')}
             value={article.mobile}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.mobile === '' ? 'border-b-red-500' : ''}`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600`}
             type="text"
           />
         </div>

@@ -64,6 +64,15 @@ const verifyOtp = async (req, res) => {
   }
 }
 
+const verifyToken = async (req, res) => {
+  try {
+    res.status(200).json({ message: "Token Verified" })
+  } catch (err) {
+    console.log(err)
+    return res.status(401).json({ error: err })
+  }
+}
+
 const authenticate = async (req, res) => {
   try {
     let user = await User.findOne({ where: { "username": req.body.username } })
@@ -76,7 +85,7 @@ const authenticate = async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     console.log('Client IP address:', ip);
 
-    const token = jwt.sign({ username: user.username }, config.jwtSecret)
+    const token = jwt.sign({ username: user.username }, config.jwtSecret, { expiresIn: '12h' })
     return res.status(200).json({
       token: token,
       user: user.username
@@ -104,4 +113,4 @@ const hasAuthorization = (req, res, next) => {
   next()
 }
 
-export default { sendOtp, verifyOtp, authenticate, requireSignin, hasAuthorization }
+export default { sendOtp, verifyOtp, authenticate, requireSignin, verifyToken, hasAuthorization }

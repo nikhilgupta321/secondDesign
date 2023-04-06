@@ -3,6 +3,7 @@ import auth from "../helper/auth-helper"
 import { Outlet } from "react-router"
 import { Link, useNavigate } from "react-router-dom"
 import Flash from "./Flash"
+import { verifyToken } from "../helper/api-auth"
 
 export default function Admin(props) {
   const [user, setUser] = useState('')
@@ -31,8 +32,15 @@ export default function Admin(props) {
     if(!jwt) {
       navigate('/admin/login')
     } else {
-      setIsLoggedIn(true)
-      setUser(jwt.user)
+      verifyToken(jwt).then((data) => {
+        if(data.error) {
+          auth.clearJWT(() => {navigate('/admin/login')})
+        }
+        else {
+          setIsLoggedIn(true)
+          setUser(jwt.user)
+        }
+      })
     }
   }, [])
 

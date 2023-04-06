@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import auth from "../../helper/auth-helper"
 import { listArchives, create } from "../../helper/api-archives";
 import { GlobalContext } from "../../context/GlobalContext";
@@ -10,7 +10,7 @@ const parseDate = (date) => {
 }
 
 export default function AdminArchives(props) {
-  const {flash, setFlash} = useContext(GlobalContext)  
+  const {flash, setFlash} = useContext(GlobalContext)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const [archives, setArchives] = useState([])
