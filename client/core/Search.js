@@ -38,7 +38,7 @@ export default function Search(props) {
   }, [query])
 
   useEffect(() => {
-    document.title = 'Search | ' + settings.journal_name
+    document.title = 'Search | ' + settings.websitename
   }, [settings])
 
   return (
@@ -63,18 +63,18 @@ export default function Search(props) {
               <td>
                 <div className="article-info">
                   <div><b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b></div>
-                  <div>{article.author_name}</div>
+                  <div>{article.authorname}</div>
                   <div className="abstract">
-                    <Link to={`/archives/${article.year}/vol${article.volume}/issue${article.issue}/${article.reference_num}`}>
+                    <Link to={`/archives/${article.year}/vol${article.volume}/issue${article.issue}/${article.refnumber}`}>
                       <b>Abstract</b>
                     </Link>
                     &nbsp;|&nbsp;
-                    {article.file && <><a href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.reference_num}.pdf`}><b>Download</b></a>&nbsp;|&nbsp;</>}
+                    {article.file && <><a href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}><b>Download</b></a>&nbsp;|&nbsp;</>}
 
-                    <div>Pages: {article.page_num}</div>
+                    <div>Pages: {article.pagenumber}</div>
                   </div>
                   <div className="citation"><b>How to cite this article:</b></div>
-                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.page_num}</div>
+                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
                 </div>
               </td>
               <td>{article.subject}</td>

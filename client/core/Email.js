@@ -6,7 +6,7 @@ export default function Email(props) {
   const { settings } = useContext(GlobalContext)
   return (
     <Card cardTitle="SUBMIT YOUR ARTICLE">
-        <div>{settings.journal_email}</div>
+        <div>{settings.websiteemail}</div>
     </Card>
   );
 }

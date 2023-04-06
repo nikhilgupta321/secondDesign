@@ -90,7 +90,7 @@ export default function Editors(props) {
           </tr>
         {values.editors.map((editor, index) => {
           return (
-           <tr>
+           <tr key={`editor-${index + 1}`}>
             {/* <Td><input type="checkbox" checked={values.selected[index]} onChange={()=>{handleSelect(index)}}/></Td> */}
             <Td>{index + 1}</Td>
             <Td>
@@ -105,10 +105,10 @@ export default function Editors(props) {
             <Td>{editor.category}</Td>
             <Td>{editor.email}</Td>
             <Td>{editor.post}</Td>
-            <Td>{editor.affiliation}</Td>
+            <Td>{editor.content}</Td>
             <Td>{statusWithColor(editor.status)}</Td>
-            <Td>{parseDate(editor.created_at)}</Td>
-            <Td>{parseDate(editor.modified_at)}</Td>
+            <Td>{parseDate(editor.creation)}</Td>
+            <Td>{parseDate(editor.modification)}</Td>
             <Td><Link className="text-green-700 font-bold" to={`/admin/editors/${editor.id}`}>EDIT</Link></Td>
            </tr>
           )

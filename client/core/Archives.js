@@ -27,23 +27,28 @@ export default function Archives(props) {
   }, []);
 
   useEffect(() => {
-    document.title = 'Archives | ' + settings.journal_name
+    document.title = 'Archives | ' + settings.websitename
   }, [settings])
 
   return (
     <div className="page">
       <PageTitle title="ARCHIVES" />
-      {archives.map((archive) => {
-        return <Frame title={`${archive.year} ISSUES`}>
-          <div className="issue-grid">
-            {[...Array(archive.total_issues)].map((e, index) => {
-              return <Link to={`/archives/${archive.year}/vol${archive.volume}/issue${index + 1}`}>
-                <div className="issue">VOL. {archive.volume} : ISSUE {index + 1}</div>
-              </Link>
-            })}
-          </div>
-        </Frame>;
+      {archives.map((archive, index) => {
+        return (
+          <Frame key={`frame-${index}`} title={`${archive.year} ISSUES`}>
+            <div className="issue-grid">
+              {[...Array(archive.total_issues)].map((e, i) => {
+                const issueIndex = i + 1;
+                return (
+                  <Link key={`issue-${issueIndex}`} to={`/archives/${archive.year}/vol${archive.volume}/issue${issueIndex}`}>
+                    <div className="issue">VOL. {archive.volume} : ISSUE {issueIndex}</div>
+                  </Link>
+                );
+              })}
+            </div>
+          </Frame>
+        );
       })}
-      </div>
+    </div>
   );
 }

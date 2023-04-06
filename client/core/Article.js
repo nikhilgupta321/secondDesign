@@ -50,19 +50,19 @@ export default function Article(props) {
         <div className="article-title" dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></div>
         <div>
           <div className="text-blue"><b>Authors</b></div>
-          <div id="author-name">{article.author_name}</div>
+          <div id="author-name">{article.authorname}</div>
         </div>
         <div>
           <div className="text-blue"><b>Abstract</b></div>
           <div dangerouslySetInnerHTML={{ __html: decodeStr(article.abstract) }}></div>
         </div>
         <div className="flex-row">
-          {article.file && <a href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.reference_num}.pdf`}><b>Download</b>&nbsp;|&nbsp;</a>}
-          <div className="text-blue"><b>Pages : </b>{article.page_num}</div>
+          {article.file && <a href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}><b>Download</b>&nbsp;|&nbsp;</a>}
+          <div className="text-blue"><b>Pages : </b>{article.pagenumber}</div>
         </div>
         <div>
           <div className="text-blue"><b>How to cite this article:</b></div>
-          <div>{article.authroname} <b className="article-cite" dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.page_num}</div>
+          <div>{article.authroname} <b className="article-cite" dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
         </div>
       </>
       }

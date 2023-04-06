@@ -57,16 +57,16 @@ export default function SearchArchives(props) {
           </tr>
           {articles.map((article, index) => {
             return (
-              <tr>
+              <tr key={`article-${index + 1}`}>
                 {/* <Td><input type="checkbox" checked={values.selected[index]} onChange={()=>{handleSelect(index)}}/></Td> */}
                 <td className="bg-white border border-slate-400 p-2">{index + 1}</td>
-                <td className="bg-white border border-slate-400 p-2">{article.reference_num}</td>
+                <td className="bg-white border border-slate-400 p-2">{article.refnumber}</td>
                 <td className="bg-white border border-slate-400 p-2"><div dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></div></td>
                 <td className="bg-white border border-slate-400 p-2">{article.txnid}</td>
-                <td className="bg-white border border-slate-400 p-2">{article.page_num}</td>
-                <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.created_at)}</td>
-                <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.modified_at)}</td>
-                <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.reference_num}`}>EDIT</Link></td>
+                <td className="bg-white border border-slate-400 p-2">{article.pagenumber}</td>
+                <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.creation)}</td>
+                <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.modification)}</td>
+                <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.refnumber}`}>EDIT</Link></td>
               </tr>
             )
           })

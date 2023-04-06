@@ -29,7 +29,7 @@ export default function AdminArchives(props) {
       return;
     }
 
-    const params = {volume: values.volume, issue: values.issue}
+    const params = {volume: values.volume, issue: values.issue, year: new Date().getFullYear()}
     
     create({ token: jwt.token }, params).then((data) => {
         if (data.error){
@@ -85,14 +85,14 @@ export default function AdminArchives(props) {
       </div>
       <div className="border-t-0 border-2 rounded border-slate-400">
       {archives.length !== 0 &&
-        archives.map((issue) => {
+        archives.map((issue, index) => {
           return (
-            <Link className="flex gap-4 flex-wrap p-1 bg-white border-t-2 border-slate-400" to={`/admin/archives/${issue.year}/${issue.volume}/${issue.issue}`}>
+            <Link key={`issue-${index + 1}`} className="flex gap-4 flex-wrap p-1 bg-white border-t-2 border-slate-400" to={`/admin/archives/${issue.year}/${issue.volume}/${issue.issue}`}>
               <div className="text-blue-600 text-lg">{`${issue.year}, VOLUME ${(issue.volume).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}, ISSUE ${parseInt(issue.issue).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`}</div>
               <div>_</div>
               <div className="text-red-600 text-lg">{`[ ${(issue.articles).toLocaleString('en-US', { minimumIntegerDigits: 3, useGrouping: false })} ]`}</div>
               <div>_</div>
-              <div className="text-black">{parseDate(issue.created_at)}</div>
+              <div className="text-black">{parseDate(issue.creation)}</div>
             </Link>
           )
         })

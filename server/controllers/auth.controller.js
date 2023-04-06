@@ -25,7 +25,7 @@ const sendOtp = async (req, res) => {
       apiKey: config.textlocalApi,
       sender: 'Acapub',
       numbers: user.phoneNo,
-      message: `${user.username} use Admin Panel code is ${otp}\nAcapub`
+      message: `${user.name} use Admin Panel code is ${otp}\nAcapub`
     }), {
       method: 'POST'
     })
@@ -50,12 +50,12 @@ const verifyOtp = async (req, res) => {
     if (otp_duration >= 10)
       throw "otp_expired"
 
-    const token = jwt.sign({ username: user.username }, config.jwtSecret)
+    const token = jwt.sign({ username: user.name }, config.jwtSecret)
     res.cookie('t', token, { expire: new Date() + 86400000 })
     return res.json({
       token,
       user: {
-        username: user.username
+        username: user.name
       }
     })
   } catch (err) {
@@ -85,10 +85,10 @@ const authenticate = async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     console.log('Client IP address:', ip);
 
-    const token = jwt.sign({ username: user.username }, config.jwtSecret, { expiresIn: '12h' })
+    const token = jwt.sign({ username: user.name }, config.jwtSecret, { expiresIn: '12h' })
     return res.status(200).json({
       token: token,
-      user: user.username
+      user: user.name
     });
 
   } catch (err) {

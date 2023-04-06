@@ -26,7 +26,7 @@ export default function CoverpagePdf(props) {
           Year: {props.article.year}
         </div>
       </div>
-      <div id="cover-title">{props.settings.journal_name}</div>
+      <div id="cover-title">{props.settings.websitename}</div>
       <img src="/assets/images/coverpage-img.jpg" />
       <div id="cover-footer">
         Journal List : www.academicpublications.net<br/>

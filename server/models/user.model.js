@@ -1,49 +1,56 @@
 import { sequelize } from '../../config/config';
 import { DataTypes } from 'sequelize';
 
-const User = sequelize.define('User', {
-  id: {
+const User = sequelize.define('users', {
+  userid: {
     autoIncrement: true,
-    type: DataTypes.INTEGER.UNSIGNED,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true
   },
-  username: {
+  name: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: '',
+  },
+  email: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
   },
   password: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: '',
   },
-  phone: {
+  token: {
     type: DataTypes.STRING(255),
-    allowNull: false
-  },
-  otp: {
-    type: DataTypes.STRING(255),
-    allowNull: true,
-  },
-  otp_at: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
-  ip_lock: {
-    type: DataTypes.ENUM('enabled', 'disabled'),
-    allowNull: false
-  },
-  ip: {
-    type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: '',
   },
   status: {
-    type: DataTypes.ENUM('enabled', 'disabled'),
-    allowNull: false
+    type: "SET('ENABLED','DISABLED','PENDING')",
+    allowNull: false,
+    defaultValue: 'ENABLED',
+  },
+  creation: {
+    type: DataTypes.DATE,
+    allowNull: false,
   }
 }, {
   sequelize,
   tableName: 'users',
-  timestamps: false
+  timestamps: false,
+  indexes: [
+    {
+      name: "PRIMARY",
+      unique: true,
+      using: "BTREE",
+      fields: [
+        { name: "userid" },
+      ]
+    },
+  ]
 });
 
 export default User

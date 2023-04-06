@@ -8,12 +8,11 @@ export default function Settings(props) {
   const {flash, setFlash} = useContext(GlobalContext)  
 
   const [settings, setSettings] = useState({
-    journal_name: '',
-    journal_email: '',
-    impact_factor: '',
+    websitename: '',
+    websiteemail: '',
+    impactfactor: '',
     issn: '',
-    whatsapp_num: '',
-    phone: '',
+    whatsup_number: '',
     signature: ''
   })
 
@@ -59,12 +58,11 @@ export default function Settings(props) {
         <button onClick={handleSubmit} className="p-2 mb-4 rounded w-24 bg-sky-600 text-gray-100">Submit</button>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <div><div>Journal Name</div><input value={settings.journal_name} onChange={handleChange('journal_name')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>EMAIL</div><input value={settings.journal_email} onChange={handleChange('journal_email')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>Impact Factor</div><input value={settings.impact_factor} onChange={handleChange('impact_factor')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Journal Name</div><input value={settings.websitename} onChange={handleChange('websitename')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>EMAIL</div><input value={settings.websiteemail} onChange={handleChange('websiteemail')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Impact Factor</div><input value={settings.impactfactor} onChange={handleChange('impactfactor')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
         <div><div>ISSN</div><input value={settings.issn} onChange={handleChange('issn')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>Whatsapp</div><input value={settings.whatsapp_num} onChange={handleChange('whatsapp_num')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>Phone</div><input value={settings.phone} onChange={handleChange('phone')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Whatsapp</div><input value={settings.whatsup_number} onChange={handleChange('whatsup_number')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
         <div><div>Domain</div><input value={settings.domain} onChange={handleChange('domain')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
       </div>
     </div>

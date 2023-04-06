@@ -7,7 +7,7 @@ export default function Home(props) {
   const { settings } = useContext(GlobalContext)
   
   useEffect(() => {
-    document.title = settings.journal_name
+    document.title = settings.websitename
   }, [settings])
 
   return (
@@ -17,7 +17,7 @@ export default function Home(props) {
       <div className="flex flex-col gap-5 ">
       <p>
         <b>
-          {settings.journal_name}
+          {settings.websitename}
         </b>
         &nbsp;is indexed, refereed, peer reviewed, open access journal, publishing
         high quality papers on all aspects of education.

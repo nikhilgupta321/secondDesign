@@ -19,7 +19,7 @@ export default function JournalInfo(props) {
             >
               Research Journal
               <br />
-              {settings.impact_factor}
+              {settings.impactfactor}
             </a>
           </td>
         </tr>

@@ -26,11 +26,11 @@ const addArticle = async (req, res) => {
     const data = req.body
     console.log(data)
     if (!req.files || !req.files.pdfFile || !data.year ||
-      !data.volume || !data.issue || !data.reference_num)
+      !data.volume || !data.issue || !data.refnumber)
       throw 'Invalid request!'
 
     const pdfFile = req.files.pdfFile;
-    data.file = `${data.reference_num}-${new Date().valueOf()}.pdf`
+    data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
     
     if(!fs.existsSync(path))
@@ -52,16 +52,16 @@ const updateArticle = async (req, res) => {
     const data = req.body
     console.log(req.body)
     if (req.files && req.files.pdfFile) {
-      if (!data.year || !data.volume || !data.issue || !data.reference_num) throw 'Invalid request!'
+      if (!data.year || !data.volume || !data.issue || !data.refnumber) throw 'Invalid request!'
       const pdfFile = req.files.pdfFile;
-      data.file = `${data.reference_num}-${new Date().valueOf()}.pdf`
+      data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
       const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
       if(!fs.existsSync(path))
       fs.mkdirSync(path, { recursive: true })
       await pdfFile.mv(path + '/' + data.file)
     }
 
-    let article = await Archive.findOne({where: {reference_num: req.params.ref}})
+    let article = await Archive.findOne({where: {refnumber: req.params.ref}})
     console.log(data)
     await article.update(data)
 
@@ -77,7 +77,7 @@ const updateArticle = async (req, res) => {
 const adminArchives = async (req, res) => {
   try {
     const archives = await Archive.findAll({
-      attributes: ['year', 'volume', 'issue', [Sequelize.fn('COUNT', Sequelize.col('issue')), 'articles'], [Sequelize.fn('MIN', Sequelize.col('created_at')), 'created_at']],
+      attributes: ['year', 'volume', 'issue', [Sequelize.fn('COUNT', Sequelize.col('issue')), 'articles'], [Sequelize.fn('MIN', Sequelize.col('creation')), 'creation']],
       group: ['year', 'volume', 'issue'],
       order: [[Sequelize.literal('year DESC, ABS(issue) DESC')]],
     });       
@@ -117,7 +117,7 @@ const archivesByRef = async (req, res) => {
   try {
     const article = await Archive.findOne({
       where: {
-        reference_num: req.params.ref,
+        refnumber: req.params.ref,
         status: 'enabled'
       },
       limit: 1,
@@ -140,10 +140,8 @@ const archivesByRef = async (req, res) => {
 //Fix this: it should check the database if the issue is already present
 const createNewIssue = async (req, res) => {
   const data = req.body
-  const date = new Date()
-  data.year = date.getFullYear()
   try {
-    if (!data.volume || !data.issue) throw "Invalid request"
+    if (!data.volume || !data.issue || !data.year) throw "Invalid request"
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`
     
     if(!fs.existsSync(path))
@@ -168,9 +166,9 @@ const searchArchives = async (req, res) => {
     const articles = await Archive.findAll({
       where: {
         [Op.or]: [
-          { reference_num: { [Op.like]: `%${query}%` } },
+          { refnumber: { [Op.like]: `%${query}%` } },
           { title: { [Op.like]: `%${query}%` } },
-          { author_name: { [Op.like]: `%${query}%` } },
+          { authorname: { [Op.like]: `%${query}%` } },
           { abstract: { [Op.like]: `%${query}%` } },
           { description: { [Op.like]: `%${query}%` } },
           { email: { [Op.like]: `%${query}%` } },

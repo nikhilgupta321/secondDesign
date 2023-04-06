@@ -27,7 +27,7 @@ export default function EditorialBoard() {
   }, []);
 
   useEffect(() => {
-    document.title = 'Editorial Board | ' + settings.journal_name
+    document.title = 'Editorial Board | ' + settings.websitename
   }, [settings])
 
   return (

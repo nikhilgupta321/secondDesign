@@ -2,7 +2,7 @@ import express from 'express'
 import adminCtrl from '../controllers/admin.controller'
 import authCtrl from '../controllers/auth.controller'
 import archiveCtrl from '../controllers/archive.controller'
-import settingsCtrl from '../controllers/settings.controller'
+import settingsCtrl from '../controllers/setting.controller'
 
 const router = express.Router()
 

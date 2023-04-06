@@ -10,9 +10,9 @@ export default function AddEditor(props) {
   const [isCreated, setIsCreated] = useState(false)
   const [editor, setEditor] = useState({
     category: '',
-    designation: '',
+    post: '',
     name: '',
-    affiliation: '',
+    content: '',
     email: '',
     phone: '',
     country: '',
@@ -34,14 +34,21 @@ export default function AddEditor(props) {
     setIsSubmitted(true)
     if (
       !editor.category ||
-      !editor.designation ||
+      !editor.post ||
       !editor.name ||
-      !editor.affiliation    
+      !editor.content    
     ) {
       return;
     }
 
-    addEditor(editor, editorPic, { token: jwt.token }).then((data) => {
+    let data = editor;
+    data = {
+      ...data,
+      creation: new Date(),
+      updated_at: new Date(),
+    }
+
+    addEditor(data, editorPic, { token: jwt.token }).then((data) => {
       if (data && data.error) {
         setFlash({error: true, msg: "Something went wrong"})
       }
@@ -63,7 +70,7 @@ export default function AddEditor(props) {
         <div><div>EMAIL</div><input value={editor.email} onChange={handleChange('email')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>PHONE</div><input value={editor.phone} onChange={handleChange('phone')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>COUNTRY</div><input value={editor.country} onChange={handleChange('country')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
-        <div><div>AFFILIATION *</div><input value={editor.affiliation} onChange={handleChange('affiliation')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.affiliation === '' ? 'border-b-red-500' : ''}`} type="text"></input></div>
+        <div><div>AFFILIATION *</div><input value={editor.content} onChange={handleChange('content')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.content === '' ? 'border-b-red-500' : ''}`} type="text"></input></div>
         <div><div>CATEGORY *</div>
           <select value={editor.category} onChange={handleChange('category')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.category === '' ? 'border-b-red-500' : ''}`}>
             <option value="">Null</option>
@@ -72,7 +79,7 @@ export default function AddEditor(props) {
           </select>
         </div>
         <div><div>DESIGNATION *</div>
-          <select value={editor.designation} onChange={handleChange('designation')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.designation === '' ? 'border-b-red-500' : ''}`}>
+          <select value={editor.post} onChange={handleChange('post')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.post === '' ? 'border-b-red-500' : ''}`}>
             <option value="">Null</option>
             <option value="Professor">Professor</option>
             <option value="Associate Professor">Associate Professor</option>

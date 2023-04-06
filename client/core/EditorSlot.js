@@ -11,8 +11,8 @@ export default function EditorSlot(props) {
           <b>{props.editor.name}</b>&nbsp;
           {props.editor.degree !== '' && (<>( {props.editor.degree} )</>)}
         </div>
-        <div>{props.editor.designation}</div>
-        <div>{props.editor.affiliation}</div>
+        <div>{props.editor.post}</div>
+        <div>{props.editor.content}</div>
         <div><b>Email: </b>{props.editor.email}</div>
       </div>
     </div>

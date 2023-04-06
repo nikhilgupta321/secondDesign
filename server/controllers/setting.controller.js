@@ -1,9 +1,9 @@
-import Settings from '../models/settings.model';
+import Setting from '../models/setting.model';
 
 const list = async (req, res) => {
   try {
-    let data = await Settings.findOne({where: {
-      id: 1
+    let data = await Setting.findOne({where: {
+      settingsid: 1
     }})
     res.json(data)
   } catch (err) {
@@ -14,9 +14,9 @@ const list = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    await Settings.update(req.body, {
+    await Setting.update(req.body, {
       where: {
-        id: 1
+        settingsid: 1
       }
     })
     res.json({message: 'Success'})

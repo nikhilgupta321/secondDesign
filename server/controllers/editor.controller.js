@@ -38,12 +38,6 @@ const addEditor = async (req, res) => {
       console.log(fileName)
     }
     
-    data = {
-      ...data,
-      created_at: new Date(),
-      updated_at: new Date(),
-    }
-
     await Editor.create(data)
 
     res.status(200).json({
@@ -59,7 +53,7 @@ const addEditor = async (req, res) => {
 
 const editorById = async (req, res) => {
   try {
-    const editor = await Editor.findOne({ where: { id: req.params.id } });
+    const editor = await Editor.findOne({ where: { editorid: req.params.id } });
 
     if (!editor) throw 'Editor not found'
 
@@ -93,7 +87,7 @@ const updateEditor = async (req, res) => {
 
     await Editor.update(data , {
       where: {
-        id: req.params.id
+        editorid: req.params.id
       }
     })
 

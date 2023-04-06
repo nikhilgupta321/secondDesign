@@ -1,81 +1,115 @@
 import { sequelize } from "../../config/config";
 import { DataTypes } from "sequelize";
 
-const Editor = sequelize.define(
-  'Editor',
-  {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-    },
-    category: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    subcategory: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    name: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    degree: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    designation: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    affiliation: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    email: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    phone: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    country: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    picture: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
+const Editor = sequelize.define('editors', {
+  editorid: {
+    autoIncrement: true,
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
   },
-  {
-    sequelize,
-    tableName: "editors",
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [{ name: "id" }],
-      },
-    ],
+  category: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  subcategory: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  name: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  degree: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  post: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    defaultValue: '',
+  },
+  email: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  emailshow: {
+    type: DataTypes.ENUM('Y','N'),
+    allowNull: false,
+    defaultValue: 'Y',
+  },
+  phone: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  phoneshow: {
+    type: DataTypes.ENUM('Y','N'),
+    allowNull: false,
+    defaultValue: 'Y',
+  },
+  country: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  picture: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
+  pictureshow: {
+    type: DataTypes.ENUM('Y','N'),
+    allowNull: false,
+    defaultValue: 'Y',
+  },
+  catsortnumber: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  sortnumber: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  status: {
+    type: DataTypes.ENUM('enabled','disabled'),
+    allowNull: false,
+    defaultValue: 'enabled',
+  },
+  creation: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  updated_at: {
+    type: DataTypes.DATE,
+    allowNull: true
   }
-);
+}, {
+  sequelize,
+  tableName: 'editors',
+  timestamps: false,
+  indexes: [
+    {
+      name: "PRIMARY",
+      unique: true,
+      using: "BTREE",
+      fields: [
+        { name: "editorid" },
+      ]
+    },
+  ]
+});
 
 export default Editor;

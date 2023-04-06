@@ -16,7 +16,7 @@ const generateCertificate = (article, author, settings) => {
 
   doc.html(elementHTML, {
     callback: function (doc) {
-      doc.save(`certificate-${article.reference_num}.pdf`);
+      doc.save(`certificate-${article.refnumber}.pdf`);
     },
     width: 210, //target width in the PDF document
     windowWidth: 750 //window width in CSS pixels
@@ -87,7 +87,6 @@ export default function Certificate(props) {
         if (data && data.error) {
           console.log(data.error)
         } else if (data) {
-          console.log(data)
           setArticle(data)
         }
       })
@@ -107,10 +106,10 @@ export default function Certificate(props) {
           <tbody>
             {article.file && <tr>
               <td>Download Artcle</td>
-              <td><a className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.reference_num}.pdf`}>Download</a></td>
+              <td><a className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}>Download</a></td>
             </tr>}
 
-            {article.author_name.split(',').map((author) => {
+            {article.authorname.split(',').map((author) => {
               return <tr>
                 <td>Download Certificate</td>
                 <td><div className="certificate-button" onClick={() => { generateCertificate(article, author, settings) }}>{author}</div></td>
