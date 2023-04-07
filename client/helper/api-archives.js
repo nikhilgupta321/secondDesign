@@ -166,7 +166,6 @@ const searchArchives = async (query, signal) => {
       signal: signal,
     });
     let result = await response.json();
-    console.log(result)
     return result
   } catch (err) {
     console.log(err);

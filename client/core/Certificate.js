@@ -109,8 +109,8 @@ export default function Certificate(props) {
               <td><a className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}>Download</a></td>
             </tr>}
 
-            {article.authorname.split(',').map((author) => {
-              return <tr>
+            {article.authorname.split(',').map((author, index) => {
+              return <tr key={`author-${index + 1}`}>
                 <td>Download Certificate</td>
                 <td><div className="certificate-button" onClick={() => { generateCertificate(article, author, settings) }}>{author}</div></td>
               </tr>

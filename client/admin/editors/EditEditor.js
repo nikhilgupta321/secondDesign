@@ -5,6 +5,13 @@ import Flash from "../Flash";
 import { editorById, updateEditor } from "../../helper/api-editors";
 import { GlobalContext } from "../../context/GlobalContext";
 
+function convertNullToEmptyString(obj) {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    acc[key] = value ?? '';
+    return acc;
+  }, {});
+}
+
 export default function EditEditor(props) {
   const {flash, setFlash} = useContext(GlobalContext)  
   const { id } = useParams();
@@ -68,7 +75,16 @@ export default function EditEditor(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setEditor(data)
+        setEditor({
+          category: data.category || editor.category,
+          post: data.post || editor.post,
+          name: data.name || editor.name,
+          content: data.content || editor.content,
+          email: data.email || editor.email,
+          phone: data.phone || editor.phone,
+          picture: data.picture || editor.picture,
+          country: data.country || editor.country,
+        })
       }
     })
 

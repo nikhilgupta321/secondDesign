@@ -35,10 +35,10 @@ export default function EditorialBoard() {
       <PageTitle title="EDITORIAL BOARD" />
 
       <Frame title="EDITOR IN CHIEF">
-        {editors.map((editor) => {
+        {editors.map((editor, index) => {
           return (
             editor.category == 'Editor in chief' &&
-            <EditorSlot editor={editor} />
+            <EditorSlot key={`chiefeditor-${index + 1}`} editor={editor} />
           )
         }
         )}
@@ -46,10 +46,10 @@ export default function EditorialBoard() {
 
       <Frame title="EDITORS">
         {
-          editors.map((editor) => {
+          editors.map((editor, index) => {
             return (
               editor.category == 'Editors' &&
-              <EditorSlot editor={editor} />
+              <EditorSlot key={`editor-${index + 1}`} editor={editor} />
             )
           })}
       </Frame>

@@ -59,7 +59,7 @@ export default function Archives(props) {
         </thead>
         <tbody>
           {articles.length !== 0 && articles.map((article, index) => {
-            return <tr>
+            return <tr key={`article-${index + 1}`}>
               <td>{index + 1}</td>
               <td>
                 <div className="article-info">

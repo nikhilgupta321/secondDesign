@@ -45,9 +45,7 @@ const editorById = async (params, signal) => {
       method: "GET",
       signal: signal,
     });
-    console.log('h')
-    const result = await response.json();
-    console.log('b')
+    const result = await response.json(); 
     return result
   } catch (err) {
     console.log(err);

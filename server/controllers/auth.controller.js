@@ -75,7 +75,7 @@ const verifyToken = async (req, res) => {
 
 const authenticate = async (req, res) => {
   try {
-    let user = await User.findOne({ where: { "username": req.body.username } })
+    let user = await User.findOne({ where: { "name": req.body.username } })
     if (!user || req.body.password !== user.password)
       throw "invalid_credentials"
 

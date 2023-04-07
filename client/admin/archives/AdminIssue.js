@@ -19,40 +19,40 @@ export default function AdminIssue(props) {
     issues: [],
     selected: [],
     selectAll: false,
-    checked:false,
+    checked: false,
     error: '',
   })
 
   const jwt = auth.isAuthenticated()
 
   const hideMsg = () => {
-    setValues({...values, error:''})
+    setValues({ ...values, error: '' })
   }
 
   const handleSelect = (index) => {
     let selected = values.selected;
-    selected[index] = !selected[index] 
-    setValues({...values, selected: selected, checked: values.selected.includes(true), selectAll:false})
+    selected[index] = !selected[index]
+    setValues({ ...values, selected: selected, checked: values.selected.includes(true), selectAll: false })
   }
 
   const handleSelectAll = () => {
     const change = !values.selectAll
-    setValues({...values, selected: new Array(values.selected.length).fill(change), selectAll: change, selectAll: change})
+    setValues({ ...values, selected: new Array(values.selected.length).fill(change), selectAll: change, selectAll: change })
   }
 
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    listIssue({year, vol, issue}, signal).then((data) => {
+    listIssue({ year, vol, issue }, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
-        setValues({...values, error: data.error})
+        setValues({ ...values, error: data.error })
       } else {
         let issues = data.filter(article => {
           return article.refnumber
         });
-        setValues({issues: issues, selected: new Array(data.length).fill(false), error: ''})
+        setValues({ issues: issues, selected: new Array(data.length).fill(false), error: '' })
       }
     })
 
@@ -64,7 +64,8 @@ export default function AdminIssue(props) {
   return (
     <div>
       <Link className="p-2 rounded w-24 bg-green-700 text-slate-200" to={`/admin/archives/add/${year}/${vol}/${issue}`}>Add New</Link>
-        <table className="mt-4 w-full border-collapse border">
+      <table className="mt-4 w-full border-collapse border">
+        <thead>
           <tr>
             {/* <Th><input type="checkbox" checked={values.selectAll} onChange={handleSelectAll}/></Th> */}
             <th className="bg-gray-200 text-sm border border-slate-400 p-2 w-16">S. NO.</th>
@@ -76,23 +77,26 @@ export default function AdminIssue(props) {
             <th className="bg-gray-200 text-sm border border-slate-400 p-2 w-48">Modified At</th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2">ACTION</th>
           </tr>
-        {values.issues.map((article, index) => {
-          return (
-           <tr key={`article-${index + 1}`}>
-            {/* <Td><input type="checkbox" checked={values.selected[index]} onChange={()=>{handleSelect(index)}}/></Td> */}
-            <td className="bg-white border border-slate-400 p-2">{index + 1}</td>
-            <td className="bg-white border border-slate-400 p-2">{article.refnumber}</td>
-            <td className="bg-white border border-slate-400 p-2"><div dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></div></td>
-            <td className="bg-white border border-slate-400 p-2">{article.txnid}</td>
-            <td className="bg-white border border-slate-400 p-2">{article.pagenumber}</td>
-            <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.creation)}</td>
-            <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.modification)}</td>
-            <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.refnumber}`}>EDIT</Link></td>
-           </tr>
-          )
-        })
-        }
-        </table>
+        </thead>
+        <tbody>
+          {values.issues.map((article, index) => {
+            return (
+              <tr key={`article-${index + 1}`}>
+                {/* <Td><input type="checkbox" checked={values.selected[index]} onChange={()=>{handleSelect(index)}}/></Td> */}
+                <td className="bg-white border border-slate-400 p-2">{index + 1}</td>
+                <td className="bg-white border border-slate-400 p-2">{article.refnumber}</td>
+                <td className="bg-white border border-slate-400 p-2"><div dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></div></td>
+                <td className="bg-white border border-slate-400 p-2">{article.txnid}</td>
+                <td className="bg-white border border-slate-400 p-2">{article.pagenumber}</td>
+                <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.creation)}</td>
+                <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.modification)}</td>
+                <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.refnumber}`}>EDIT</Link></td>
+              </tr>
+            )
+          })
+          }
+        </tbody>
+      </table>
     </div>
   )
 }

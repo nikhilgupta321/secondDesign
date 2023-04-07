@@ -4,6 +4,14 @@ import auth from "../../helper/auth-helper"
 import { updateArticle, archivesByRef } from "../../helper/api-archives";
 import { GlobalContext } from "../../context/GlobalContext";
 
+
+function convertNullToEmptyString(obj) {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    acc[key] = value ?? '';
+    return acc;
+  }, {});
+}
+
 export default function AdminArticle(props) {
   const { flash, setFlash, settings } = useContext(GlobalContext)
   const { ref } = useParams();
@@ -100,8 +108,22 @@ export default function AdminArticle(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setArticle(data)
-        console.log({ 'article': article, 'data': data })
+        setArticle({
+          txnid: data.txnid || article.txnid,
+          ptype: data.ptype || article.ptype,
+          publishdate: data.publishdate || article.publishdate,
+          authorname: data.authorname || article.authorname,
+          pagenumber: data.pagenumber || article.pagenumber,
+          subject: data.subject || article.subject,
+          country: data.country || article.country,
+          refnumber: data.refnumber || article.refnumber,
+          email: data.email || article.email,
+          mobile: data.mobile || article.mobile,
+          title: data.title || article.title,
+          description: data.description || article.description,
+          keywords: data.keywords || article.keywords,
+          abstract: data.abstract || article.abstract,
+        })
       }
     })
 

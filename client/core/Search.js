@@ -58,7 +58,7 @@ export default function Search(props) {
           </thead>
           <tbody>
           {articles.map((article, index) => {
-            return <tr>
+            return <tr key={`article-${index + 1}`}>
               <td>{index + 1}</td>
               <td>
                 <div className="article-info">

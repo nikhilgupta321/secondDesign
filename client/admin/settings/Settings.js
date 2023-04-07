@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContext";
 import { getSettings, updateSettings } from "../../helper/api-settings";
 
+function convertNullToEmptyString(obj) {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    acc[key] = value ?? '';
+    return acc;
+  }, {});
+}
+
 export default function Settings(props) {
   const {flash, setFlash} = useContext(GlobalContext)  
 
@@ -13,7 +20,7 @@ export default function Settings(props) {
     impactfactor: '',
     issn: '',
     whatsup_number: '',
-    signature: ''
+    domain: '',
   })
 
   const jwt = auth.isAuthenticated()
@@ -42,7 +49,14 @@ export default function Settings(props) {
       if (data && data.error) {
         setFlash({error: true, msg: "Something went wrong"})
       } else {
-        setSettings(data)
+        setSettings({
+          websitename: data.websitename || settings.websitename,
+          websiteemail: data.websiteemail || settings.websiteemail,
+          impactfactor: data.impactfactor || settings.impactfactor,
+          issn: data.issn || settings.issn,
+          whatsup_number: data.whatsup_number || settings.whatsup_number,
+          domain: data.domain || settings.domain,
+        })
       }
     })
 

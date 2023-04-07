@@ -9,10 +9,11 @@ export default function AdminArticle(props) {
   const { year, vol, issue } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isCreated, setIsCreated] = useState(false)
+  
   const [article, setArticle] = useState({
     txnid: '',
     ptype: 'paid',
-    publishdate: new Date().toISOString().substr(0, 10),
+    publishdate: new Date().toISOString().slice(0, 10),
     authorname: '',
     pagenumber: '',
     subject: '',
@@ -39,7 +40,10 @@ export default function AdminArticle(props) {
   }
 
   const handleSubmit = () => {
-  
+    
+    console.log(article.publishdate)
+
+    console.log('hello')
     setIsSubmitted(true)
 
     if (
