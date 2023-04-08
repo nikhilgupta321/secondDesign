@@ -56,7 +56,7 @@ const getEditors = async () => {
 const generateEditorialBoard = (settings) => {
   getEditors().then(editors => {
     var doc = new jsPDF({ margin: [40, 60, 40, 60] });
-    var elementHTML = renderToString(<EditorialBoardPdf editors={editors} settings={settings}/>)
+    var elementHTML = renderToString(<EditorialBoardPdf editors={editors} settings={settings} />)
 
     doc.html(elementHTML, {
       callback: function (doc) {
@@ -73,7 +73,7 @@ const generateEditorialBoard = (settings) => {
 export default function Certificate(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const ref = searchParams.get('refno');
-  const { settings } = useContext(GlobalContext)  
+  const { settings } = useContext(GlobalContext)
 
   const [article, setArticle] = useState({});
   const [error, setError] = useState(false);
@@ -82,15 +82,14 @@ export default function Certificate(props) {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    archivesByRef({ref: ref}, signal)
-      .then((data) => {
-        if (data && data.error) {
-          console.log(data.error)
-        } else if (data) {
-          setArticle(data)
-        }
-      })
-
+    archivesByRef(ref, signal).then((data) => {
+      if(data && !data.error && data.status === "enabled") {
+        setArticle(data)
+      }
+      else {
+        setError(true)
+      }
+    })
     return function cleanup() {
       abortController.abort();
     };

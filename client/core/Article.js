@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PageTitle from "./PageTitle";
 import { useParams, Link } from "react-router-dom";
+import { archivesByRef } from "../helper/api-archives";
 
 const decodeStr = (str) => {
   let doc = new DOMParser().parseFromString(str, "text/html");
@@ -13,30 +14,19 @@ export default function Article(props) {
   const [article, setArticle] = useState({});
   const [error, setError] = useState(false);
 
-  const list = async (signal) => {
-    try {
-      let response = await fetch(`/api/archives/${ref}`, {
-        method: "GET",
-        signal: signal,
-      });
-
-      let result = await response.json();
-
-      if(result && result.error)
-        setError(true)
-      else
-        setArticle(result)
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    list(signal);
-
+    archivesByRef( ref, signal).then((data) => {
+      if(data && !data.error && data.status === "enabled") {
+        setArticle(data)
+      }
+      else {
+        setError(true)
+      }
+    })
+    
     return function cleanup() {
       abortController.abort();
     };

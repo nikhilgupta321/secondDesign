@@ -2,7 +2,7 @@ import { sequelize } from "../../config/config";
 import { DataTypes } from "sequelize";
 
 const Archive = sequelize.define('archives', {
-  archivesid: {
+  id: {
     autoIncrement: true,
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -212,7 +212,7 @@ const Archive = sequelize.define('archives', {
       unique: true,
       using: "BTREE",
       fields: [
-        { name: "archivesid" },
+        { name: "id" },
       ]
     },
   ]

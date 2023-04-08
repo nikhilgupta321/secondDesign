@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
-import { listIssue } from "../../helper/api-archives";
+import { listAdminIssue } from "../../helper/api-archives";
 
 const parseDate = (date) => {
   const d = new Date(date)
@@ -44,7 +44,7 @@ export default function AdminIssue(props) {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    listIssue({ year, vol, issue }, signal).then((data) => {
+    listAdminIssue({ year, vol, issue }, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
         setValues({ ...values, error: data.error })
@@ -90,7 +90,7 @@ export default function AdminIssue(props) {
                 <td className="bg-white border border-slate-400 p-2">{article.pagenumber}</td>
                 <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.creation)}</td>
                 <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.modification)}</td>
-                <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.refnumber}`}>EDIT</Link></td>
+                <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.id}`}>EDIT</Link></td>
               </tr>
             )
           })

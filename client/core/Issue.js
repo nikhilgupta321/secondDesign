@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PageTitle from "./PageTitle";
 import { useParams, Link } from "react-router-dom";
+import {listPublicIssue} from "../helper/api-archives";
 
 const decodeStr = (str) => {
   let doc = new DOMParser().parseFromString(str, "text/html");
@@ -15,30 +16,16 @@ export default function Archives(props) {
 
   const [articles, setArticles] = useState([]);
 
-  const list = async (signal) => {
-    try {
-      let response = await fetch(`/api/archives/${year}/${vol}/${issue}`, {
-        method: "GET",
-        signal: signal,
-      });
-
-      let result = await response.json();
-      if (result && result.error) {
-        console.log(result.error);
-      } else {
-        const enabledArticles = result.filter(article => article.status == 'enabled');
-        setArticles(enabledArticles);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    list(signal);
+    listPublicIssue({year: year, vol: vol, issue: issue}, signal).then((data) => {
+      if (data && !data.error) {
+        const enabledArticles = data.filter(article => article.status === "enabled");
+        setArticles(enabledArticles);
+      }
+    });
 
     return function cleanup() {
       abortController.abort();

@@ -2,7 +2,7 @@ import { sequelize } from "../../config/config";
 import { DataTypes } from "sequelize";
 
 const Setting = sequelize.define('settings', {
-    settingsid: {
+    id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -163,7 +163,7 @@ const Setting = sequelize.define('settings', {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "settingsid" },
+          { name: "id" },
         ]
       },
     ]

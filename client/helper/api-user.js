@@ -35,7 +35,7 @@ const list = async (credentials) => {
 
 const read = async (params, credentials, signal) => {
   try {
-    let response = await fetch('/api/users/' + params.userId, {
+    let response = await fetch('/api/users/' + params.id, {
       method: 'GET',
       signal: signal,
       headers: {
@@ -53,7 +53,7 @@ const read = async (params, credentials, signal) => {
 
 const update = async (params, credentials, user) => {
   try {
-    let response = await fetch('/api/users/' + params.userId, {
+    let response = await fetch('/api/users/' + params.id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -71,7 +71,7 @@ const update = async (params, credentials, user) => {
 
 const remove = async (params, credentials) => {
   try {
-    let response = await fetch('/api/users/' + params.userId, {
+    let response = await fetch('/api/users/' + params.id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

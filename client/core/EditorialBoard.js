@@ -17,7 +17,8 @@ export default function EditorialBoard() {
       if (data && data.error) {
         console.log(data.error)
       } else if (data) {
-        setEditors(data)
+        const filteredEditors = data.filter(editor => editor.status === "enabled");
+        setEditors(filteredEditors);
       }
     })
 

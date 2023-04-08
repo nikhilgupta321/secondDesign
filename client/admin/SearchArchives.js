@@ -28,8 +28,11 @@ export default function SearchArchives(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        if (data.length == 0) setNotFound(true)
-        else setNotFound(false)
+        if (data.length == 0)
+          setNotFound(true)
+        else 
+          setNotFound(false)
+        
         setArticles(data)
       }
     })
@@ -68,7 +71,7 @@ export default function SearchArchives(props) {
                   <td className="bg-white border border-slate-400 p-2">{article.pagenumber}</td>
                   <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.creation)}</td>
                   <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.modification)}</td>
-                  <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.refnumber}`}>EDIT</Link></td>
+                  <td className="bg-white border border-slate-400 p-2"><Link className="text-green-700 font-bold" to={`/admin/archives/${article.id}`}>EDIT</Link></td>
                 </tr>
               )
             })

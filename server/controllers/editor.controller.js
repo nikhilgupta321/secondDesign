@@ -53,7 +53,7 @@ const addEditor = async (req, res) => {
 
 const editorById = async (req, res) => {
   try {
-    const editor = await Editor.findOne({ where: { editorid: req.params.id } });
+    const editor = await Editor.findOne({ where: { id: req.params.id } });
 
     if (!editor) throw 'Editor not found'
 
@@ -87,7 +87,7 @@ const updateEditor = async (req, res) => {
 
     await Editor.update(data , {
       where: {
-        editorid: req.params.id
+        id: req.params.id
       }
     })
 

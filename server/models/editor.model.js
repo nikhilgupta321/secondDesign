@@ -2,7 +2,7 @@ import { sequelize } from "../../config/config";
 import { DataTypes } from "sequelize";
 
 const Editor = sequelize.define('editors', {
-  editorid: {
+  id: {
     autoIncrement: true,
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -106,7 +106,7 @@ const Editor = sequelize.define('editors', {
       unique: true,
       using: "BTREE",
       fields: [
-        { name: "editorid" },
+        { name: "id" },
       ]
     },
   ]

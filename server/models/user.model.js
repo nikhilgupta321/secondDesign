@@ -2,7 +2,7 @@ import { sequelize } from '../../config/config';
 import { DataTypes } from 'sequelize';
 
 const User = sequelize.define('users', {
-  userid: {
+  id: {
     autoIncrement: true,
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -47,7 +47,7 @@ const User = sequelize.define('users', {
       unique: true,
       using: "BTREE",
       fields: [
-        { name: "userid" },
+        { name: "id" },
       ]
     },
   ]

@@ -17,7 +17,7 @@ import Admin from "./admin/Admin";
 import Dashboard from "./admin/Dashboard";
 import AdminArchives from "./admin/archives/AdminArchives";
 import AdminIssue from "./admin/archives/AdminIssue";
-import AdminArticle from "./admin/archives/AdminArticle";
+import AddArticle from "./admin/archives/AddArticle";
 import EditArticle from "./admin/archives/EditArticle"
 import Editors from "./admin/editors/Editors"
 import AddEditor from "./admin/editors/AddEditor";
@@ -49,8 +49,8 @@ export default function MainRouter() {
           <Route index element={<Dashboard/>}/>
           <Route path="archives" element={<AdminArchives/>}/>
           <Route path="archives/:year/:vol/:issue" element={<AdminIssue/>}/>
-          <Route path="archives/add/:year/:vol/:issue" element={<AdminArticle/>}/>
-          <Route path="archives/:ref" element={<EditArticle/>}/>
+          <Route path="archives/add/:year/:vol/:issue" element={<AddArticle/>}/>
+          <Route path="archives/:id" element={<EditArticle/>}/>
           <Route path="editors" element={<Editors/>}/>
           <Route path="editors/add" element={<AddEditor/>}/>
           <Route path="editors/:id" element={<EditEditor/>}/>

@@ -26,9 +26,14 @@ export default function Search(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        if(data.length == 0) setNotFound(true)
-        else setNotFound(false)
-        setArticles(data)
+        const filteredData = data.filter(article => article.status === 'enabled')
+        
+        if(filteredData.length == 0) 
+          setNotFound(true)
+        else 
+          setNotFound(false)
+        
+          setArticles(filteredData)
       }
     })
 

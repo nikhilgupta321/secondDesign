@@ -1,23 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
-import { updateArticle, archivesByRef } from "../../helper/api-archives";
+import { updateArticle, archivesById } from "../../helper/api-archives";
 import { GlobalContext } from "../../context/GlobalContext";
 
-
-function convertNullToEmptyString(obj) {
-  return Object.entries(obj).reduce((acc, [key, value]) => {
-    acc[key] = value ?? '';
-    return acc;
-  }, {});
-}
-
-export default function AdminArticle(props) {
+export default function AddArticle(props) {
   const { flash, setFlash, settings } = useContext(GlobalContext)
-  const { ref } = useParams();
+  const { id } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false)
-
+  
   const [article, setArticle] = useState({
+    year: '',
+    volume: '',
+    issue: '',
     txnid: '',
     ptype: '',
     publishdate: '',
@@ -72,7 +67,7 @@ export default function AdminArticle(props) {
     }
 
     updateArticle({
-      ref: ref,
+      id: id,
       data: data,
       file: pdffile,
     },
@@ -104,11 +99,12 @@ export default function AdminArticle(props) {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    archivesByRef({ ref: ref }, signal).then((data) => {
+    archivesById(id, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
         setArticle({
+          id: data.id,
           txnid: data.txnid || article.txnid,
           ptype: data.ptype || article.ptype,
           publishdate: data.publishdate || article.publishdate,
@@ -123,6 +119,9 @@ export default function AdminArticle(props) {
           description: data.description || article.description,
           keywords: data.keywords || article.keywords,
           abstract: data.abstract || article.abstract,
+          year: data.year,
+          volume: data.volume,
+          issue: data.issue,
         })
       }
     })

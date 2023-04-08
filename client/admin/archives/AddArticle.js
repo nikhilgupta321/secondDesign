@@ -4,7 +4,7 @@ import auth from "../../helper/auth-helper"
 import { addArticle } from "../../helper/api-archives";
 import { GlobalContext } from "../../context/GlobalContext";
 
-export default function AdminArticle(props) {
+export default function AddArticle(props) {
   const { flash, setFlash, settings } = useContext(GlobalContext)
   const { year, vol, issue } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false)
