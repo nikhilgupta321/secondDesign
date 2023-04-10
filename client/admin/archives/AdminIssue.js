@@ -49,9 +49,6 @@ export default function AdminIssue(props) {
         console.log(data.error)
         setValues({ ...values, error: data.error })
       } else {
-        let issues = data.filter(article => {
-          return article.refnumber
-        });
         setValues({ issues: issues, selected: new Array(data.length).fill(false), error: '' })
       }
     })

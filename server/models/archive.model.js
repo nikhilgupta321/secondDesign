@@ -158,7 +158,8 @@ const Archive = sequelize.define('archives', {
   },
   modification: {
     type: DataTypes.DATE,
-    allowNull: true
+    allowNull: false,
+    defaultValue: DataTypes.NOW
   },
   createdby: {
     type: DataTypes.STRING(255),

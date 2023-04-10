@@ -27,7 +27,8 @@ export default function CoverpagePdf(props) {
         </div>
       </div>
       <div id="cover-title">{props.settings.websitename}</div>
-      <img src="/assets/images/coverpage-img.jpg" />
+      <br/>
+      <img className="h-[500px]" src="/assets/images/coverpage-img.jpg" />
       <div id="cover-footer">
         Journal List : www.academicpublications.net<br/>
       </div>

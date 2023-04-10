@@ -173,7 +173,8 @@ const createNewIssue = async (req, res) => {
     if(!fs.existsSync(path))
       fs.mkdirSync(path, { recursive: true })
     
-      await Archive.create(data)
+    data.status = 'disabled'
+    await Archive.create(data)
     return res.status(200).json({
       message: "Created new archive!"
     })
