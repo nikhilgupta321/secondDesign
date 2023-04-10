@@ -14,6 +14,7 @@ import editorRoutes from './routes/editor.routes';
 import archiveRoutes from './routes/archive.routes'
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
+import indexingRoutes from './routes/indexing.routes';
 import helperRoutes from './routes/helper.routes';
 import settingRoutes from './routes/setting.routes';
 
@@ -38,6 +39,7 @@ app.use(`/assets`, express.static(config.assetsDir));
 app.use('/', authRoutes)
 app.use('/', userRoutes)
 app.use('/', settingRoutes)
+app.use('/', indexingRoutes)
 app.use('/', editorRoutes)
 app.use('/', archiveRoutes)
 app.use('/', helperRoutes)

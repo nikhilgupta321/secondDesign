@@ -57,10 +57,6 @@ const Archive = sequelize.define('archives', {
     allowNull: false,
     defaultValue: '',
   },
-  newtitle: {
-    type: DataTypes.TEXT,
-    allowNull: true
-  },
   titlefont: {
     type: DataTypes.STRING(255),
     allowNull: false,
@@ -80,10 +76,6 @@ const Archive = sequelize.define('archives', {
     type: DataTypes.TEXT,
     allowNull: false,
     defaultValue: '',
-  },
-  full_text: {
-    type: DataTypes.TEXT,
-    allowNull: true
   },
   abstractfont: {
     type: DataTypes.STRING(255),
@@ -197,11 +189,6 @@ const Archive = sequelize.define('archives', {
     allowNull: false,
     defaultValue: '',
   },
-  source: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  }
 }, {
   sequelize,
   tableName: 'archives',

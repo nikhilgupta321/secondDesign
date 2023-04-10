@@ -9,8 +9,8 @@ router.route('/auth/sendOtp')
 router.route('/auth/verifyOtp')
   .post(authCtrl.verifyOtp)
 
-router.route('/auth/authenticate')
-  .post(authCtrl.authenticate)
+router.route('/auth/login')
+  .post(authCtrl.login)
 
 router.route('/auth/verify-token')
   .get(authCtrl.requireSignin, authCtrl.verifyToken)

@@ -121,6 +121,7 @@ body {
 #coverpage {
   background-color: #325BA9;
   padding-left: 750px;
+  height: 280mm;
   font-family: 'Times New Roman';
   line-height: normal;
 }

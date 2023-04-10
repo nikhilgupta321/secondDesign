@@ -58,11 +58,6 @@ const Setting = sequelize.define('settings', {
       allowNull: false,
       defaultValue: 'disabled',
     },
-    certificateemail: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
     version: {
       type: DataTypes.STRING(255),
       allowNull: false,
@@ -93,20 +88,10 @@ const Setting = sequelize.define('settings', {
       allowNull: false,
       defaultValue: 'amazon',
     },
-    phones: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
     extensions: {
       type: DataTypes.STRING(255),
       allowNull: false,
       defaultValue: '',
-    },
-    signaturestatus: {
-      type: DataTypes.ENUM('EBABLED','DISABLED'),
-      allowNull: false,
-      defaultValue: 'ENABLED',
     },
     signature: {
       type: DataTypes.STRING(255),
@@ -133,25 +118,14 @@ const Setting = sequelize.define('settings', {
       allowNull: false,
       defaultValue: 'enabled',
     },
-    frequency: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    monthly: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
     domain: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      defaultValue: '',
-    },
-    rjif_link: {
       type: DataTypes.STRING(255),
       allowNull: false,
       defaultValue: '',
+    },
+    allowed_ip: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
     }
   }, {
     sequelize,

@@ -12,7 +12,7 @@ export default function Contact(props) {
         </div>
         <div>
             <div>phone:</div>
-            <div>{`+91-${settings.whatsup_number}`}</div>
+            <div>{`${settings.whatsup_number}`}</div>
             <img className="whatsapp-icon" src="/assets/images/whatsapp-icon.png" />
           </div>
         </div>

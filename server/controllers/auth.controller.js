@@ -2,6 +2,7 @@ import User from '../models/user.model'
 import jwt from 'jsonwebtoken'
 const { expressjwt: expressJwt } = require('express-jwt');
 import { config } from './../../config/config'
+import Setting from '../models/setting.model';
 
 const sendOtp = async (req, res) => {
   try {
@@ -73,7 +74,7 @@ const verifyToken = async (req, res) => {
   }
 }
 
-const authenticate = async (req, res) => {
+const login = async (req, res) => {
   try {
     let user = await User.findOne({ where: { "name": req.body.username } })
     if (!user || req.body.password !== user.password)
@@ -82,8 +83,16 @@ const authenticate = async (req, res) => {
     if (user.status == 'disabled')
       throw 'disabled'
 
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    console.log('Client IP address:', ip);
+      let result = await Setting.findOne({
+        where: { id: 1 },
+        attributes: ['allowed_ip']
+      });
+      console.log(req.headers['x-forwarded-for'])
+      console.log(req.socket.remoteAddress)
+      const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      if (!result.allowed_ip.split(',').includes(ip)) {
+        throw 'invalid_ip'
+      }
 
     const token = jwt.sign({ username: user.name }, config.jwtSecret, { expiresIn: '12h' })
     return res.status(200).json({
@@ -113,4 +122,4 @@ const hasAuthorization = (req, res, next) => {
   next()
 }
 
-export default { sendOtp, verifyOtp, authenticate, requireSignin, verifyToken, hasAuthorization }
+export default { sendOtp, verifyOtp, login, requireSignin, verifyToken, hasAuthorization }

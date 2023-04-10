@@ -59,7 +59,7 @@ const updateArticle = async (req, res) => {
       const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
       
       if(!fs.existsSync(path))
-      fs.mkdirSync(path, { recursive: true })
+        fs.mkdirSync(path, { recursive: true })
       
       await pdfFile.mv(path + '/' + data.file)
     }

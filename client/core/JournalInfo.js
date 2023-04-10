@@ -1,7 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { listIndexing } from "../helper/api-indexing";
 
 export default function JournalInfo(props) {
+  const [RJIFIndex, setRJIFIndex] = useState([]);
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    listIndexing(signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error);
+      } else {
+        setRJIFIndex(data.find(index => index.title === 'RJIF'))
+      }
+    });
+
+    return function cleanup() {
+      abortController.abort();
+    };
+  }, []);
+
   const { settings } = useContext(GlobalContext)
   return (
     <table className="journalInfo">
@@ -15,7 +35,7 @@ export default function JournalInfo(props) {
           <td>
             <a
               className="link"
-              href={settings.rjif_link}
+              href={RJIFIndex.link}
             >
               Research Journal
               <br />
