@@ -26,8 +26,10 @@ export default function Archives(props) {
       if (result && result.error) {
         console.log(result.error);
       } else {
-        const enabledArticles = result.filter(article => article.status == 'enabled');
+        const enabledArticles = result.filter(article => article.status === 'enabled');
+        enabledArticles.sort((a, b) => parseInt(a.page_num) - parseInt(b.page_num));
         setArticles(enabledArticles);
+
       }
     } catch (err) {
       console.log(err);
