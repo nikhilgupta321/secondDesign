@@ -17,7 +17,7 @@ const Indexing = sequelize.define('indexing', {
     allowNull: false
   },
   status: {
-    type: "SET('ENABLED','DISABLED')",
+    type: "SET('enabled','disabled')",
     allowNull: false
   },
   sortnumber: {
