@@ -23,8 +23,8 @@ export default function CertificatePdf(props) {
           <div>{`${props.settings.issn}, ${props.settings.impact_factor}`}</div>
           </div>
           <img id="cert-banner" src="/assets/images/publication-certificate.jpg" />
-          <div id="cert-blob">This certificate confirms that <b>{props.author}</b> has published article
-            titled <b dangerouslySetInnerHTML={{ __html: decodeStr(props.article.title) }} />.</div>
+          <div>This certificate confirms that <b style={{fontFamily:'NotoSansDevanagri'}}>{props.author}</b>&nbsp;has published article
+            titled <b style={{fontFamily:'NotoSansDevanagri'}} dangerouslySetInnerHTML={{ __html: decodeStr(props.article.title) }} />.</div>
           <div>
           <div>Details of Published Article as follow:</div>
           <table id="cert-table">
