@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import PageTitle from "./PageTitle";
 import { useSearchParams, Link } from "react-router-dom";
 import { jsPDF } from 'jspdf';
-import "../helper/NotoSansDevanagari-Regular-normal.js"
 import { renderToString } from 'react-dom/server'
 import CertificatePdf from "./CertificatePdf";
 import CoverpagePdf from "./CoverpagePdf";
@@ -10,24 +9,26 @@ import EditorialBoardPdf from "./EditorialBoardPdf";
 import { archivesByRef } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
 
-async function getFont() {
-  const fontFile = "/assets/NotoSansDevanagari-Regular.ttf";
-  const fontData = await fetch(fontFile).then(res => res.arrayBuffer());
-  console.log(fontData)
-  return fontData;
-}
+const generateCertificate = (article, author, settings) => {
+  fetch('/assets/NotoSansDevanagari-Bold-base64.txt')
+    .then(response => response.text())
+    .then(font => {
 
-const generateCertificate = (article, font, author, settings) => {
-  var doc = new jsPDF();
-  doc.setFont('NotoSansDevanagari-Regular', 'normal');
-  var elementHTML = renderToString(<CertificatePdf author={author} article={article} settings={settings} />)
-  doc.html(elementHTML, {
-    callback: function (doc) {
-      doc.save(`certificate-${article.reference_num}.pdf`);
-    },
-    width: 210, //target width in the PDF document
-    windowWidth: 750 //window width in CSS pixels
-  });
+      var doc = new jsPDF();
+
+      doc.addFileToVFS('NotoSansDevanagri-Bold.ttf', font)
+      doc.addFont('NotoSansDevanagri-Bold.ttf', 'NotoSansDevanagri', 'bold')
+      doc.setFont('NotoSansDevanagri', 'bold')
+      
+      var elementHTML = renderToString(<CertificatePdf author={author} article={article} settings={settings} />)
+      doc.html(elementHTML, {
+        callback: function (doc) {
+          doc.save(`certificate-${article.reference_num}.pdf`);
+        },
+        width: 210, //target width in the PDF document
+        windowWidth: 750 //window width in CSS pixels
+      });
+    })
 }
 
 const generateCoverpage = (article, settings) => {
@@ -63,7 +64,7 @@ const getEditors = async () => {
 const generateEditorialBoard = (settings) => {
   getEditors().then(editors => {
     var doc = new jsPDF({ margin: [40, 60, 40, 60] });
-    var elementHTML = renderToString(<EditorialBoardPdf editors={editors} settings={settings}/>)
+    var elementHTML = renderToString(<EditorialBoardPdf editors={editors} settings={settings} />)
 
     doc.html(elementHTML, {
       callback: function (doc) {
@@ -80,8 +81,7 @@ const generateEditorialBoard = (settings) => {
 export default function Certificate(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const ref = searchParams.get('refno');
-  const { settings } = useContext(GlobalContext)  
-  const [font, setFont] = useState(null);
+  const { settings } = useContext(GlobalContext)
   const [article, setArticle] = useState({});
   const [error, setError] = useState(false);
 
@@ -89,7 +89,7 @@ export default function Certificate(props) {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    archivesByRef({ref: ref}, signal)
+    archivesByRef({ ref: ref }, signal)
       .then((data) => {
         if (data && data.error) {
           console.log(data.error)
@@ -98,9 +98,6 @@ export default function Certificate(props) {
           setArticle(data)
         }
       })
-    getFont().then((fontData) => {
-      setFont(fontData)
-    })
     return function cleanup() {
       abortController.abort();
     };
@@ -122,7 +119,7 @@ export default function Certificate(props) {
             {article.author_name.split(',').map((author) => {
               return <tr>
                 <td>Download Certificate</td>
-                <td><div className="certificate-button" onClick={() => { generateCertificate(article, font, author, settings) }}>{author}</div></td>
+                <td><div className="certificate-button" onClick={() => { generateCertificate(article, author, settings) }}>{author}</div></td>
               </tr>
             })}
 
