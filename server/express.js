@@ -10,12 +10,15 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import MainRouter from "../client/MainRouter";
-import editorRoutes from './routes/editor.routes'
+import editorRoutes from './routes/editor.routes';
 import archiveRoutes from './routes/archive.routes'
-import authRoutes from './routes/auth.routes'
-import userRoutes from './routes/user.routes'
+import authRoutes from './routes/auth.routes';
+import userRoutes from './routes/user.routes';
+import indexingRoutes from './routes/indexing.routes';
+import helperRoutes from './routes/helper.routes';
+import settingRoutes from './routes/setting.routes';
+
 import { config } from "../config/config";
-import adminRoutes from './routes/admin.routes'
 import fileUpload from "express-fileupload";
 
 const CURRENT_WORKING_DIR = process.cwd();
@@ -35,9 +38,11 @@ app.use("/dist", express.static(path.join(config.rootDir, "dist")));
 app.use(`/assets`, express.static(config.assetsDir));
 app.use('/', authRoutes)
 app.use('/', userRoutes)
-app.use('/', adminRoutes)
+app.use('/', settingRoutes)
+app.use('/', indexingRoutes)
 app.use('/', editorRoutes)
 app.use('/', archiveRoutes)
+app.use('/', helperRoutes)
 
 app.get("*", (req, res) => {
   const context = {};

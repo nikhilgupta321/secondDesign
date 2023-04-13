@@ -4,8 +4,7 @@ import { Sequelize } from 'sequelize';
 const cwd = __dirname.split("/")
 const rootDir = cwd.slice(0, cwd.length-1).join("/")
 
-const assetsFolder = process.env.ASSETS_FOLDER;
-const assetsDir = process.env.ASSETS_DIR + '/' + assetsFolder;
+const assetsDir = process.env.ASSETS_DIR
 const port = process.env.PORT;
 const dbName = process.env.DB_NAME;
 const dbUser = process.env.DB_USER;
@@ -16,15 +15,6 @@ const textlocalApi = process.env.TEXT_LOCAL_API;
 const archivesDir = assetsDir + '/archives'
 const imagesDir = assetsDir + '/images'
 const editorsDir = assetsDir + '/editors'
-
-if(!fs.existsSync(archivesDir))
-  fs.mkdirSync(archivesDir, { recursive: true })
-
-if(!fs.existsSync(imagesDir))
-  fs.mkdirSync(imagesDir, { recursive: true })
-
-if(!fs.existsSync(editorsDir))
-  fs.mkdirSync(editorsDir, { recursive: true })
 
 const config = {
   port: port,

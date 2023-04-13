@@ -1,23 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
-import { updateArticle, archivesByRef } from "../../helper/api-archives";
+import { updateArticle, archivesById } from "../../helper/api-archives";
 import { GlobalContext } from "../../context/GlobalContext";
 
-export default function AdminArticle(props) {
+export default function AddArticle(props) {
   const { flash, setFlash, settings } = useContext(GlobalContext)
-  const { ref } = useParams();
+  const { id } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false)
-
+  
   const [article, setArticle] = useState({
+    year: '',
+    volume: '',
+    issue: '',
     txnid: '',
-    payment_type: '',
-    published_at: '',
-    author_name: '',
-    page_num: '',
+    ptype: '',
+    publishdate: '',
+    authorname: '',
+    pagenumber: '',
     subject: '',
     country: '',
-    reference_num: '',
+    refnumber: '',
     email: '',
     mobile: '',
     title: '',
@@ -44,11 +47,11 @@ export default function AdminArticle(props) {
 
     if (
       !article.txnid ||
-      !article.payment_type ||
-      !article.published_at ||
-      !article.author_name ||
-      !article.page_num ||
-      !article.reference_num ||
+      !article.ptype ||
+      !article.publishdate ||
+      !article.authorname ||
+      !article.pagenumber ||
+      !article.refnumber ||
       !article.title ||
       !article.abstract
     ) {
@@ -59,12 +62,12 @@ export default function AdminArticle(props) {
     
     data = {
       ...data,
-      modified_by: jwt.user,
-      modified_at: new Date(),
+      modifiedby: jwt.user,
+      modification: new Date(),
     }
 
     updateArticle({
-      ref: ref,
+      id: id,
       data: data,
       file: pdffile,
     },
@@ -83,7 +86,7 @@ export default function AdminArticle(props) {
               <div><b>1. We have updated your article. Kindly check the given link.</b></div>
               <div className="flex gap-1">
                 <div>Link:</div>
-                <Link to={`/pdf?refno=${article.reference_num}`}>{`https://www.${settings.domain}/pdf?refno=${article.reference_num}`}</Link>
+                <Link to={`/pdf?refno=${article.refnumber}`}>{`https://${settings.domain}/pdf?refno=${article.refnumber}`}</Link>
               </div>
             </div>
           </div>
@@ -96,12 +99,30 @@ export default function AdminArticle(props) {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    archivesByRef({ ref: ref }, signal).then((data) => {
+    archivesById(id, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setArticle(data)
-        console.log({ 'article': article, 'data': data })
+        setArticle({
+          id: data.id,
+          txnid: data.txnid || article.txnid,
+          ptype: data.ptype || article.ptype,
+          publishdate: data.publishdate || article.publishdate,
+          authorname: data.authorname || article.authorname,
+          pagenumber: data.pagenumber || article.pagenumber,
+          subject: data.subject || article.subject,
+          country: data.country || article.country,
+          refnumber: data.refnumber || article.refnumber,
+          email: data.email || article.email,
+          mobile: data.mobile || article.mobile,
+          title: data.title || article.title,
+          description: data.description || article.description,
+          keywords: data.keywords || article.keywords,
+          abstract: data.abstract || article.abstract,
+          year: data.year,
+          volume: data.volume,
+          issue: data.issue,
+        })
       }
     })
 
@@ -129,9 +150,9 @@ export default function AdminArticle(props) {
         <div>
           <div>PAYMENT TYPE</div>
           <select
-            onChange={handleChange('payment_type')}
-            value={article.payment_type}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.payment_type ? 'border-b-red-500' : ''}`}
+            onChange={handleChange('ptype')}
+            value={article.ptype}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.ptype ? 'border-b-red-500' : ''}`}
           >
             <option value="paid">Paid</option>
             <option value="free">Free</option>
@@ -140,26 +161,26 @@ export default function AdminArticle(props) {
         <div>
           <div>CERTIFICATE DATE</div>
           <input
-            onChange={handleChange('published_at')}
-            value={article.published_at}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.published_at ? 'border-b-red-500' : ''}`}
+            onChange={handleChange('publishdate')}
+            value={article.publishdate}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.publishdate ? 'border-b-red-500' : ''}`}
             type="date"
           />
         </div>
         <div className="col-span-2 row-span-2">
           <div>AUTHOR NAME *</div>
           <textarea
-            onChange={handleChange('author_name')}
-            value={article.author_name}
-            className={`h-32 resize-none w-full p-2 focus:outline-emerald-600 border-2 border-gray-300 rounded ${isSubmitted && !article.author_name ? 'border-b-red-500' : ''}`}
+            onChange={handleChange('authorname')}
+            value={article.authorname}
+            className={`h-32 resize-none w-full p-2 focus:outline-emerald-600 border-2 border-gray-300 rounded ${isSubmitted && !article.authorname ? 'border-b-red-500' : ''}`}
           />
         </div>
         <div>
           <div>PAGE NUMBER *</div>
           <input
-            onChange={handleChange('page_num')}
-            value={article.page_num}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.page_num ? 'border-b-red-500' : ''}`}
+            onChange={handleChange('pagenumber')}
+            value={article.pagenumber}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.pagenumber ? 'border-b-red-500' : ''}`}
             type="text"
           />
         </div>
@@ -185,10 +206,10 @@ export default function AdminArticle(props) {
         <div>
           <div>REFERENCE NUMBER *</div>
           <input
-            onChange={handleChange('reference_num')}
+            onChange={handleChange('refnumber')}
             readOnly
-            value={article.reference_num}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.reference_num === '' ? 'border-b-red-500' : ''}`}
+            value={article.refnumber}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.refnumber === '' ? 'border-b-red-500' : ''}`}
             type="text"
           />
         </div>
@@ -197,7 +218,7 @@ export default function AdminArticle(props) {
           <input
             onChange={handleChange('email')}
             value={article.email}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.email === '' ? 'border-b-red-500' : ''}`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600`}
             type="text"
           />
         </div>
@@ -206,7 +227,7 @@ export default function AdminArticle(props) {
           <input
             onChange={handleChange('mobile')}
             value={article.mobile}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.mobile === '' ? 'border-b-red-500' : ''}`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600`}
             type="text"
           />
         </div>

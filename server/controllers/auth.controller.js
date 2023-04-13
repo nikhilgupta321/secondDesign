@@ -2,6 +2,7 @@ import User from '../models/user.model'
 import jwt from 'jsonwebtoken'
 const { expressjwt: expressJwt } = require('express-jwt');
 import { config } from './../../config/config'
+import Setting from '../models/setting.model';
 
 const sendOtp = async (req, res) => {
   try {
@@ -25,7 +26,7 @@ const sendOtp = async (req, res) => {
       apiKey: config.textlocalApi,
       sender: 'Acapub',
       numbers: user.phoneNo,
-      message: `${user.username} use Admin Panel code is ${otp}\nAcapub`
+      message: `${user.name} use Admin Panel code is ${otp}\nAcapub`
     }), {
       method: 'POST'
     })
@@ -50,12 +51,12 @@ const verifyOtp = async (req, res) => {
     if (otp_duration >= 10)
       throw "otp_expired"
 
-    const token = jwt.sign({ username: user.username }, config.jwtSecret)
+    const token = jwt.sign({ username: user.name }, config.jwtSecret)
     res.cookie('t', token, { expire: new Date() + 86400000 })
     return res.json({
       token,
       user: {
-        username: user.username
+        username: user.name
       }
     })
   } catch (err) {
@@ -73,22 +74,28 @@ const verifyToken = async (req, res) => {
   }
 }
 
-const authenticate = async (req, res) => {
+const login = async (req, res) => {
   try {
-    let user = await User.findOne({ where: { "username": req.body.username } })
+    let user = await User.findOne({ where: { "name": req.body.username } })
     if (!user || req.body.password !== user.password)
       throw "invalid_credentials"
 
     if (user.status == 'disabled')
       throw 'disabled'
 
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    console.log('Client IP address:', ip);
+      let result = await Setting.findOne({
+        where: { id: 1 },
+        attributes: ['allowed_ip']
+      });
+      const ip = req.socket.remoteAddress;
+      if (ip != '::1' && !result.allowed_ip.split(',').includes(ip)) {
+        throw 'invalid_ip'
+      }
 
-    const token = jwt.sign({ username: user.username }, config.jwtSecret, { expiresIn: '12h' })
+    const token = jwt.sign({ username: user.name }, config.jwtSecret, { expiresIn: '12h' })
     return res.status(200).json({
       token: token,
-      user: user.username
+      user: user.name
     });
 
   } catch (err) {
@@ -113,4 +120,4 @@ const hasAuthorization = (req, res, next) => {
   next()
 }
 
-export default { sendOtp, verifyOtp, authenticate, requireSignin, verifyToken, hasAuthorization }
+export default { sendOtp, verifyOtp, login, requireSignin, verifyToken, hasAuthorization }

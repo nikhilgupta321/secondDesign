@@ -19,7 +19,7 @@ export default function Root() {
             <img className="w-48 h-48" src="/assets/images/logo.png" />
             <div className="flex gap-12 w-full text-center justify-center flex-col">
               <div className="text-3xl text-center lg:text-left font-bold text-blue-A">
-                {settings.journal_name}
+                {settings.websitename}
               </div>
               <div className="text-xl flex font-bold text-blue-A flex-col lg:flex-row lg:gap-12">
                 <div className="py-2 border-blue-A border-t-2 lg:border-none">

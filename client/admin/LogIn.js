@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { verifyCredential } from '../helper/api-auth.js'
+import { login } from '../helper/api-auth.js'
 import auth from '../helper/auth-helper'
 import { useNavigate, Navigate } from "react-router-dom"
 
@@ -20,7 +20,7 @@ export default function LogIn(props) {
       password: values.password,
     }
 
-    verifyCredential(credentials).then((data) => {
+    login(credentials).then((data) => {
       if (data.error) {
         if (data.error === 'invalid_credentials')
           setValues({ ...values, error: 'Invalid user and password' })

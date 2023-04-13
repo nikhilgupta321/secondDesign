@@ -38,12 +38,6 @@ const addEditor = async (req, res) => {
       console.log(fileName)
     }
     
-    data = {
-      ...data,
-      created_at: new Date(),
-      updated_at: new Date(),
-    }
-
     await Editor.create(data)
 
     res.status(200).json({

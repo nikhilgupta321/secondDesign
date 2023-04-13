@@ -28,9 +28,11 @@ body {
 
 
 #certificate-pdf {
+  font-family: 'Times New Roman';
+  color: black;
   line-height: normal;
   width: 100%;
-  height: 100%;
+  height: 280mm;
   padding: 30px;
 }
 
@@ -88,8 +90,7 @@ body {
 
 #cert-content {
   border: 3px solid black;
-  padding-bottom: 30px;
-
+  height: 100%;
 }
 
 #blue {
@@ -120,6 +121,7 @@ body {
 #coverpage {
   background-color: #325BA9;
   padding-left: 750px;
+  height: 280mm;
   font-family: 'Times New Roman';
   line-height: normal;
 }
@@ -146,8 +148,8 @@ body {
 
 #cover-row1 {
   display: flex;
-  padding: 20px;
-  font-size: 30px;
+  padding: 10px;
+  font-size: 27px;
 }
 
 #cover-row1>div {

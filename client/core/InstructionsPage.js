@@ -6,7 +6,7 @@ export default function InstructionsPage(props) {
   const { settings } = useContext(GlobalContext)
 
   useEffect(() => {
-    document.title = 'Instructions | ' + settings.journal_name
+    document.title = 'Instructions | ' + settings.websitename
   }, [settings])
 
   return (
@@ -14,7 +14,7 @@ export default function InstructionsPage(props) {
       <PageTitle title="INSTRUCTIONS TO AUTHOR" />
       <div>
         <b>Submit Your Article</b><br />
-        <b>{settings.journal_email}</b>
+        <b>{settings.websiteemail}</b>
       </div>
       <div>
         <b>Download Copyright Form <a href={`/assets/copyright.doc`} download="copyright.doc">Click Here</a></b> 

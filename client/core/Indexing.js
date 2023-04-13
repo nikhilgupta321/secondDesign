@@ -5,7 +5,7 @@ export default function Indexing(props) {
   const { settings } = useContext(GlobalContext)
 
   useEffect(() => {
-    document.title = 'Indexing | ' + settings.journal_name
+    document.title = 'Indexing | ' + settings.websitename
   }, [settings])
 
   return (

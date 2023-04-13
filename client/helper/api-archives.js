@@ -1,4 +1,4 @@
-const create = async (credentials, params) => {
+const createIssue = async (credentials, params) => {
   try {
       let response = await fetch('/api/admin/create-issue', {
         method: 'POST',
@@ -30,7 +30,7 @@ const listPublicArchives = async (signal) => {
   }
 };
 
-const listArchives = async (credentials) => {
+const listAdminArchives = async (credentials) => {
   try {
     let response = await fetch('/api/admin/archives/', {
       method: 'GET',
@@ -49,7 +49,7 @@ const listArchives = async (credentials) => {
 
 const read = async (params, credentials, signal) => {
   try {
-    let response = await fetch('/api/archives/' + params.userId, {
+    let response = await fetch('/api/archives/' + params.id, {
       method: 'GET',
       signal: signal,
       headers: {
@@ -67,7 +67,7 @@ const read = async (params, credentials, signal) => {
 
 const update = async (params, credentials, user) => {
   try {
-    let response = await fetch('/api/archives/' + params.userId, {
+    let response = await fetch('/api/archives/' + params.id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -117,7 +117,7 @@ const updateArticle = async (params, credentials) => {
   
     if(params.file) formData.append("pdfFile", params.file);
     
-    let response = await fetch(`/api/admin/archives/${params.ref}`, {
+    let response = await fetch(`/api/archives/${params.id}`, {
       method: 'POST',
       body: formData,
       headers: {
@@ -131,7 +131,7 @@ const updateArticle = async (params, credentials) => {
   }
 }
 
-const listIssue = async (params, signal) => {
+const listPublicIssue = async (params, signal) => {
   try {
     let response = await fetch('/api/archives/' + params.year + '/' + params.vol + '/' + params.issue, {
       method: 'GET',
@@ -145,9 +145,37 @@ const listIssue = async (params, signal) => {
   }
 }
 
-const archivesByRef = async (params, signal) => {
+const listAdminIssue = async (params, signal) => {
   try {
-    let response = await fetch(`/api/archives/${params.ref}`, {
+    let response = await fetch('/api/archives/' + params.year + '/' + params.vol + '/' + params.issue, {
+      method: 'GET',
+      signal: signal
+    })
+    const result = await response.json();
+    return result
+  } catch (err) {
+    console.log(err)
+    return {error: err}
+  }
+}
+
+const archivesByRef = async (ref, signal) => {
+  try {
+    let response = await fetch(`/api/archives/ref/${ref}`, {
+      method: "GET",
+      signal: signal,
+    });
+    const result = await response.json();
+    return result
+  } catch (err) {
+    console.log(err);
+    return {error: err}
+  }
+}
+
+const archivesById = async (id, signal) => {
+  try {
+    let response = await fetch(`/api/archives/${id}`, {
       method: "GET",
       signal: signal,
     });
@@ -166,7 +194,6 @@ const searchArchives = async (query, signal) => {
       signal: signal,
     });
     let result = await response.json();
-    console.log(result)
     return result
   } catch (err) {
     console.log(err);
@@ -177,11 +204,13 @@ const searchArchives = async (query, signal) => {
 export {
   updateArticle,
   archivesByRef,
+  archivesById,
   addArticle,
-  create,
+  createIssue,
   listPublicArchives,
-  listArchives,
-  listIssue,
+  listAdminArchives,
+  listPublicIssue,
+  listAdminIssue,
   read,
   update,
   searchArchives

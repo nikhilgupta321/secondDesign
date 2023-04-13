@@ -23,7 +23,7 @@ const generateCertificate = (article, author, settings) => {
       var elementHTML = renderToString(<CertificatePdf author={author} article={article} settings={settings} />)
       doc.html(elementHTML, {
         callback: function (doc) {
-          doc.save(`certificate-${article.reference_num}.pdf`);
+          doc.save(`certificate-${article.refnumber}.pdf`);
         },
         width: 210, //target width in the PDF document
         windowWidth: 750 //window width in CSS pixels
@@ -63,8 +63,10 @@ const getEditors = async () => {
 
 const generateEditorialBoard = (settings) => {
   getEditors().then(editors => {
+    const filteredEditors = editors.filter(editor => editor.status === "enabled");
+
     var doc = new jsPDF({ margin: [40, 60, 40, 60] });
-    var elementHTML = renderToString(<EditorialBoardPdf editors={editors} settings={settings} />)
+    var elementHTML = renderToString(<EditorialBoardPdf editors={filteredEditors} settings={settings}  />)
 
     doc.html(elementHTML, {
       callback: function (doc) {
@@ -82,6 +84,7 @@ export default function Certificate(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const ref = searchParams.get('refno');
   const { settings } = useContext(GlobalContext)
+
   const [article, setArticle] = useState({});
   const [error, setError] = useState(false);
 
@@ -89,12 +92,11 @@ export default function Certificate(props) {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    archivesByRef({ ref: ref }, signal)
+     archivesByRef(ref, signal)
       .then((data) => {
         if (data && data.error) {
-          console.log(data.error)
+          setError(true)
         } else if (data) {
-          console.log(data)
           setArticle(data)
         }
       })
@@ -113,11 +115,11 @@ export default function Certificate(props) {
           <tbody>
             {article.file && <tr>
               <td>Download Artcle</td>
-              <td><a className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.reference_num}.pdf`}>Download</a></td>
+              <td><a className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}>Download</a></td>
             </tr>}
 
-            {article.author_name.split(',').map((author) => {
-              return <tr>
+            {article.authorname.split(',').map((author, index) => {
+              return <tr key={`author-${index + 1}`}>
                 <td>Download Certificate</td>
                 <td><div className="certificate-button" onClick={() => { generateCertificate(article, author, settings) }}>{author}</div></td>
               </tr>

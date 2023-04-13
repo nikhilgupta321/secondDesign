@@ -6,7 +6,7 @@ export default function NotFound(props) {
   const { settings } = useContext(GlobalContext)
   
   useEffect(() => {
-    document.title = 'Search | ' + settings.journal_name
+    document.title = 'Search | ' + settings.websitename
   }, [settings])
 
   return (

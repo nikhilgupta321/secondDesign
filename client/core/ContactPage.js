@@ -6,7 +6,7 @@ export default function ContactPage(props) {
   const { settings } = useContext(GlobalContext)
 
   useEffect(() => {
-    document.title = 'Contact Us | ' + settings.journal_name
+    document.title = 'Contact Us | ' + settings.websitename
   }, [settings])
 
   return (
@@ -16,14 +16,14 @@ export default function ContactPage(props) {
         <div>Address: H-34/3, Sector-3, Rohini, Delhi, India</div>
         <div>
           Email<br />
-          {settings.journal_email}
+          {settings.websiteemail}
         </div>
         WhatsApp your query<br />
         <div>
         <div>Head: Nikhil Gupta</div>
         <div className="phoneno">
             <div>phone:</div>
-            <div id="phone">{`+91-${settings.whatsapp_num}`}</div>
+            <div id="phone">{`${settings.whatsup_number}`}</div>
             <img className="whatsapp-icon" src="/assets/images/whatsapp-icon.png" />
         </div>
         </div>

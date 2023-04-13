@@ -13,7 +13,7 @@ const listPublicArchives = async (req, res) => {
       group: ['year', 'volume'],
       order: [['year', 'DESC']],
       row: true
-    });    
+    });
     return res.status(200).json(archives)
   } catch (err) {
     console.log(err)
@@ -26,11 +26,11 @@ const addArticle = async (req, res) => {
     const data = req.body
     console.log(data)
     if (!req.files || !req.files.pdfFile || !data.year ||
-      !data.volume || !data.issue || !data.reference_num)
+      !data.volume || !data.issue || !data.refnumber)
       throw 'Invalid request!'
 
     const pdfFile = req.files.pdfFile;
-    data.file = `${data.reference_num}-${new Date().valueOf()}.pdf`
+    data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
     
     if(!fs.existsSync(path))
@@ -50,19 +50,22 @@ const addArticle = async (req, res) => {
 const updateArticle = async (req, res) => {
   try {
     const data = req.body
-    console.log(req.body)
+
     if (req.files && req.files.pdfFile) {
-      if (!data.year || !data.volume || !data.issue || !data.reference_num) throw 'Invalid request!'
+      if (!data.year || !data.volume || !data.issue || !data.refnumber) throw 'Invalid request!'
+      
       const pdfFile = req.files.pdfFile;
-      data.file = `${data.reference_num}-${new Date().valueOf()}.pdf`
+      data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
       const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
+      
       if(!fs.existsSync(path))
-      fs.mkdirSync(path, { recursive: true })
+        fs.mkdirSync(path, { recursive: true })
+      
       await pdfFile.mv(path + '/' + data.file)
     }
 
-    let article = await Archive.findOne({where: {reference_num: req.params.ref}})
-    console.log(data)
+    let article = await Archive.findOne({where: {id: req.params.id}})
+
     await article.update(data)
 
     res.status(200).json({
@@ -74,10 +77,10 @@ const updateArticle = async (req, res) => {
   }
 }
 
-const adminArchives = async (req, res) => {
+const listAdminArchives = async (req, res) => {
   try {
     const archives = await Archive.findAll({
-      attributes: ['year', 'volume', 'issue', [Sequelize.fn('COUNT', Sequelize.col('issue')), 'articles'], [Sequelize.fn('MIN', Sequelize.col('created_at')), 'created_at']],
+      attributes: ['year', 'volume', 'issue', [Sequelize.fn('COUNT', Sequelize.col('issue')), 'articles'], [Sequelize.fn('MIN', Sequelize.col('creation')), 'creation']],
       group: ['year', 'volume', 'issue'],
       order: [[Sequelize.literal('year DESC, ABS(issue) DESC')]],
     });       
@@ -117,8 +120,31 @@ const archivesByRef = async (req, res) => {
   try {
     const article = await Archive.findOne({
       where: {
-        reference_num: req.params.ref,
+        refnumber: req.params.ref,
         status: 'enabled'
+      },
+      limit: 1,
+      raw: true
+    });
+    
+    if (article.length == 0) throw 'Article not found'
+
+    const path = `${config.archivesDir}/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`
+    if (article.file && !fs.existsSync(path))
+      article.file = ''
+
+    return res.status(200).json(article)
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json({error: err})
+  }
+}
+
+const archivesById = async (req, res) => {
+  try {
+    const article = await Archive.findOne({
+      where: {
+        id: req.params.id,
       },
       limit: 1,
       raw: true
@@ -140,16 +166,15 @@ const archivesByRef = async (req, res) => {
 //Fix this: it should check the database if the issue is already present
 const createNewIssue = async (req, res) => {
   const data = req.body
-  const date = new Date()
-  data.year = date.getFullYear()
   try {
-    if (!data.volume || !data.issue) throw "Invalid request"
+    if (!data.volume || !data.issue || !data.year) throw "Invalid request"
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`
     
     if(!fs.existsSync(path))
       fs.mkdirSync(path, { recursive: true })
     
-      await Archive.create(data)
+    data.status = 'disabled'
+    await Archive.create(data)
     return res.status(200).json({
       message: "Created new archive!"
     })
@@ -168,9 +193,9 @@ const searchArchives = async (req, res) => {
     const articles = await Archive.findAll({
       where: {
         [Op.or]: [
-          { reference_num: { [Op.like]: `%${query}%` } },
+          { refnumber: { [Op.like]: `%${query}%` } },
           { title: { [Op.like]: `%${query}%` } },
-          { author_name: { [Op.like]: `%${query}%` } },
+          { authorname: { [Op.like]: `%${query}%` } },
           { abstract: { [Op.like]: `%${query}%` } },
           { description: { [Op.like]: `%${query}%` } },
           { email: { [Op.like]: `%${query}%` } },
@@ -199,9 +224,10 @@ export default {
   updateArticle,
   addArticle,
   listPublicArchives,
+  listAdminArchives,
   listIssue,
   archivesByRef,
+  archivesById,
   searchArchives,
-  adminArchives,
   createNewIssue
 }

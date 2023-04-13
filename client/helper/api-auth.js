@@ -34,9 +34,9 @@ const verifyOtp = async (otp) => {
   }
 }
 
-const verifyCredential = async (credentials) => {
+const login = async (credentials) => {
   try {
-    let response = await fetch('/auth/authenticate/', {
+    let response = await fetch('/auth/login/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -73,5 +73,5 @@ export {
   sendOtp,
   verifyOtp,
   verifyToken,
-  verifyCredential
+  login,
 }
