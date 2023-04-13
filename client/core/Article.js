@@ -21,6 +21,7 @@ export default function Article(props) {
     archivesByRef( ref, signal).then((data) => {
       if(data && !data.error && data.status === "enabled") {
         setArticle(data)
+        setError(false)
       }
       else {
         setError(true)

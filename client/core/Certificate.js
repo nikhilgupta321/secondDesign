@@ -108,7 +108,6 @@ export default function Certificate(props) {
   return (
     <div className="page">
       <PageTitle title="DOWNLOAD PUBLICATION CERTIFICATE" />
-      {error && <h3>Certificate not found!</h3>}
       {Object.keys(article).length !== 0 && <>
         <h3>Download your Artcle, Certificate, Cover Page, Editorial Board</h3>
         <table id="certificate">

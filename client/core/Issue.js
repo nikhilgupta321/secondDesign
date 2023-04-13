@@ -16,34 +16,13 @@ export default function Archives(props) {
 
   const [articles, setArticles] = useState([]);
 
-  const list = async (signal) => {
-    try {
-      let response = await fetch(`/api/archives/${year}/${vol}/${issue}`, {
-        method: "GET",
-        signal: signal,
-      });
-
-      let result = await response.json();
-      if (result && result.error) {
-        console.log(result.error);
-      } else {
-        const enabledArticles = result.filter(article => article.status === 'enabled');
-        enabledArticles.sort((a, b) => parseInt(a.page_num) - parseInt(b.page_num));
-        setArticles(enabledArticles);
-
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
     listPublicIssue({year: year, vol: vol, issue: issue}, signal).then((data) => {
       if (data && !data.error) {
-        const enabledArticles = data.filter(article => article.status === "enabled");
+        const enabledArticles = data.filter(article => article.refnumber && article.status === "enabled");
         setArticles(enabledArticles);
       }
     });

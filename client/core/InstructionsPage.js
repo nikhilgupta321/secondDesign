@@ -17,7 +17,7 @@ export default function InstructionsPage(props) {
         <b>{settings.websiteemail}</b>
       </div>
       <div>
-        <b>Download Copyright Form <a href={`/assets/copyright.doc`} download="copyright.doc">Click Here</a></b> 
+        <b>Download Copyright Form <a href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b> 
       </div>
       <div>
         <b>Send Article in MS Word file</b>

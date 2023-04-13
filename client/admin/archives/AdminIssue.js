@@ -49,7 +49,7 @@ export default function AdminIssue(props) {
         console.log(data.error)
         setValues({ ...values, error: data.error })
       } else {
-        setValues({ issues: issues, selected: new Array(data.length).fill(false), error: '' })
+        setValues({ issues: data, selected: new Array(data.length).fill(false), error: '' })
       }
     })
 

@@ -14,8 +14,8 @@ export default function AddArticle(props) {
     volume: '',
     issue: '',
     txnid: '',
-    ptype: '',
-    publishdate: '',
+    ptype: 'paid',
+    publishdate: new Date().toISOString().slice(0, 10),
     authorname: '',
     pagenumber: '',
     subject: '',
@@ -207,7 +207,6 @@ export default function AddArticle(props) {
           <div>REFERENCE NUMBER *</div>
           <input
             onChange={handleChange('refnumber')}
-            readOnly
             value={article.refnumber}
             className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.refnumber === '' ? 'border-b-red-500' : ''}`}
             type="text"
