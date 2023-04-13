@@ -386,9 +386,21 @@ img {
   border-right: 1px solid #0400ff;
 }
 
+.indexing-grid {
+  display: grid;
+  background-color: white;
+  border: 2px solid #005fff;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.indexing-element {
+  border: 2px solid #005fff;
+}
+
 #indexing td {
   border: 4px solid #005fff;
-  padding: 10px;
   width: 33.33%;
 }
 

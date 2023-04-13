@@ -1,81 +1,37 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { listIndexing } from "../helper/api-indexing";
 
 export default function Indexing(props) {
   const { settings } = useContext(GlobalContext)
+  const [indexing, setIndexing] = useState([])
 
   useEffect(() => {
     document.title = 'Indexing | ' + settings.websitename
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    listIndexing(signal).then(data => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        const enabledIndex = data.filter(index => index.status === "enabled");
+        setIndexing(enabledIndex)
+      }
+    })
+
+    return function cleanup() {
+      abortController.abort();
+    };
   }, [settings])
 
   return (
-    <div id="indexing">
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <a href="https://portal.issn.org/resource/issn/2349-4182">
-                <img src='assets/images/IMG_20180515_124422.png' alt="ISSN" />
-              </a>
-            </td>
-            <td>
-              <a href="https://www.citefactor.org/journal/index/22808/international-journal-of-multidisciplinary-research-and-development#.XGeUt-gzbIU">
-                <img
-                  src="assets/images/IMG_20180515_122817.jpg"
-                  alt="Cite Factor"
-                />
-              </a>
-            </td>
-            <td>
-              <a href="https://www.crossref.org/titleList/">
-                <img
-                  src="assets/images/IMG_20180515_124914.jpg"
-                  alt="Cross Ref"
-                />
-              </a>
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <a href="https://scholar.google.com/citations?user=2bLpYMAAAAAJ&amp;hl=en">
-                <img
-                  src="assets/images/IMG_20180515_011518.jpg"
-                  alt="Google Scholar"
-                />
-              </a>
-            </td>
-            <td>
-              <a href="https://journals.indexcopernicus.com/search/details?id=42416">
-                <img
-                  src="assets/images/IMG_20180515_125023.jpg"
-                  alt="Index Copernicus"
-                />
-              </a>
-            </td>
-            <td>
-              <a href="https://publons.com/journal/55858/international-journal-of-multidisciplinary-researc">
-                <img src="assets/images/IMG_20201021_124749.png" alt="publoans" />
-              </a>
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <a href="https://portal.issn.org/resource/issn/2349-4182">
-                <img src="assets/images/IMG_20180515_124531.jpg" alt="ROAD" />
-              </a>
-            </td>
-            <td>
-              <img src="assets/images/IMG_20180515_123110.jpg" alt="Cite Seer" />
-            </td>
-            <td>
-              <img
-                src="assets/images/IMG_20180515_125402.png"
-                alt="Open Access"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="indexing-grid">
+      {indexing.map((indexing, index) => {
+        return <a key={`indexing-${index + 1}`} className="indexing-element flex items-center justify-center p-5" href={indexing.link} style={{ pointerEvents: indexing.link ? 'auto' : 'none' }} target="_blank" rel="noopener noreferrer">
+                  <img src={`assets/indexing/${indexing.image}`} className="w-full h-auto" alt={indexing.title} />
+               </a>
+      })}
     </div>
   );
 }
