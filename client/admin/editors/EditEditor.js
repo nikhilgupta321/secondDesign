@@ -22,7 +22,7 @@ export default function EditEditor(props) {
     post: '',
     name: '',
     content: '',
-    email: '',
+    // email: '',
     phone: '',
     picture: '',
     country: '',
@@ -80,7 +80,7 @@ export default function EditEditor(props) {
           post: data.post || editor.post,
           name: data.name || editor.name,
           content: data.content || editor.content,
-          email: data.email || editor.email,
+          // email: data.email || editor.email,
           phone: data.phone || editor.phone,
           picture: data.picture || editor.picture,
           country: data.country || editor.country,
@@ -101,7 +101,7 @@ export default function EditEditor(props) {
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div><div>AUTHOR NAME</div><input value={editor.name} onChange={handleChange('name')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.name === '' ? 'border-b-red-500' : ''}`} type="text"></input></div>
-        <div><div>EMAIL</div><input value={editor.email} onChange={handleChange('email')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
+        {/* <div><div>EMAIL</div><input value={editor.email} onChange={handleChange('email')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div> */}
         <div><div>PHONE</div><input value={editor.phone} onChange={handleChange('phone')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>COUNTRY</div><input value={editor.country} onChange={handleChange('country')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>AFFILIATION</div><input value={editor.content} onChange={handleChange('content')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.content === '' ? 'border-b-red-500' : ''}`} type="text"></input></div>
