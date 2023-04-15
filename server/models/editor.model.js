@@ -43,20 +43,10 @@ const Editor = sequelize.define('editors', {
     allowNull: false,
     defaultValue: '',
   },
-  emailshow: {
-    type: DataTypes.ENUM('Y','N'),
-    allowNull: false,
-    defaultValue: 'Y',
-  },
   phone: {
     type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: '',
-  },
-  phoneshow: {
-    type: DataTypes.ENUM('Y','N'),
-    allowNull: false,
-    defaultValue: 'Y',
   },
   country: {
     type: DataTypes.STRING(255),
@@ -67,21 +57,6 @@ const Editor = sequelize.define('editors', {
     type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: '',
-  },
-  pictureshow: {
-    type: DataTypes.ENUM('Y','N'),
-    allowNull: false,
-    defaultValue: 'Y',
-  },
-  catsortnumber: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  },
-  sortnumber: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
   },
   status: {
     type: DataTypes.ENUM('enabled','disabled'),

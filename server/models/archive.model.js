@@ -8,16 +8,6 @@ const Archive = sequelize.define('archives', {
     allowNull: false,
     primaryKey: true
   },
-  doi: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
-  doistatus: {
-    type: DataTypes.ENUM('enabled','disabled'),
-    allowNull: false,
-    defaultValue: 'enabled',
-  },
   month: {
     type: DataTypes.STRING(255),
     allowNull: false,
@@ -57,28 +47,13 @@ const Archive = sequelize.define('archives', {
     allowNull: false,
     defaultValue: '',
   },
-  titlefont: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
   authorname: {
     type: DataTypes.TEXT,
     allowNull: false,
     defaultValue: '',
   },
-  authornamefont: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
   abstract: {
     type: DataTypes.TEXT,
-    allowNull: false,
-    defaultValue: '',
-  },
-  abstractfont: {
-    type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: '',
   },
@@ -93,11 +68,6 @@ const Archive = sequelize.define('archives', {
     defaultValue: '',
   },
   file: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
-  supplementaryfile: {
     type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: '',
@@ -122,11 +92,6 @@ const Archive = sequelize.define('archives', {
     allowNull: false,
     defaultValue: 'enabled',
   },
-  comment: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
   mobile: {
     type: DataTypes.STRING(255),
     allowNull: false,
@@ -136,21 +101,6 @@ const Archive = sequelize.define('archives', {
     type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: '',
-  },
-  editLimit: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    defaultValue: 0
-  },
-  mailstatus: {
-    type: DataTypes.ENUM('send','not send','failed'),
-    allowNull: false,
-    defaultValue: 'not send',
-  },
-  certificatemailstatus: {
-    type: DataTypes.ENUM('send','not send','failed'),
-    allowNull: false,
-    defaultValue: 'not send',
   },
   modifiedby: {
     type: DataTypes.STRING(255),
@@ -179,17 +129,7 @@ const Archive = sequelize.define('archives', {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 0
-  },
-  specialissue: {
-    type: DataTypes.ENUM('Y','N'),
-    allowNull: false,
-    defaultValue: 'N',
-  },
-  conference: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-    defaultValue: '',
-  },
+  }
 }, {
   sequelize,
   tableName: 'archives',

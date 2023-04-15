@@ -18,26 +18,6 @@ const Setting = sequelize.define('settings', {
       allowNull: false,
       defaultValue: '',
     },
-    fromname: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    fromemail: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    replyname: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    replyemail: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
     impactfactor: {
       type: DataTypes.STRING(255),
       allowNull: false,
@@ -48,47 +28,7 @@ const Setting = sequelize.define('settings', {
       allowNull: false,
       defaultValue: '',
     },
-    ugcnumber: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    ugcnumberstatus: {
-      type: DataTypes.ENUM('enabled','disabled'),
-      allowNull: false,
-      defaultValue: 'disabled',
-    },
-    version: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
     whatsup_number: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    whatsup_message: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    adsone: {
-      type: DataTypes.ENUM('enabled','disabled'),
-      allowNull: false,
-      defaultValue: "enabled"
-    },
-    adstwo: {
-      type: DataTypes.ENUM('enabled','disabled'),
-      allowNull: false,
-      defaultValue: 'enabled',
-    },
-    mailer: {
-      type: DataTypes.ENUM('amazon','phpmailer'),
-      allowNull: false,
-      defaultValue: 'amazon',
-    },
-    extensions: {
       type: DataTypes.STRING(255),
       allowNull: false,
       defaultValue: '',
@@ -97,26 +37,6 @@ const Setting = sequelize.define('settings', {
       type: DataTypes.STRING(255),
       allowNull: false,
       defaultValue: '',
-    },
-    editorspicture: {
-      type: DataTypes.ENUM('enabled','disabled'),
-      allowNull: false,
-      defaultValue: 'enabled',
-    },
-    publisher: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
-    boardphoto: {
-      type: DataTypes.ENUM('enabled','disabled'),
-      allowNull: false,
-      defaultValue: 'enabled',
-    },
-    boardresume: {
-      type: DataTypes.ENUM('enabled','disabled'),
-      allowNull: false,
-      defaultValue: 'enabled',
     },
     domain: {
       type: DataTypes.STRING(255),

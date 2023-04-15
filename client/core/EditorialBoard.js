@@ -7,8 +7,9 @@ import { GlobalContext } from "../context/GlobalContext";
 
 export default function EditorialBoard() {
   const { settings } = useContext(GlobalContext)
+  const [chiefEditors, setChiefEditors] = useState([]);
   const [editors, setEditors] = useState([]);
-  
+
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -17,8 +18,8 @@ export default function EditorialBoard() {
       if (data && data.error) {
         console.log(data.error)
       } else if (data) {
-        const filteredEditors = data.filter(editor => editor.status === "enabled");
-        setEditors(filteredEditors);
+        setEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'editors'));
+        setChiefEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'editor in chief'));
       }
     })
 
@@ -35,25 +36,29 @@ export default function EditorialBoard() {
     <div className="page">
       <PageTitle title="EDITORIAL BOARD" />
 
-      <Frame title="EDITOR IN CHIEF">
-        {editors.map((editor, index) => {
-          return (
-            editor.category == 'Editor in chief' &&
-            <EditorSlot key={`chiefeditor-${index + 1}`} editor={editor} />
-          )
-        }
-        )}
-      </Frame>
+      {chiefEditors.length > 0 &&
+        <Frame title="EDITOR IN CHIEF">
+          {
+            chiefEditors.map((editor, index) => {
+              return (
+                <EditorSlot key={`chiefeditor-${index + 1}`} editor={editor} />
+              )
+            })
+          }
+        </Frame>
+      }
 
-      <Frame title="EDITORS">
-        {
-          editors.map((editor, index) => {
-            return (
-              editor.category == 'Editors' &&
-              <EditorSlot key={`editor-${index + 1}`} editor={editor} />
-            )
-          })}
-      </Frame>
+      {editors.length > 0 &&
+        <Frame title="EDITORS">
+          {
+            editors.map((editor, index) => {
+              return (
+                <EditorSlot key={`editor-${index + 1}`} editor={editor} />
+              )
+            })
+          }
+        </Frame>
+      }
     </div>
   );
 }
