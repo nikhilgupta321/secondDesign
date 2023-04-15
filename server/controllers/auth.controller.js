@@ -89,6 +89,7 @@ const login = async (req, res) => {
       });
       const ip = req.socket.remoteAddress;
       if (ip != '::1' && !result.allowed_ip.split(',').includes(ip)) {
+        console.log(ip)
         throw 'invalid_ip'
       }
 
