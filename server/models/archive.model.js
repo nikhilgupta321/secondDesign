@@ -8,11 +8,6 @@ const Archive = sequelize.define('archives', {
     allowNull: false,
     primaryKey: true
   },
-  month: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
   year: {
     type: DataTypes.STRING(4),
     allowNull: false,

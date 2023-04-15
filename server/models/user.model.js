@@ -13,17 +13,7 @@ const User = sequelize.define('users', {
     allowNull: false,
     defaultValue: '',
   },
-  email: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
   password: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: '',
-  },
-  token: {
     type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: '',
@@ -33,10 +23,6 @@ const User = sequelize.define('users', {
     allowNull: false,
     defaultValue: 'ENABLED',
   },
-  creation: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  }
 }, {
   sequelize,
   tableName: 'users',

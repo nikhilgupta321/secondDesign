@@ -33,11 +33,6 @@ const Setting = sequelize.define('settings', {
       allowNull: false,
       defaultValue: '',
     },
-    signature: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: '',
-    },
     domain: {
       type: DataTypes.STRING(255),
       allowNull: false,
