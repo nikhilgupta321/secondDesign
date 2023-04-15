@@ -63,10 +63,10 @@ const Editor = sequelize.define('editors', {
     allowNull: false,
     defaultValue: 'enabled',
   },
-  creation: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
+  // creation: {
+  //   type: DataTypes.DATE,
+  //   allowNull: false,
+  // },
   updated_at: {
     type: DataTypes.DATE,
     allowNull: true

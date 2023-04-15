@@ -110,7 +110,7 @@ export default function Editors(props) {
                   <Td>{editor.post}</Td>
                   <Td>{editor.content}</Td>
                   <Td>{statusWithColor(editor.status)}</Td>
-                  <Td>{parseDate(editor.creation)}</Td>
+                  {/* <Td>{parseDate(editor.creation)}</Td> */}
                   <Td>{parseDate(editor.modification)}</Td>
                   <Td><Link className="text-green-700 font-bold" to={`/admin/editors/${editor.id}`}>EDIT</Link></Td>
                 </tr>

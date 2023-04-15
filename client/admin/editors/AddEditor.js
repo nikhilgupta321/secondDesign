@@ -44,7 +44,7 @@ export default function AddEditor(props) {
     let data = editor;
     data = {
       ...data,
-      creation: new Date(),
+      // creation: new Date(),
       updated_at: new Date(),
     }
 
