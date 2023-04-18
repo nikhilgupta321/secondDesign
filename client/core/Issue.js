@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageTitle from "./PageTitle";
 import { useParams, Link } from "react-router-dom";
 import {listPublicIssue} from "../helper/api-archives";
+import { GlobalContext } from "../context/GlobalContext";
 
 const decodeStr = (str) => {
   let doc = new DOMParser().parseFromString(str, "text/html");
@@ -13,6 +14,7 @@ export default function Archives(props) {
   const year = parseInt(params.year.match(/\d+/)[0], 10)
   const vol = parseInt(params.vol.match(/\d+/)[0], 10)
   const issue = parseInt(params.issue.match(/\d+/)[0], 10)
+  const { settings } = useContext(GlobalContext)
 
   const [articles, setArticles] = useState([]);
 
@@ -62,7 +64,7 @@ export default function Archives(props) {
                     <div>Pages: {article.pagenumber}</div>
                   </div>
                   <div className="citation"><b>How to cite this article:</b></div>
-                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {vol}, Issue {issue}, {year}, Pages {article.pagenumber}</div>
+                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. {settings.websitename}, Volume {vol}, Issue {issue}, {year}, Pages {article.pagenumber}</div>
                 </div>
               </td>
               <td>{article.subject}</td>
