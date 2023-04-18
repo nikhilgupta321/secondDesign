@@ -41,6 +41,10 @@ const Setting = sequelize.define('settings', {
     allowed_ip: {
       type: DataTypes.STRING(255),
       allowNull: true,
+    },
+    home_content: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     }
   }, {
     sequelize,
