@@ -13,9 +13,9 @@ export default function CertificatePdf(props) {
   return (
     <div id="certificate-pdf">
       <div id="cert-content">
-        <div id="cert-head">
+        <div className="flex p-8 gap-8 border-b-2 border-black">
           <img id="cert-logo" src="/assets/images/logo.png" />
-          <div className="flex items-center justify-center text-blue-A w-full text-center text-3xl">{props.settings.websitename}</div>
+          <div className="flex items-center justify-center -ml-4 -mt-6 text-blue-A w-full text-center text-3xl">{props.settings.websitename}</div>
         </div>
         <div id="cert-body">
           <div id="cert-body-title">
