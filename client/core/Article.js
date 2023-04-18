@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PageTitle from "./PageTitle";
 import { useParams, Link } from "react-router-dom";
 import { archivesByRef } from "../helper/api-archives";
+import { GlobalContext } from "../context/GlobalContext";
 
 const decodeStr = (str) => {
   let doc = new DOMParser().parseFromString(str, "text/html");
@@ -10,6 +11,7 @@ const decodeStr = (str) => {
 
 export default function Article(props) {
   const {ref} = useParams();
+  const { settings } = useContext(GlobalContext)
 
   const [article, setArticle] = useState({});
   const [error, setError] = useState(false);
@@ -53,7 +55,7 @@ export default function Article(props) {
         </div>
         <div>
           <div className="text-blue"><b>How to cite this article:</b></div>
-          <div>{article.authroname} <b className="article-cite" dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
+          <div>{article.authroname} <b className="article-cite" dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. {settings.websitename}, Volume {article.volume}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
         </div>
       </>
       }
