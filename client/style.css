@@ -40,13 +40,6 @@ body {
   width: 100px;
 }
 
-#cert-title {
-  color: #0400ff;
-  width: 100%;
-  text-align: center;
-  font-size: 26px;
-}
-
 #cert-head {
   display: flex;
   border-bottom: 3px solid black;
