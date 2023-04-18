@@ -19,12 +19,10 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="flex flex-col gap-5">
       <JournalInfo />
       <div dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : ""}}></div>
       <div id="indexing-title">INDEXING</div>
       <Indexing/>
-      </div>
     </>
   );
 }
