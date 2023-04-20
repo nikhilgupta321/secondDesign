@@ -49,6 +49,7 @@ export default function AdminIssue(props) {
         console.log(data.error)
         setValues({ ...values, error: data.error })
       } else {
+        data.sort((a, b) => a.publishdate - b.publishdate);
         setValues({ issues: data, selected: new Array(data.length).fill(false), error: '' })
       }
     })

@@ -36,9 +36,6 @@ body {
   padding: 30px;
 }
 
-#cert-sign {
-  width: 100px;
-}
 
 #cert-head {
   display: flex;

@@ -8,8 +8,12 @@ const decodeStr = (str) => {
 export default function CertificatePdf(props) {
   const dateString = props.article.publishdate;
   const date = new Date(dateString);
-  const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-
+  const months = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  const formattedDate = `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`;
+  
   return (
     <div id="certificate-pdf">
       <div id="cert-content">
@@ -62,7 +66,9 @@ export default function CertificatePdf(props) {
             </tbody>
           </table>
           </div>
-          <img id="cert-sign" src="/assets/images/sign.png" />
+          <div className="w-24 h-24 mb-6">
+          <img src="/assets/images/stamp.png" />
+          </div>
           <div>
             Regards<br />
             {props.settings.websitename}<br />
