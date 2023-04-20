@@ -66,7 +66,7 @@ export default function CertificatePdf(props) {
             </tbody>
           </table>
           </div>
-          <div className="w-24 h-24 mb-6">
+          <div className="w-24 h-24 mb-3">
           <img src="/assets/images/stamp.png" />
           </div>
           <div>
