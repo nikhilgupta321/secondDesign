@@ -25,6 +25,7 @@ export default function Archives(props) {
     listPublicIssue({year: year, vol: vol, issue: issue}, signal).then((data) => {
       if (data && !data.error) {
         const enabledArticles = data.filter(article => article.refnumber && article.status === "enabled");
+        enabledArticles.sort((a, b) => parseInt(a.pagenumber) - parseInt(b.pagenumber));
         setArticles(enabledArticles);
       }
     });
