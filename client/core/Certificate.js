@@ -24,6 +24,7 @@ const generateCertificate = (article, author, settings) => {
           doc.save(`certificate-${article.refnumber}.pdf`);
         },
         width: 210, //target width in the PDF document
+        hotfixes: ['px_scaling'],
         windowWidth: 750 //window width in CSS pixels
       });
     })
