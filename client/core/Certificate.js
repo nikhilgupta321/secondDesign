@@ -10,16 +10,14 @@ import { archivesByRef } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
 
 const generateCertificate = (article, author, settings) => {
-  fetch('/assets/NotoSansDevanagari-Bold-base64.txt')
+  fetch('/assets/hind-bold-base64.txt')
     .then(response => response.text())
     .then(font => {
 
       var doc = new jsPDF();
 
-      doc.addFileToVFS('NotoSansDevanagri-Bold.ttf', font)
-      doc.addFont('NotoSansDevanagri-Bold.ttf', 'NotoSansDevanagri', 'bold')
-      doc.setFont('NotoSansDevanagri', 'bold')
-      
+      doc.addFileToVFS('hind-bold-base64.txt', font)
+      doc.addFont('hind-bold-base64.txt', 'Hind', 'bold',)
       var elementHTML = renderToString(<CertificatePdf author={author} article={article} settings={settings} />)
       doc.html(elementHTML, {
         callback: function (doc) {
