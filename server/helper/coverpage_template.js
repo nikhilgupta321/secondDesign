@@ -76,6 +76,7 @@ export default (config, article, settings) => {
   
   #cover-footer {
     text-align: center;
+    width: 100%;
     font-size: 35px;
     position:absolute;
     bottom: 50px;
