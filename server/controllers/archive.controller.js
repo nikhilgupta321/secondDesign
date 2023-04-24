@@ -1,5 +1,4 @@
 import Sequelize from 'sequelize';
-const { QueryTypes } = require('sequelize');
 import Archive from '../models/archive.model';
 import { config } from '../../config/config';
 const { Op } = require('sequelize');
@@ -128,7 +127,7 @@ const archivesByRef = async (req, res) => {
     });
     
     if (article.length == 0) throw 'Article not found'
-
+    
     const path = `${config.archivesDir}/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`
     if (article.file && !fs.existsSync(path))
       article.file = ''

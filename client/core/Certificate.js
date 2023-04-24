@@ -3,83 +3,53 @@ import PageTitle from "./PageTitle";
 import { useSearchParams, Link } from "react-router-dom";
 import { jsPDF } from 'jspdf';
 import { renderToString } from 'react-dom/server'
-import CertificatePdf from "./CertificatePdf";
 import CoverpagePdf from "./CoverpagePdf";
 import EditorialBoardPdf from "./EditorialBoardPdf";
 import { archivesByRef } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
+import { getCertificate } from "../helper/api-pdf";
+import { getCoverpage } from "../helper/api-pdf";
+import { getEditorialBoard } from "../helper/api-pdf";
 
-const generateCertificate = (article, author, settings) => {
-  fetch('/assets/hind-bold-base64.txt')
-    .then(response => response.text())
-    .then(font => {
-
-      var doc = new jsPDF();
-
-      doc.addFileToVFS('hind-bold-base64.txt', font)
-      doc.addFont('hind-bold-base64.txt', 'Hind', 'bold',)
-      var elementHTML = renderToString(<CertificatePdf author={author} article={article} settings={settings} />)
-      doc.html(elementHTML, {
-        callback: function (doc) {
-          doc.save(`certificate-${article.refnumber}.pdf`);
-        },
-        width: 210, //target width in the PDF document
-        hotfixes: ['px_scaling'],
-        windowWidth: 750 //window width in CSS pixels
-      });
-    })
-}
-
-const generateCoverpage = (article, settings) => {
-
-  var doc = new jsPDF({ orientation: "landscape", format: "a3" });
-  var elementHTML = renderToString(<CoverpagePdf article={article} settings={settings} />)
-
-  doc.html(elementHTML, {
-    callback: function (doc) {
-      doc.save(`coverpage.pdf`);
-    },
-    width: 420, //target width in the PDF document
-    windowWidth: 1500 //window width in CSS pixels
-  });
-}
-
-const getEditors = async () => {
-  try {
-    let response = await fetch("/api/editors/", {
-      method: "GET",
-    });
-    const result = await response.json();
-    if (result && result.error) {
-      console.log(result.error);
-    } else {
-      return result
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const generateEditorialBoard = (settings) => {
-  getEditors().then(editors => {
-    const filteredEditors = editors.filter(editor => editor.status === "enabled");
-
-    var doc = new jsPDF({ margin: [40, 60, 40, 60] });
-    var elementHTML = renderToString(<EditorialBoardPdf editors={filteredEditors} settings={settings}  />)
-
-    doc.html(elementHTML, {
-      callback: function (doc) {
-        doc.save(`Editorial-Board.pdf`);
-      },
-      width: 180, //target width in the PDF document
-      windowWidth: 750, //window width in CSS pixels
-      margin: [15, 15, 15, 15]
-    },
-    );
+const saveCertificate = (refnumber) => {
+  getCertificate(refnumber).then((blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `certificate-${refnumber}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   })
 }
 
-export default function Certificate(props) {
+const saveCoverpage = (refnumber) => {
+  getCoverpage(refnumber).then((blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `coverpage-${refnumber}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  })
+}
+
+const saveEditorialBoard = (refnumber) => {
+  getEditorialBoard().then((blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Editorial-Board.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  })
+}
+  export default function Certificate(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const ref = searchParams.get('refno');
   const { settings } = useContext(GlobalContext)
@@ -91,7 +61,7 @@ export default function Certificate(props) {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-     archivesByRef(ref, signal)
+    archivesByRef(ref, signal)
       .then((data) => {
         if (data && data.error) {
           setError(true)
@@ -109,6 +79,7 @@ export default function Certificate(props) {
       <PageTitle title="DOWNLOAD PUBLICATION CERTIFICATE" />
       {Object.keys(article).length !== 0 && <>
         <h3>Download your Artcle, Certificate, Cover Page, Editorial Board</h3>
+        <div id="im"></div>
         <table id="certificate">
           <tbody>
             {article.file && <tr>
@@ -119,17 +90,17 @@ export default function Certificate(props) {
             {article.authorname.split(',').map((author, index) => {
               return <tr key={`author-${index + 1}`}>
                 <td>Download Certificate</td>
-                <td><div className="certificate-button" onClick={() => { generateCertificate(article, author, settings) }}>{author}</div></td>
+                <td><div className="certificate-button" onClick={() => { saveCertificate(ref) }}>{author}</div></td>
               </tr>
             })}
 
             <tr>
               <td>Download Cover Page</td>
-              <td><a className="certificate-button" onClick={() => { generateCoverpage(article, settings) }}>Download</a></td>
+              <td><a className="certificate-button" onClick={() => { saveCoverpage(ref) }}>Download</a></td>
             </tr>
             <tr>
               <td>Download Editorial Board</td>
-              <td><a className="certificate-button" onClick={() => { generateEditorialBoard(settings) }}>Download</a></td>
+              <td><a className="certificate-button" onClick={() => { saveEditorialBoard() }}>Download</a></td>
             </tr>
           </tbody>
         </table>
