@@ -7,7 +7,7 @@ export default function Flash(props) {
   return (
     flash.msg &&
     <div className="z-20 absolute top-0 left-0 h-screen bg-opacity-50 w-full flex bg-black justify-center">
-      <div className="min-w-80 z-30 p-3 h-fit mt-32 rounded-lg shadow-lg bg-white">
+      <div className="w-1/3 z-30 p-3 h-fit mt-32 rounded-lg shadow-lg bg-white">
         <div className="p-5 h-fit">
           <div>
             {flash.success && <div className="text-green-700">{flash.msg}</div>}

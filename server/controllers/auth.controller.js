@@ -87,7 +87,7 @@ const login = async (req, res) => {
         where: { id: 1 },
         attributes: ['allowed_ip']
       });
-      const ip = req.headers['x-forwarded-for'];
+      const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
       if (!result.allowed_ip.split(',').includes(ip)) {
         console.log(ip)
         throw 'invalid_ip'

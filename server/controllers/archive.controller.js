@@ -27,6 +27,11 @@ const addArticle = async (req, res) => {
     if (!req.files || !req.files.pdfFile || !data.year ||
       !data.volume || !data.issue || !data.refnumber)
       throw 'Invalid request!'
+    
+    if(await Archive.findOne({where: {refnumber: data.refnumber}}))
+      throw 'duplicate_reference_number'
+    if(await Archive.findOne({where: {title: data.title}}))
+      throw 'duplicate_title'
 
     const pdfFile = req.files.pdfFile;
     data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`

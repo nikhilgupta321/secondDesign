@@ -88,14 +88,16 @@ body {
 }
 
 .certificate-button {
-  background-color: #44c767;
-  border: 1px solid #18ab29;
-  text-shadow: 0px 1px 0px #2f6627;
+  background-color: #10ad3a;
+  border: 1px solid #32813a;
   color: white;
   padding: 5px 20px;
   border-radius: 3px;
   cursor: pointer;
-  width: fit-content;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
 }
 
 #certificate {

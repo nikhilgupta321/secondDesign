@@ -78,7 +78,12 @@ export default function AddArticle(props) {
 
     addArticle(articleData, pdffile, { token: jwt.token }).then((data) => {
       if (data && data.error) {
-        setFlash({ error: true, msg: 'Something went wrong' })
+        if(data.error == 'duplicate_reference_number')
+          setFlash({ error: true, msg: 'Duplicate reference number' })
+        else if(data.error == 'duplicate_title')
+          setFlash({ error: true, msg: 'Duplicate title' })
+        else
+          setFlash({ error: true, msg: 'Something went wrong' })
       }
       else {
         setFlash({

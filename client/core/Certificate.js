@@ -92,11 +92,11 @@ const saveEditorialBoard = (refnumber) => {
 
             <tr>
               <td>Download Cover Page</td>
-              <td><a className="certificate-button" onClick={() => { saveCoverpage(ref) }}>Download</a></td>
+              <td><div className="certificate-button" onClick={() => { saveCoverpage(ref) }}>Download</div></td>
             </tr>
             <tr>
               <td>Download Editorial Board</td>
-              <td><a className="certificate-button" onClick={() => { saveEditorialBoard() }}>Download</a></td>
+              <td><div className="certificate-button" onClick={() => { saveEditorialBoard() }}>Download</div></td>
             </tr>
           </tbody>
         </table>
