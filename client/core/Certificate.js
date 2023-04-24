@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import PageTitle from "./PageTitle";
 import { useSearchParams, Link } from "react-router-dom";
-import { jsPDF } from 'jspdf';
-import { renderToString } from 'react-dom/server'
-import CoverpagePdf from "./CoverpagePdf";
-import EditorialBoardPdf from "./EditorialBoardPdf";
 import { archivesByRef } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
 import { getCertificate } from "../helper/api-pdf";

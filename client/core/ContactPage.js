@@ -14,10 +14,6 @@ export default function ContactPage(props) {
     <div className=" flex flex-col gap-5">
       <PageTitle title="CONTACT US" />
         <div>Address: H-34/3, Sector-3, Rohini, Delhi, India</div>
-        <div>
-          Email<br />
-          {settings.websiteemail}
-        </div>
         WhatsApp your query<br />
         <div>
         <div>Head: Nikhil Gupta</div>
