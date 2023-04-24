@@ -9,6 +9,12 @@ export default (config, article, settings) => {
     html {
       -webkit-print-color-adjust: exact;
     }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
     #coverpage {
       display: flex;
       flex-direction: row;

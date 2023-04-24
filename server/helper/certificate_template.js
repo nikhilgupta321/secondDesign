@@ -24,7 +24,7 @@ export default (config, article, settings, formattedPublishDate) => {
           <div style="display:flex; margin-top:40px; align-items:center; justify-content:center;">
             <img style="width:300px; margin:auto;" src="data:image/jpeg;base64,${fs.readFileSync(config.imagesDir + '/publication-certificate.jpg').toString('base64')}"/>
           </div>
-          <div style="margin-top: 40px; text-align:justify; text-justify:inter-word;">
+          <div style="line-height:normal; margin-top: 40px; text-align:justify; text-justify:inter-word;">
             This certificate confirms that&nbsp;<b>${article.authorname}</b>&nbsp;has published article
             titled&nbsp;<b>${article.title}</b>&nbsp;.
           </div>

@@ -6,7 +6,7 @@ export default (editors, settings) => {
   <head>
     <meta charset="utf-8">
   </head>
-  <body style="font-family: 'Times New Roman', Times, serif; font-size: 10px;">
+  <body style="font-family: 'Times New Roman', Times, serif; font-size: 11px;">
     <div>
       <div style="font-size: 14px; text-align: left;">
         ${settings.domain}<br />
