@@ -58,8 +58,6 @@ export default function AddArticle(props) {
       !data.authorname ||
       !data.pagenumber ||
       !data.refnumber ||
-      !data.title ||
-      !data.abstract ||
       !document.getElementById('rich-title').textContent ||
       !document.getElementById('rich-abstract').textContent
     ) {
@@ -242,7 +240,7 @@ export default function AddArticle(props) {
           <div>TITLE *</div>
           <div id="rich-title"
             contentEditable={true}
-            className={`h-32 overflow-scroll bg-white w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.title === '' ? 'border-b-red-500' : ''}`}
+            className={`h-32 overflow-scroll bg-white w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !document.getElementById('rich-title').textContent ? 'border-b-red-500' : ''}`}
             dangerouslySetInnerHTML={{ __html: decode(article.title) }}
           ></div>
         </div>
@@ -268,7 +266,7 @@ export default function AddArticle(props) {
           <div>ABSTRACT *</div>
           <div id="rich-abstract"
             contentEditable={true}
-            className={`h-32 overflow-scroll w-full bg-white border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.abstract === '' ? 'border-b-red-500' : ''}`}
+            className={`h-32 overflow-scroll w-full bg-white border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !document.getElementById('rich-abstract').textContent ? 'border-b-red-500' : ''}`}
             dangerouslySetInnerHTML={{ __html: decode(article.abstract) }}
           ></div>
         </div>
