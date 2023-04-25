@@ -80,7 +80,7 @@ const saveEditorialBoard = (refnumber) => {
           <tbody>
             {article.file && <tr>
               <td>Download Artcle</td>
-              <td><a className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}>Download</a></td>
+              <td><div className="certificate-button" href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`} download={`article-${article.refnumber}.pdf`}>Download</div></td>
             </tr>}
 
             {article.authorname.split(',').map((author, index) => {

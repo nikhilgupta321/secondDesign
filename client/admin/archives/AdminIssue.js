@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
 import { listAdminIssue } from "../../helper/api-archives";
+import { decode } from "html-entities";
 
 const parseDate = (date) => {
   const d = new Date(date)
   return d.toLocaleString()
-}
-
-const decodeStr = (str) => {
-  let doc = new DOMParser().parseFromString(str, "text/html");
-  return doc.documentElement.textContent
 }
 
 export default function AdminIssue(props) {
@@ -83,7 +79,7 @@ export default function AdminIssue(props) {
                 {/* <Td><input type="checkbox" checked={values.selected[index]} onChange={()=>{handleSelect(index)}}/></Td> */}
                 <td className="bg-white border border-slate-400 p-2">{index + 1}</td>
                 <td className="bg-white border border-slate-400 p-2">{article.refnumber}</td>
-                <td className="bg-white border border-slate-400 p-2"><div dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></div></td>
+                <td className="bg-white border border-slate-400 p-2"><div dangerouslySetInnerHTML={{ __html: decode(article.title) }}></div></td>
                 <td className="bg-white border border-slate-400 p-2">{article.txnid}</td>
                 <td className="bg-white border border-slate-400 p-2">{article.pagenumber}</td>
                 <td className="bg-white border border-slate-400 p-2 w-48">{parseDate(article.creation)}</td>

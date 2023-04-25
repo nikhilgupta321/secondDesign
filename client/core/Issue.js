@@ -3,11 +3,7 @@ import PageTitle from "./PageTitle";
 import { useParams, Link } from "react-router-dom";
 import {listPublicIssue} from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
-
-const decodeStr = (str) => {
-  let doc = new DOMParser().parseFromString(str, "text/html");
-  return doc.documentElement.textContent
-}
+import { decode } from "html-entities";
 
 export default function Archives(props) {
   const params = useParams();
@@ -53,7 +49,7 @@ export default function Archives(props) {
               <td>{index + 1}</td>
               <td>
                 <div className="article-info">
-                  <div><b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b></div>
+                  <div><b dangerouslySetInnerHTML={{ __html: decode(article.title) }}></b></div>
                   <div><b>Authors: </b>{article.authorname}</div>
                   <div className="abstract">
                     <Link to={`/archives/${params.year}/${params.vol}/${params.issue}/${article.refnumber}`}>
@@ -65,7 +61,7 @@ export default function Archives(props) {
                     <div>Pages: {article.pagenumber}</div>
                   </div>
                   <div className="citation"><b>How to cite this article:</b></div>
-                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. {settings.websitename}, Volume {vol}, Issue {issue}, {year}, Pages {article.pagenumber}</div>
+                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decode(article.title) }}></b>. {settings.websitename}, Volume {vol}, Issue {issue}, {year}, Pages {article.pagenumber}</div>
                 </div>
               </td>
               <td>{article.subject}</td>

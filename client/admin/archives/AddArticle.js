@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
 import { addArticle } from "../../helper/api-archives";
 import { GlobalContext } from "../../context/GlobalContext";
+import {decode, encode} from 'html-entities';
 
 export default function AddArticle(props) {
   const { flash, setFlash, settings } = useContext(GlobalContext)
@@ -35,28 +36,31 @@ export default function AddArticle(props) {
     setArticle({ ...article, [name]: event.target.value })
   }
 
+  const handleChangeContent = name => event => {
+    setArticle({ ...article, [name]: event.target.innerHTML })
+  }
+
   const handleChangeFile = (event) => {
     setPdfFile(event.target.files[0])
   }
 
   const handleSubmit = () => {
-    
-    console.log(article.publishdate)
-
-    console.log('hello')
     setIsSubmitted(true)
 
+    let data = article
     if (
-      !article.txnid ||
-      !article.ptype ||
-      !article.publishdate ||
-      !article.authorname ||
-      !article.pagenumber ||
-      !article.refnumber ||
-      !article.email ||
-      !article.title ||
-      !article.abstract ||
-      !pdffile
+      !data.txnid ||
+      !data.ptype ||
+      !data.publishdate ||
+      !data.authorname ||
+      !data.pagenumber ||
+      !data.refnumber ||
+      !data.email ||
+      !data.title ||
+      !data.abstract ||
+      !pdffile ||
+      !document.getElementById('rich-title').textContent ||
+      !document.getElementById('rich-abstract').textContent
     ) {
       return;
     }
@@ -64,6 +68,8 @@ export default function AddArticle(props) {
     let articleData = article
     articleData = {
       ...articleData,
+      title: encode(document.getElementById('rich-title').innerHTML),
+      abstract: encode(document.getElementById('rich-abstract').innerHTML),
       year: year,
       volume: vol,
       issue: issue,
@@ -230,11 +236,11 @@ export default function AddArticle(props) {
         </div>
         <div className="row-span-2 col-span-2">
           <div>TITLE *</div>
-          <textarea
-            onChange={handleChange('title')}
-            value={article.title}
-            className={`h-32 resize-none w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.title === '' ? 'border-b-red-500' : ''}`}
-          ></textarea>
+          <div id="rich-title"
+            contentEditable={true}
+            className={`h-32 overflow-scroll bg-white w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.title === '' ? 'border-b-red-500' : ''}`}
+            dangerouslySetInnerHTML={{ __html: decode(article.title) }}
+          ></div>
         </div>
         <div className="col-span-3">
           <div>DESCRIPTION</div>
@@ -256,11 +262,11 @@ export default function AddArticle(props) {
         </div>
         <div className="row-span-3 col-span-2">
           <div>ABSTRACT *</div>
-          <textarea
-            onChange={handleChange('abstract')}
-            value={article.abstract}
-            className={`h-32 resize-none w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.abstract === '' ? 'border-b-red-500' : ''}`}
-          ></textarea>
+          <div id="rich-abstract"
+            contentEditable={true}
+            className={`h-32 overflow-scroll w-full bg-white border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.abstract === '' ? 'border-b-red-500' : ''}`}
+            dangerouslySetInnerHTML={{ __html: decode(article.abstract) }}
+          ></div>
         </div>
         <div className={`col-span-3`}>
           <div>UPLOAD *</div>

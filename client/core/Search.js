@@ -4,11 +4,7 @@ import PageTitle from "./PageTitle";
 import { useParams, Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
 import { searchArchives } from "../helper/api-archives";
-
-const decodeStr = (str) => {
-  let doc = new DOMParser().parseFromString(str, "text/html");
-  return doc.documentElement.textContent
-}
+import { decode } from "html-entities";
 
 export default function Search(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -67,7 +63,7 @@ export default function Search(props) {
               <td>{index + 1}</td>
               <td>
                 <div className="article-info">
-                  <div><b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b></div>
+                  <div><b dangerouslySetInnerHTML={{ __html: decode(article.title) }}></b></div>
                   <div>{article.authorname}</div>
                   <div className="abstract">
                     <Link to={`/archives/${article.year}/vol${article.volume}/issue${article.issue}/${article.refnumber}`}>
@@ -79,7 +75,7 @@ export default function Search(props) {
                     <div>Pages: {article.pagenumber}</div>
                   </div>
                   <div className="citation"><b>How to cite this article:</b></div>
-                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decodeStr(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
+                  <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decode(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
                 </div>
               </td>
               <td>{article.subject}</td>
