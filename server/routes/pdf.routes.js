@@ -3,7 +3,7 @@ import pdfCtrl from '../controllers/pdf.controller'
 
 const router = express.Router()
 
-router.route('/api/pdf/certificate/:refnumber')
+router.route('/api/pdf/certificate/:refnumber/:author')
   .get(pdfCtrl.generateCertificate)
 
 router.route('/api/pdf/coverpage/:refnumber')

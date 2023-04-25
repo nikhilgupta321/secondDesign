@@ -1,10 +1,10 @@
-const getCertificate = async (refnumber) => {
+const getCertificate = async (refnumber, author) => {
   try {
-    let response = await fetch(`/api/pdf/certificate/${refnumber}`, {
+    let response = await fetch(`/api/pdf/certificate/${refnumber}/${author}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/pdf',
-      }
+      },
     })
     return await response.blob()
   } catch(err) {

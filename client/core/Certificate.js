@@ -7,8 +7,8 @@ import { getCertificate } from "../helper/api-pdf";
 import { getCoverpage } from "../helper/api-pdf";
 import { getEditorialBoard } from "../helper/api-pdf";
 
-const saveCertificate = (refnumber) => {
-  getCertificate(refnumber).then((blob) => {
+const saveCertificate = (refnumber, author) => {
+  getCertificate(refnumber, author).then((blob) => {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -86,7 +86,7 @@ const saveEditorialBoard = (refnumber) => {
             {article.authorname.split(',').map((author, index) => {
               return <tr key={`author-${index + 1}`}>
                 <td>Download Certificate</td>
-                <td><div className="certificate-button" onClick={() => { saveCertificate(ref) }}>{author}</div></td>
+                <td><div className="certificate-button" onClick={() => { saveCertificate(ref, author) }}>{author}</div></td>
               </tr>
             })}
 

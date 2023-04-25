@@ -22,7 +22,9 @@ const generateCertificate = async (req, res) => {
 
     if (article.length == 0) throw 'Article not found'
     if (settings.length == 0) throw 'Settings not found'
+    if(!article.authorname.split(',').includes(req.params.author)) throw 'Author not found'
     
+    const author = req.params.author;
     const dateString = article.publishdate;
     const date = new Date(dateString);
     const months = [
@@ -31,7 +33,7 @@ const generateCertificate = async (req, res) => {
     ];
     const formattedPublishDate = `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`; 
     
-    const template = certificateTemplate(config, article, settings, formattedPublishDate);
+    const template = certificateTemplate(config, article, author, settings, formattedPublishDate);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(template);

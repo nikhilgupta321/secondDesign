@@ -1,5 +1,7 @@
 const fs = require('fs');
-export default (config, article, settings, formattedPublishDate) => {
+import {decode} from 'html-entities';
+
+export default (config, article, author, settings, formattedPublishDate) => {
   return `<!DOCTYPE html>
   <html>
   <head>
@@ -25,8 +27,8 @@ export default (config, article, settings, formattedPublishDate) => {
             <img style="width:300px; margin:auto;" src="data:image/jpeg;base64,${fs.readFileSync(config.imagesDir + '/publication-certificate.jpg').toString('base64')}"/>
           </div>
           <div style="line-height:normal; margin-top: 40px; text-align:justify; text-justify:inter-word;">
-            This certificate confirms that&nbsp;<b>${article.authorname}</b>&nbsp;has published article
-            titled&nbsp;<b>${article.title}</b>&nbsp;.
+            This certificate confirms that&nbsp;<b>${author}</b>&nbsp;has published article
+            titled&nbsp;<b>${decode(article.title)}</b>&nbsp;.
           </div>
           <div style="margin-top: 40px;">Details of Published Article as follow:</div>
           <table style="margin-top: 20px;">
