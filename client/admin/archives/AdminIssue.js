@@ -49,7 +49,7 @@ export default function AdminIssue(props) {
         console.log(data.error)
         setValues({ ...values, error: data.error })
       } else {
-        data.sort((a, b) => a.creation - b.creation);
+        data.sort((a, b) => parseInt(a.pagenumber) - parseInt(b.pagenumber));
         setValues({ issues: data, selected: new Array(data.length).fill(false), error: '' })
       }
     })
