@@ -99,7 +99,7 @@ export default (config, article, settings) => {
         <div id="cover-row1-right">
           ${settings.domain}<br />
           ${settings.issn.split(",")[0]}<br />
-          ${settings.issn.split(",")[1]}<br />
+          ${settings.issn.split(",")[1] ? settings.issn.split(",")[1] : ''}<br />
         </div>
       </div>
       <div id="cover-row2">
