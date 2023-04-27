@@ -145,6 +145,8 @@ const generateIndexPage = async (req, res) => {
     if (articles.length == 0) throw 'Articles not found'
     if (settings.length == 0) throw 'Settings not found'
 
+    articles.sort((a, b) => parseInt(a.pagenumber) - parseInt(b.pagenumber));
+
     const template = indexpageTemplate(articles, settings);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
