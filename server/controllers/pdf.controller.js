@@ -7,6 +7,9 @@ import certificateTemplate from '../helper/certificate_template';
 import coverpageTemplate from '../helper/coverpage_template';
 import editorialBoardTemplate from '../helper/editorial_board_template';
 import indexpageTemplate from '../helper/indexpage_template';
+import editorCertificateTemplate from '../helper/editor_certificate_template';
+import archiver from 'archiver';
+
 import { Op } from 'sequelize';
 
 const fs = require('fs');
@@ -59,6 +62,76 @@ const generateCertificate = async (req, res) => {
     return res.status(400).json({error: err})
   }
 }
+
+const generateBulkCertificates = async (req, res) => {
+  try {
+    const settings = await Setting.findOne({ raw: true });
+    const refnumbers = req.body
+
+    let articles = await Archive.findAll({
+      where: {
+        status: 'enabled',
+        refnumber: { [Op.in]: refnumbers },
+      },
+      raw: true,
+    });
+
+    if (articles.length == 0) throw 'Archives not found';
+    if (settings.length == 0) throw 'Settings not found';
+
+    const pdfBuffers = [];
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1920, height: 1080 });
+
+    for (let article of articles) {
+      for (let author of article.authorname.split(',')) {
+        const dateString = article.publishdate;
+        const date = new Date(dateString);
+        const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+        const formattedPublishDate = `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`; 
+        const template = certificateTemplate(config, article, author, settings, formattedPublishDate);
+        await page.setContent(template);
+
+        const pdfBuffer = await page.pdf({
+          format: 'A4',
+          pageRanges: '1',
+          margin: {
+            top: '0px',
+            right: '0px',
+            bottom: '0px',
+            left: '0px',
+          },
+        });
+
+        pdfBuffers.push({ name: `${article.refnumber}-${author}.pdf`, data: pdfBuffer });
+      }
+    }
+
+    await browser.close();
+
+    const zip = archiver('zip');
+    zip.on('error', function (err) {
+      throw err;
+    });
+
+    pdfBuffers.forEach(pdfbuffer => {
+      zip.append(pdfbuffer.data, { name: pdfbuffer.name });
+    });
+    
+    res.type('application/zip');
+    res.attachment('author_certificates.zip');
+    zip.pipe(res);
+    zip.finalize();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err });
+  }
+};
+
 
 const generateCoverpage = async (req, res) => {
   try {
@@ -171,9 +244,78 @@ const generateIndexPage = async (req, res) => {
   }
 }
 
+const generateEditorCertificates = async (req, res) => {
+  try {
+    const settings = await Setting.findOne({ raw: true });
+    const editorIds = req.body;
+    console.log(editorIds)
+    let editors = await Editor.findAll({
+      where: {
+        id: { [Op.in]: editorIds },
+      },
+      raw: true,
+    });
+
+    if (editors.length == 0) throw 'Editors not found';
+    if (settings.length == 0) throw 'Settings not found';
+
+    const date = new Date();
+    const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const formattedCertificateDate = `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`; 
+
+    const pdfBuffers = [];
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1920, height: 1080 });
+
+    for (let editor of editors) {
+      const template = editorCertificateTemplate(editor, settings, config, formattedCertificateDate);
+      await page.setContent(template);
+
+      const pdfBuffer = await page.pdf({
+        format: 'A4',
+        pageRanges: '1',
+        margin: {
+          top: '0px',
+          right: '0px',
+          bottom: '0px',
+          left: '0px',
+        },
+      });
+      
+      pdfBuffers.push({ name: `editor-certificate-${editor.name}.pdf`, data: pdfBuffer });
+    }
+
+    await browser.close();
+
+    const zip = archiver('zip');
+    zip.on('error', function (err) {
+      throw err;
+    });
+
+    pdfBuffers.forEach(pdfbuffer => {
+      zip.append(pdfbuffer.data, { name: pdfbuffer.name });
+    });
+    
+    res.type('application/zip');
+    res.attachment('editor_certificates.zip');
+    zip.pipe(res);
+    zip.finalize();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err });
+  }
+};
+
+
 export default {
   generateCertificate,
+  generateBulkCertificates,
   generateCoverpage,
   generateEditorialBoard,
-  generateIndexPage
+  generateIndexPage,
+  generateEditorCertificates
 }

@@ -15,5 +15,10 @@ router.route('/api/pdf/editorialboard/')
 router.route('/api/pdf/indexpage/')
   .post(pdfCtrl.generateIndexPage)
 
+router.route('/api/pdf/editorscertificate/')
+  .post(pdfCtrl.generateEditorCertificates)
+
+router.route('/api/pdf/bulkcertificates/')
+  .post(pdfCtrl.generateBulkCertificates)
 
 export default router

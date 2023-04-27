@@ -13,6 +13,24 @@ const getCertificate = async (refnumber, author) => {
   }
 }
 
+const getbulkCertificates = async (selected) => {
+  try {
+    let response = await fetch(`/api/pdf/bulkcertificates`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/zip',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selected)
+    })
+    return await response.blob()
+  } catch(err) {
+    console.log(err)
+    return {error: err}
+  }
+}
+
+
 
 const getCoverpage = async (refnumber) => {
   try {
@@ -62,9 +80,31 @@ const getIndexPage = async (selected) => {
   }
 }
 
+
+const getEditorsCertificate = async (selected) => {
+  try {
+    console.log(selected)
+    let response = await fetch(`/api/pdf/editorscertificate`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/zip',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selected)
+    })
+    return await response.blob()
+  } catch(err) {
+    console.log(err)
+    return {error: err}
+  }
+}
+
+
 export {
   getCertificate,
+  getbulkCertificates,
   getCoverpage,
   getEditorialBoard,
   getIndexPage,
+  getEditorsCertificate,
 }

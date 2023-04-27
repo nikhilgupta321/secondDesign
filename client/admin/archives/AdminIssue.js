@@ -4,6 +4,7 @@ import auth from "../../helper/auth-helper"
 import { listAdminIssue } from "../../helper/api-archives";
 import { decode } from "html-entities";
 import { getIndexPage } from "../../helper/api-pdf";
+import { getbulkCertificates } from "../../helper/api-pdf";
 
 const parseDate = (date) => {
   const d = new Date(date)
@@ -22,6 +23,20 @@ const saveIndexPage = (selected) => {
     window.URL.revokeObjectURL(url);
   })
 }
+
+const saveBulkCertificates = (selected) => {
+  getbulkCertificates(selected).then((blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Certificates.zip`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  })
+}
+
 
 export default function AdminIssue(props) {
   const { year, vol, issue } = useParams();
@@ -70,12 +85,17 @@ export default function AdminIssue(props) {
     <div>
       <div className="flex gap-6">
       <Link className="p-2 text-center rounded w-24 bg-green-700 text-slate-200" to={`/admin/archives/add/${year}/${vol}/${issue}`}>Add New</Link>
-      { selected.length !== 0 && <button className="p-2 text-center rounded w-24 bg-green-700  text-slate-200" onClick={() => saveIndexPage(selected)}>Index Page</button> }
+      { selected.length !== 0 && 
+        <>
+          <button className="p-2 text-center rounded w-24 bg-green-700  text-slate-200" onClick={() => saveIndexPage(selected)}>Index Page</button>
+          <button className="p-2 text-center rounded w-24 bg-green-700  text-slate-200" onClick={() => saveBulkCertificates(selected)}>Certificate</button>
+        </>
+      }
       </div>
       <table className="mt-4 w-full border-collapse border">
         <thead>
           <tr>
-            <th className="bg-gray-200 text-sm border border-slate-400 p-2"><input type="checkbox" checked={selected.length === issues.length} onChange={handleSelectAll}/></th>
+            <th className="bg-gray-200 text-sm border border-slate-400 p-2"><input type="checkbox" checked={selected.length !== 0 && selected.length === issues.length} onChange={handleSelectAll}/></th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2 w-16">S. NO.</th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2 w-32">REF. NUM.</th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2">TITLE</th>
