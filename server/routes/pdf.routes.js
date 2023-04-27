@@ -12,4 +12,8 @@ router.route('/api/pdf/coverpage/:refnumber')
 router.route('/api/pdf/editorialboard/')
   .get(pdfCtrl.generateEditorialBoard)
 
+router.route('/api/pdf/indexpage/')
+  .post(pdfCtrl.generateIndexPage)
+
+
 export default router

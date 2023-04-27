@@ -11,7 +11,7 @@ export default (editors, settings) => {
       <div style="font-size: 14px; text-align: left;">
         ${settings.domain}<br />
         ${settings.issn.split(",")[0]}<br />
-        ${settings.issn.split(",")[1]}<br />
+        ${settings.issn.split(",")[1] || ''}<br />
       </div>
       <div style="font-size: 25px; font-weight: bold; margin-top: 50px; text-align: center; color: green;">
         ${settings.websitename}

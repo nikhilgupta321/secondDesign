@@ -44,8 +44,27 @@ const getEditorialBoard = async (refnumber) => {
   }
 }
 
+const getIndexPage = async (selected) => {
+  try {
+    console.log(selected)
+    let response = await fetch(`/api/pdf/indexpage`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/pdf',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selected)
+    })
+    return await response.blob()
+  } catch(err) {
+    console.log(err)
+    return {error: err}
+  }
+}
+
 export {
   getCertificate,
   getCoverpage,
-  getEditorialBoard
+  getEditorialBoard,
+  getIndexPage,
 }

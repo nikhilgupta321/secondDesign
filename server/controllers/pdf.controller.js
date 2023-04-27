@@ -6,6 +6,9 @@ import puppeteer from 'puppeteer';
 import certificateTemplate from '../helper/certificate_template';
 import coverpageTemplate from '../helper/coverpage_template';
 import editorialBoardTemplate from '../helper/editorial_board_template';
+import indexpageTemplate from '../helper/indexpage_template';
+import { Op } from 'sequelize';
+
 const fs = require('fs');
 
 const generateCertificate = async (req, res) => {
@@ -128,8 +131,47 @@ const generateEditorialBoard = async (req, res) => {
   }
 }
 
+const generateIndexPage = async (req, res) => {
+  try {
+    const settings = await Setting.findOne({raw: true})
+    const refnumbers = req.body
+    let articles = await Archive.findAll({
+      where: {
+        status: 'enabled',
+        refnumber: {[Op.in]: refnumbers}
+      }, 
+    raw: true})
+    
+    if (articles.length == 0) throw 'Articles not found'
+    if (settings.length == 0) throw 'Settings not found'
+
+    const template = indexpageTemplate(articles, settings);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(template);
+    await page.setViewport({ width: 1920, height: 1080 });
+
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      margin: {
+        top: '50px',
+        right: '50px',
+        bottom: '50px',
+        left: '50px'
+      }
+    });
+    await browser.close();
+    res.type('application/pdf');
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json({error: err})
+  }
+}
+
 export default {
   generateCertificate,
   generateCoverpage,
-  generateEditorialBoard
+  generateEditorialBoard,
+  generateIndexPage
 }

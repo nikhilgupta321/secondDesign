@@ -3,37 +3,49 @@ import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
 import { listAdminIssue } from "../../helper/api-archives";
 import { decode } from "html-entities";
+import { getIndexPage } from "../../helper/api-pdf";
 
 const parseDate = (date) => {
   const d = new Date(date)
   return d.toLocaleString()
 }
 
+const saveIndexPage = (selected) => {
+  getIndexPage(selected).then((blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Index-Page.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  })
+}
+
 export default function AdminIssue(props) {
   const { year, vol, issue } = useParams();
-  const [values, setValues] = useState({
-    issues: [],
-    selected: [],
-    selectAll: false,
-    checked: false,
-    error: '',
-  })
-
+  const [issues , setIssues] = useState([])
+  const [selected, setSelected] = useState([])
+  
   const jwt = auth.isAuthenticated()
 
-  const hideMsg = () => {
-    setValues({ ...values, error: '' })
-  }
-
-  const handleSelect = (index) => {
-    let selected = values.selected;
-    selected[index] = !selected[index]
-    setValues({ ...values, selected: selected, checked: values.selected.includes(true), selectAll: false })
+  const handleSelect = (refnumber) => {
+    if(selected.includes(refnumber)) {
+      setSelected(selected.filter((item) => item !== refnumber))
+    }
+    else {
+      setSelected([...selected, refnumber])
+    }
   }
 
   const handleSelectAll = () => {
-    const change = !values.selectAll
-    setValues({ ...values, selected: new Array(values.selected.length).fill(change), selectAll: change, selectAll: change })
+    if(selected.length) {
+      setSelected([])
+    }
+    else {
+      setSelected(issues.map((issue) => issue.refnumber))
+    }
   }
 
   useEffect(() => {
@@ -43,10 +55,9 @@ export default function AdminIssue(props) {
     listAdminIssue({ year, vol, issue }, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
-        setValues({ ...values, error: data.error })
       } else {
         data.sort((a, b) => parseInt(a.pagenumber) - parseInt(b.pagenumber));
-        setValues({ issues: data, selected: new Array(data.length).fill(false), error: '' })
+        setIssues(data)
       }
     })
 
@@ -57,11 +68,14 @@ export default function AdminIssue(props) {
 
   return (
     <div>
-      <Link className="p-2 rounded w-24 bg-green-700 text-slate-200" to={`/admin/archives/add/${year}/${vol}/${issue}`}>Add New</Link>
+      <div className="flex gap-6">
+      <Link className="p-2 text-center rounded w-24 bg-green-700 text-slate-200" to={`/admin/archives/add/${year}/${vol}/${issue}`}>Add New</Link>
+      { selected.length !== 0 && <button className="p-2 text-center rounded w-24 bg-green-700  text-slate-200" onClick={() => saveIndexPage(selected)}>Index Page</button> }
+      </div>
       <table className="mt-4 w-full border-collapse border">
         <thead>
           <tr>
-            {/* <Th><input type="checkbox" checked={values.selectAll} onChange={handleSelectAll}/></Th> */}
+            <th className="bg-gray-200 text-sm border border-slate-400 p-2"><input type="checkbox" checked={selected.length === issues.length} onChange={handleSelectAll}/></th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2 w-16">S. NO.</th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2 w-32">REF. NUM.</th>
             <th className="bg-gray-200 text-sm border border-slate-400 p-2">TITLE</th>
@@ -73,10 +87,10 @@ export default function AdminIssue(props) {
           </tr>
         </thead>
         <tbody>
-          {values.issues.map((article, index) => {
+          {issues.map((article, index) => {
             return (
               <tr key={`article-${index + 1}`}>
-                {/* <Td><input type="checkbox" checked={values.selected[index]} onChange={()=>{handleSelect(index)}}/></Td> */}
+                <td className="bg-white border border-slate-400 p-2 text-center"><input type="checkbox" checked={selected.includes(article.refnumber)} onChange={()=>{handleSelect(article.refnumber)}}/></td>
                 <td className="bg-white border border-slate-400 p-2">{index + 1}</td>
                 <td className="bg-white border border-slate-400 p-2">{article.refnumber}</td>
                 <td className="bg-white border border-slate-400 p-2"><div dangerouslySetInnerHTML={{ __html: decode(article.title) }}></div></td>
