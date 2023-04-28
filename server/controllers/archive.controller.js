@@ -16,7 +16,7 @@ const listPublicArchives = async (req, res) => {
     return res.status(200).json(archives)
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -27,17 +27,33 @@ const addArticle = async (req, res) => {
     if (!req.files || !req.files.pdfFile || !data.year ||
       !data.volume || !data.issue || !data.refnumber)
       throw 'Invalid request!'
-    
-    if(await Archive.findOne({where: {refnumber: data.refnumber}}))
+
+    if (await Archive.findOne({ where: { refnumber: data.refnumber } }))
       throw 'duplicate_reference_number'
-    if(await Archive.findOne({where: {title: data.title}}))
+    if (await Archive.findOne({ where: { title: data.title } }))
       throw 'duplicate_title'
+
+    const pagenumbers = await Archive.findAll({
+      attributes: ['pagenumber'],
+      where: {
+        year: data.year,
+        volume: data.volume,
+        issue: data.issue,
+      },
+      raw: true
+    })
+
+    if (pagenumbers.length > 0) {
+      const max = Math.max.apply(Math, pagenumbers.map(function (row) { return row.pagenumber.split('-')[1] }))
+      if (data.pagenumber.split('-')[0] < max)
+        throw 'invalid_pagenumber'
+    }
 
     const pdfFile = req.files.pdfFile;
     data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
-    
-    if(!fs.existsSync(path))
+
+    if (!fs.existsSync(path))
       fs.mkdirSync(path, { recursive: true })
 
     await pdfFile.mv(path + '/' + data.file)
@@ -47,7 +63,7 @@ const addArticle = async (req, res) => {
     });
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -57,18 +73,18 @@ const updateArticle = async (req, res) => {
 
     if (req.files && req.files.pdfFile) {
       if (!data.year || !data.volume || !data.issue || !data.refnumber) throw 'Invalid request!'
-      
+
       const pdfFile = req.files.pdfFile;
       data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
       const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
-      
-      if(!fs.existsSync(path))
+
+      if (!fs.existsSync(path))
         fs.mkdirSync(path, { recursive: true })
-      
+
       await pdfFile.mv(path + '/' + data.file)
     }
 
-    let article = await Archive.findOne({where: {id: req.params.id}})
+    let article = await Archive.findOne({ where: { id: req.params.id } })
 
     await article.update(data)
 
@@ -77,7 +93,7 @@ const updateArticle = async (req, res) => {
     });
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -87,11 +103,11 @@ const listAdminArchives = async (req, res) => {
       attributes: ['year', 'volume', 'issue', [Sequelize.fn('COUNT', Sequelize.col('issue')), 'articles'], [Sequelize.fn('MIN', Sequelize.col('creation')), 'creation']],
       group: ['year', 'volume', 'issue'],
       order: [[Sequelize.literal('year DESC, ABS(issue) DESC')]],
-    });       
+    });
     return res.status(200).json(archives)
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -116,7 +132,7 @@ const listIssue = async (req, res) => {
     return res.status(200).json(result)
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -130,9 +146,9 @@ const archivesByRef = async (req, res) => {
       limit: 1,
       raw: true
     });
-    
+
     if (article.length == 0) throw 'Article not found'
-    
+
     const path = `${config.archivesDir}/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`
     if (article.file && !fs.existsSync(path))
       article.file = ''
@@ -140,7 +156,7 @@ const archivesByRef = async (req, res) => {
     return res.status(200).json(article)
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -153,7 +169,7 @@ const archivesById = async (req, res) => {
       limit: 1,
       raw: true
     });
-    
+
     if (article.length == 0) throw 'Article not found'
 
     const path = `${config.archivesDir}/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`
@@ -163,7 +179,7 @@ const archivesById = async (req, res) => {
     return res.status(200).json(article)
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
@@ -173,10 +189,10 @@ const createNewIssue = async (req, res) => {
   try {
     if (!data.volume || !data.issue || !data.year) throw "Invalid request"
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`
-    
-    if(!fs.existsSync(path))
+
+    if (!fs.existsSync(path))
       fs.mkdirSync(path, { recursive: true })
-    
+
     await Archive.create(data)
     return res.status(200).json({
       message: "Created new archive!"
@@ -190,8 +206,8 @@ const createNewIssue = async (req, res) => {
 const searchArchives = async (req, res) => {
   try {
     const query = req.query.q;
-    
-    if(!query) return res.status(200).json([])
+
+    if (!query) return res.status(200).json([])
 
     const articles = await Archive.findAll({
       where: {
@@ -207,7 +223,7 @@ const searchArchives = async (req, res) => {
       limit: 25,
       raw: true
     });
-    
+
     let result = articles.map((article) => {
       const path = `${config.archivesDir}/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`
       if (article.file && fs.existsSync(path)) {
@@ -219,7 +235,7 @@ const searchArchives = async (req, res) => {
     return res.status(200).json(result)
   } catch (err) {
     console.log(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 }
 
