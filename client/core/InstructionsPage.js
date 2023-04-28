@@ -20,7 +20,7 @@ export default function InstructionsPage(props) {
           </div>
           <br/>
           <div>
-            <b>Download Copyright Form <a href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b>
+            <b>Download Copyright Form <br/> <a href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b>
           </div>
           <br/>
           <div>
