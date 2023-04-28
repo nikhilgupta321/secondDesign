@@ -45,6 +45,14 @@ const Setting = sequelize.define('settings', {
     home_content: {
       type: DataTypes.TEXT,
       allowNull: true,
+    },
+    fee_rupee: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    fee_dollar: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
     }
   }, {
     sequelize,

@@ -10,20 +10,44 @@ export default function InstructionsPage(props) {
   }, [settings])
 
   return (
-    <div className=" flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <PageTitle title="INSTRUCTIONS TO AUTHOR" />
-      <div>
-        <b>Submit Your Article</b><br />
-        <b>{settings.websiteemail}</b>
+      <div className="flex justify-between">
+        <div>
+          <div>
+            <b>Submit Your Article</b><br />
+            <b>{settings.websiteemail}</b>
+          </div>
+          <br/>
+          <div>
+            <b>Download Copyright Form <a href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b>
+          </div>
+          <br/>
+          <div>
+            <b>Send Article in MS Word file</b>
+          </div>
+        </div>
+        <table className="border-separate border-spacing-0">
+          <thead>
+            <tr>
+              <th className="border p-2 border-r-0 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tl-md">Region</th>
+              <th className="border p-2 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tr-md">Fees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border p-2 border-r-0 border-b-0 border-slate-800">India</td>
+              <td className="border p-2 border-b-0 border-slate-800">{settings.fee_rupee}</td>
+            </tr>
+            <tr>
+              <td className="border p-2 border-r-0 border-slate-800 rounded-bl-md">Other Countries</td>
+              <td className="border p-2 border-slate-800 rounded-br-md">{settings.fee_dollar}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div>
-        <b>Download Copyright Form <a href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b> 
-      </div>
-      <div>
-        <b>Send Article in MS Word file</b>
-      </div>
-      <div>
-        <b>Format of Article</b><br/>
+        <b>Format of Article</b><br />
         Title<br />
         Author Names (Maximum 5)<br />
         Author Details (Author Name, Post, Department, College, State, Country, Phone Number, E-Mail)<br />
@@ -50,10 +74,10 @@ export default function InstructionsPage(props) {
         Every proposal submitted for publication is read at least by an editor, for an initial review. If the paper agrees with editorial policies and with a minimum quality level, is sent to two reviewers. The reviewers won't know the author's identity, as any identifying information will be stripped from the document before review.
       </div>
       <div>
-      Reviewers comments to the editors are confidential and before passing on to the author will made anonymous. Based on the reviewers comments, Editorial Board makes a final decision on the acceptability of the article and communicates to the authors the decision, along with referees reports. Whether significant revisions are proposed, acceptance is dependent on whether the author can deal with those satisfactorily.
+        Reviewers comments to the editors are confidential and before passing on to the author will made anonymous. Based on the reviewers comments, Editorial Board makes a final decision on the acceptability of the article and communicates to the authors the decision, along with referees reports. Whether significant revisions are proposed, acceptance is dependent on whether the author can deal with those satisfactorily.
       </div>
       <div>
-        <b>Policy of Submission:</b><br/>
+        <b>Policy of Submission:</b><br />
         Authors are encouraged to submit their manuscripts through email. Submitted manuscript should not previously published and are not under consideration for publication by another journal.
       </div>
       <div>
@@ -61,20 +85,20 @@ export default function InstructionsPage(props) {
       </div>
       <div className="big-text">Copyright</div>
       <div>
-      Journal allows the author to hold the copyright and retain publishing rights without restrictions.
+        Journal allows the author to hold the copyright and retain publishing rights without restrictions.
       </div>
       <div className="big-text">Plagiarism</div>
       <div>
-      The Journal do check plagiarism of submitted paper through software known as Plagiarism Checker X.
+        The Journal do check plagiarism of submitted paper through software known as Plagiarism Checker X.
       </div>
       <div>
-      There is a zero-tolerance policy towards plagiarism in our journal. Article are screened for plagiarism before, during, and after publication, and if found they will be rejected at any stage of processing.
+        There is a zero-tolerance policy towards plagiarism in our journal. Article are screened for plagiarism before, during, and after publication, and if found they will be rejected at any stage of processing.
       </div>
       <div className="big-text">Open Access</div>
       <div>Open Access means that everyone around the world can read and download your article for free.</div>
       <div className="big-text">Ethics</div>
       <div>
-      Journal take the responsibility to maintain the integrity and completeness of the scholarly record of the content for all and users very seriously. The journal place great importance on the articles after they have been published.
+        Journal take the responsibility to maintain the integrity and completeness of the scholarly record of the content for all and users very seriously. The journal place great importance on the articles after they have been published.
       </div>
     </div>
   );
