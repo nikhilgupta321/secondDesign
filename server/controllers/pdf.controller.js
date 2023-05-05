@@ -28,7 +28,9 @@ const generateCertificate = async (req, res) => {
 
     if (article.length == 0) throw 'Article not found'
     if (settings.length == 0) throw 'Settings not found'
-    if(!article.authorname.split(',').includes(req.params.author)) throw 'Author not found'
+    
+    // fix this
+    // if(!article.authorname.split(',').includes(req.params.author)) throw 'Author not found'
     
     const author = req.params.author;
     const dateString = article.publishdate;
