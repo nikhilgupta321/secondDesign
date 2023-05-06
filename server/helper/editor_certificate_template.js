@@ -37,7 +37,7 @@ export default (editor, settings, config, formattedCertificateDate) => {
           </div>
           <div style="margin-top:40px;">Dear <b>${editor.name}</b>,</div>
           <div style="margin-top:40px; text-align: justify;">
-            This letter confirms that <b>Academic Publications</b> appoint you as an <b>Editor</b> of
+            This letter confirms that <b>Academic Publications</b> appoint you as <b>${editor.category}</b> of
             <b>${settings.websitename}</b>.
             <br/><br/>
             This contract can be terminated by either party without any obligation<br/><br/>

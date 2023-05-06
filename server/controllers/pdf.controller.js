@@ -250,7 +250,6 @@ const generateEditorCertificates = async (req, res) => {
   try {
     const settings = await Setting.findOne({ raw: true });
     const editorIds = req.body;
-    console.log(editorIds)
     let editors = await Editor.findAll({
       where: {
         id: { [Op.in]: editorIds },
