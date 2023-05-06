@@ -38,11 +38,11 @@ const Editor = sequelize.define('editors', {
     allowNull: false,
     defaultValue: '',
   },
-  // email: {
-  //   type: DataTypes.STRING(255),
-  //   allowNull: false,
-  //   defaultValue: '',
-  // },
+  email: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: '',
+  },
   phone: {
     type: DataTypes.STRING(255),
     allowNull: false,
@@ -63,10 +63,10 @@ const Editor = sequelize.define('editors', {
     allowNull: false,
     defaultValue: 'enabled',
   },
-  // creation: {
-  //   type: DataTypes.DATE,
-  //   allowNull: false,
-  // },
+  creation: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
   updated_at: {
     type: DataTypes.DATE,
     allowNull: true

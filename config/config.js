@@ -1,5 +1,6 @@
 const fs = require('fs');
 import { Sequelize } from 'sequelize';
+require('dotenv').config()
 
 const cwd = __dirname.split("/")
 const rootDir = cwd.slice(0, cwd.length-1).join("/")
