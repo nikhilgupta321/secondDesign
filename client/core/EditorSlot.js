@@ -14,7 +14,7 @@ export default function EditorSlot(props) {
         </div>
         <div dangerouslySetInnerHTML={{ __html: decode(props.editor.post) }}></div>
         <div>{props.editor.content}</div>
-        {/* <div><b>Email: </b>{props.editor.email}</div> */}
+        <div><b>Email: </b>{props.editor.email}</div>
       </div>
     </div>
   );

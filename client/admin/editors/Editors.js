@@ -94,11 +94,11 @@ export default function Editors(props) {
               <Th>S.NO.</Th>
               <Th>PICTURE</Th>
               <Th>CATEGORY</Th>
-              {/* <Th>EMAIL</Th> */}
+              <Th>EMAIL</Th>
               <Th>POST</Th>
               <Th>AFFILIATION</Th>
               <Th>STATUS</Th>
-              {/* <Th>CREADTED</Th> */}
+              <Th>CREADTED</Th>
               <Th>UPDATED</Th> 
               <Th>ACTION</Th>
             </tr>
@@ -119,11 +119,11 @@ export default function Editors(props) {
                     />
                   </Td>
                   <Td>{editor.category}</Td>
-                  {/* <Td>{editor.email}</Td> */}
+                  <Td>{editor.email}</Td>
                   <Td>{editor.post}</Td>
                   <Td>{editor.content}</Td>
                   <Td>{statusWithColor(editor.status)}</Td>
-                  {/* <Td>{parseDate(editor.creation)}</Td> */}
+                  <Td>{parseDate(editor.creation)}</Td>
                   <Td>{parseDate(editor.modification)}</Td>
                   <Td><Link className="text-green-700 font-bold" to={`/admin/editors/${editor.id}`}>EDIT</Link></Td>
                 </tr>
