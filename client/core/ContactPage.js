@@ -19,7 +19,7 @@ export default function ContactPage(props) {
         <div>Head: Nikhil Gupta</div>
         <div className="phoneno">
             <div>phone:</div>
-            <div id="phone">+{`${settings.whatsup_number}`}</div>
+            <div id="phone">{`${settings.whatsup_number}`}</div>
             <img className="whatsapp-icon" src="/assets/images/whatsapp-icon.png" />
         </div>
         </div>
