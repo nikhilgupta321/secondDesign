@@ -151,6 +151,7 @@ export default function AddArticle(props) {
             value={article.txnid}
             className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.txnid ? 'border-b-red-500' : ''}`}
             type="text"
+            disabled
           />
         </div>
         <div>
@@ -216,6 +217,7 @@ export default function AddArticle(props) {
             value={article.refnumber}
             className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.refnumber === '' ? 'border-b-red-500' : ''}`}
             type="text"
+            disabled
           />
         </div>
         <div>

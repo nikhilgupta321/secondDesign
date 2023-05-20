@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 import Archive from '../models/archive.model';
-import { config } from '../../config/config';
+import Setting from '../models/setting.model';
+import { transactiondb, config } from '../../config/config';
 const { Op } = require('sequelize');
 
 const fs = require('fs');
@@ -23,16 +24,20 @@ const listPublicArchives = async (req, res) => {
 const addArticle = async (req, res) => {
   try {
     const data = req.body
-    console.log(data)
     if (!req.files || !req.files.pdfFile || !data.year ||
-      !data.volume || !data.issue || !data.refnumber)
+      !data.volume || !data.issue || !data.refnumber || !data.txnid)
       throw 'Invalid request!'
 
     if (await Archive.findOne({ where: { refnumber: data.refnumber } }))
       throw 'duplicate_reference_number'
     if (await Archive.findOne({ where: { title: data.title } }))
       throw 'duplicate_title'
-
+    
+    const setting = await Setting.findOne({ raw: true })
+    const rows = await transactiondb.query(`SELECT * FROM transactions WHERE refnumber = '${setting.short_name}-${data.refnumber}' AND txnid = '${data.txnid}' AND status = 'successful'`,{ type: Sequelize.QueryTypes.SELECT })
+    if (rows.length != 1)
+      throw 'invalid_txnid'
+    
     const pagenumbers = await Archive.findAll({
       attributes: ['pagenumber'],
       where: {

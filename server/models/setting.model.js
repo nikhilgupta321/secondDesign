@@ -53,6 +53,10 @@ const Setting = sequelize.define('settings', {
     fee_dollar: {
       type: DataTypes.STRING(100),
       allowNull: true,
+    },
+    short_name: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
     }
   }, {
     sequelize,

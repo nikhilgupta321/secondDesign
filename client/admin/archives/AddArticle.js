@@ -86,6 +86,8 @@ export default function AddArticle(props) {
           setFlash({ error: true, msg: 'Duplicate reference number' })
         else if(data.error == 'duplicate_title')
           setFlash({ error: true, msg: 'Duplicate title' })
+        else if(data.error == 'invalid_txnid')
+          setFlash({ error: true, msg: 'Invalid transaction id' })
         else if(data.error == 'invalid_pagenumber')
           setFlash({ error: true, msg: 'Invalid page number' })
         else

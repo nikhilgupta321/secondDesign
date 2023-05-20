@@ -1,8 +1,14 @@
-import { config } from './../config/config'
+import { transactiondb, sequelize, config } from './../config/config'
 import app from './express'
-import { sequelize } from '../config/config'
 
 sequelize.authenticate().then(() => {
+  console.log('Database connected successfully')
+})
+.catch((err) => {
+  console.log('Unable to connect to the database:', err)
+})
+
+transactiondb.authenticate().then(() => {
   console.log('Database connected successfully')
 })
 .catch((err) => {
