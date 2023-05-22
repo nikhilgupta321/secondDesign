@@ -36,8 +36,7 @@ const addArticle = async (req, res) => {
     const setting = await Setting.findOne({ raw: true })
     const rows = await transactiondb.query(`
       SELECT * FROM transactions
-      WHERE refnumber = '${setting.short_name} ${data.refnumber}'
-      AND journal = '${setting.websitename}'
+      WHERE journal = '${setting.websitename}'
       AND txnid = '${data.txnid}'
       AND status = 'successful'`,
       { type: Sequelize.QueryTypes.SELECT })
