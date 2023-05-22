@@ -34,7 +34,13 @@ const addArticle = async (req, res) => {
       throw 'duplicate_title'
     
     const setting = await Setting.findOne({ raw: true })
-    const rows = await transactiondb.query(`SELECT * FROM transactions WHERE refnumber = '${setting.short_name}-${data.refnumber}' AND txnid = '${data.txnid}' AND status = 'successful'`,{ type: Sequelize.QueryTypes.SELECT })
+    const rows = await transactiondb.query(`
+      SELECT * FROM transactions
+      WHERE refnumber = '${setting.short_name} ${data.refnumber}'
+      AND journal = '${setting.websitename}'
+      AND txnid = '${data.txnid}'
+      AND status = 'successful'`,
+      { type: Sequelize.QueryTypes.SELECT })
     if (rows.length != 1)
       throw 'invalid_txnid'
     
