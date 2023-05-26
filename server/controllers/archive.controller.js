@@ -32,7 +32,7 @@ const addArticle = async (req, res) => {
       throw 'duplicate_reference_number'
     if (await Archive.findOne({ where: { title: data.title } }))
       throw 'duplicate_title'
-    
+
     const setting = await Setting.findOne({ raw: true })
     const rows = await transactiondb.query(`
       SELECT * FROM transactions
@@ -42,7 +42,7 @@ const addArticle = async (req, res) => {
       { type: Sequelize.QueryTypes.SELECT })
     if (rows.length != 1)
       throw 'invalid_txnid'
-    
+
     const pagenumbers = await Archive.findAll({
       attributes: ['pagenumber'],
       where: {
@@ -81,9 +81,20 @@ const updateArticle = async (req, res) => {
   try {
     const data = req.body
 
-    if (req.files && req.files.pdfFile) {
-      if (!data.year || !data.volume || !data.issue || !data.refnumber) throw 'Invalid request!'
+    if (!data.year || !data.volume || !data.issue || !data.refnumber || !data.txnid) throw 'Invalid request!'
+    const setting = await Setting.findOne({ raw: true })
 
+    const rows = await transactiondb.query(`
+      SELECT * FROM transactions
+      WHERE journal = '${setting.websitename}'
+      AND txnid = '${data.txnid}'
+      AND status = 'successful'`,
+      { type: Sequelize.QueryTypes.SELECT })
+
+    if (rows.length != 1)
+      throw 'invalid_txnid'
+
+    if (req.files && req.files.pdfFile) {
       const pdfFile = req.files.pdfFile;
       data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`
       const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;

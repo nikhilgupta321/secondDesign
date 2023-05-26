@@ -80,7 +80,16 @@ export default function AddArticle(props) {
       { token: jwt.token }
     ).then((data) => {
       if (data && data.error) {
-        setFlash({ error: true, msg: "Something went wrong" })
+        if(data.error == 'duplicate_reference_number')
+          setFlash({ error: true, msg: 'Duplicate reference number' })
+        else if(data.error == 'duplicate_title')
+          setFlash({ error: true, msg: 'Duplicate title' })
+        else if(data.error == 'invalid_txnid')
+          setFlash({ error: true, msg: 'Invalid transaction id' })
+        else if(data.error == 'invalid_pagenumber')
+          setFlash({ error: true, msg: 'Invalid page number' })
+        else
+          setFlash({ error: true, msg: 'Something went wrong' })
       }
       else {
         setFlash({
@@ -151,7 +160,6 @@ export default function AddArticle(props) {
             value={article.txnid}
             className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.txnid ? 'border-b-red-500' : ''}`}
             type="text"
-            disabled
           />
         </div>
         <div>

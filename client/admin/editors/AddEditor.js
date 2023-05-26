@@ -12,6 +12,7 @@ export default function AddEditor(props) {
     category: '',
     post: '',
     name: '',
+    degree: '',
     content: '',
     email: '',
     phone: '',
@@ -70,6 +71,7 @@ export default function AddEditor(props) {
         <div><div>EMAIL</div><input value={editor.email} onChange={handleChange('email')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>PHONE</div><input value={editor.phone} onChange={handleChange('phone')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>COUNTRY</div><input value={editor.country} onChange={handleChange('country')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
+        <div><div>DEGREE</div><input value={editor.degree} onChange={handleChange('degree')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>AFFILIATION *</div><input value={editor.content} onChange={handleChange('content')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.content === '' ? 'border-b-red-500' : ''}`} type="text"></input></div>
         <div><div>CATEGORY *</div>
           <select value={editor.category} onChange={handleChange('category')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.category === '' ? 'border-b-red-500' : ''}`}>

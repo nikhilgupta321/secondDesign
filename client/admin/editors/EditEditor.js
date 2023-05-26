@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Link, useParams } from "react-router-dom";
 import auth from "../../helper/auth-helper"
-import Flash from "../Flash";
 import { editorById, updateEditor } from "../../helper/api-editors";
 import { GlobalContext } from "../../context/GlobalContext";
-
-function convertNullToEmptyString(obj) {
-  return Object.entries(obj).reduce((acc, [key, value]) => {
-    acc[key] = value ?? '';
-    return acc;
-  }, {});
-}
 
 export default function EditEditor(props) {
   const {flash, setFlash} = useContext(GlobalContext)  
@@ -22,6 +14,7 @@ export default function EditEditor(props) {
     post: '',
     name: '',
     content: '',
+    degree: '',
     email: '',
     phone: '',
     picture: '',
@@ -79,6 +72,7 @@ export default function EditEditor(props) {
           category: data.category || editor.category,
           post: data.post || editor.post,
           name: data.name || editor.name,
+          degree: data.degree || editor.degree,
           content: data.content || editor.content,
           email: data.email || editor.email,
           phone: data.phone || editor.phone,
@@ -104,6 +98,7 @@ export default function EditEditor(props) {
         <div><div>EMAIL</div><input value={editor.email} onChange={handleChange('email')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>PHONE</div><input value={editor.phone} onChange={handleChange('phone')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>COUNTRY</div><input value={editor.country} onChange={handleChange('country')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
+        <div><div>DEGREE</div><input value={editor.degree} onChange={handleChange('degree')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600`} type="text"></input></div>
         <div><div>AFFILIATION</div><input value={editor.content} onChange={handleChange('content')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.content === '' ? 'border-b-red-500' : ''}`} type="text"></input></div>
         <div><div>CATEGORY</div>
           <select value={editor.category} onChange={handleChange('category')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.category === '' ? 'border-b-red-500' : ''}`}>
