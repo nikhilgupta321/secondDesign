@@ -12,7 +12,7 @@ export default function InstructionsPage(props) {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle title="INSTRUCTIONS TO AUTHOR" />
-      <div className="flex justify-between">
+      <div className="flex gap-[10%]">
         <div>
           <div>
             <b>Submit Your Article</b><br />
