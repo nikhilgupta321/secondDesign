@@ -30,18 +30,18 @@ export default function InstructionsPage(props) {
         <table className="border-separate border-spacing-0">
           <thead>
             <tr>
-              <th className="border p-2 border-r-0 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tl-md">Region</th>
-              <th className="border p-2 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tr-md">Fees</th>
+              <th className="border-2 p-2 border-r-0 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tl-md">Region</th>
+              <th className="border-2 p-2 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tr-md">Fees</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border p-2 border-r-0 border-b-0 border-slate-800">India</td>
-              <td className="border p-2 border-b-0 border-slate-800">{settings.fee_rupee}</td>
+              <td className="border-2 font-bold p-2 border-r-0 border-b-0 border-slate-800">India</td>
+              <td className="border-2 font-bold p-2 border-b-0 border-slate-800">{settings.fee_rupee}</td>
             </tr>
             <tr>
-              <td className="border p-2 border-r-0 border-slate-800 rounded-bl-md">Other Countries</td>
-              <td className="border p-2 border-slate-800 rounded-br-md">{settings.fee_dollar}</td>
+              <td className="border-2 font-bold p-2 border-r-0 border-slate-800 rounded-bl-md">Other Countries</td>
+              <td className="border-2 font-bold p-2 border-slate-800 rounded-br-md">{settings.fee_dollar}</td>
             </tr>
           </tbody>
         </table>
