@@ -117,6 +117,10 @@ export default (config, article, settings) => {
       <br/>
       <img style="height:500px" src="data:image/jpeg;base64,${fs.readFileSync(config.imagesDir + '/coverpage-img.jpg').toString('base64')}" />
       <div id="cover-footer">
+        ${settings.publication && `
+          Published By </br>
+          ${settings.publication} </br></br>
+        `}
         Journal List : www.academicpublications.net<br/>
       </div>
     </div>

@@ -61,7 +61,11 @@ const Setting = sequelize.define('settings', {
     address: {
       type: DataTypes.TEXT,
       allowNull: true,
-    }
+    },
+    publication: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
   }, {
     sequelize,
     tableName: 'settings',
