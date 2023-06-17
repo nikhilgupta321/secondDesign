@@ -11,7 +11,7 @@ export default function Contact(props) {
             <div>Head: Nikhil Gupta</div>
         </div>
         <div>
-            <div>ph:</div>
+            <div>Ph:</div>
             <div>{`${settings.whatsup_number}`}</div>
             <img className="whatsapp-icon" src="/assets/images/whatsapp-icon.png" />
           </div>
