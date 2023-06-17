@@ -57,7 +57,7 @@ export default function LogIn(props) {
           <form className="flex flex-col gap-4 items-center justify-center" onSubmit={onFormSubmit}>
           <input type="text" placeholder="Username" value={values.username} onChange={handleChange('username')}
             className="w-44 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" />
-          <input type="text" placeholder="password" value={values.password} onChange={handleChange('password')}
+          <input type="password" placeholder="password" value={values.password} onChange={handleChange('password')}
             className="w-44 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" />
           <button type="submit"
             className="px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-900">Log In</button>
