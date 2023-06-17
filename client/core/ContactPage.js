@@ -2,6 +2,13 @@ import React, { useContext, useEffect } from "react";
 import PageTitle from "./PageTitle";
 import { GlobalContext } from "../context/GlobalContext";
 
+function htmlDecode(input){
+  var e = document.createElement('textarea');
+  e.innerHTML = input;
+  // handle case of empty input
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
+
 export default function ContactPage(props) {
   const { settings } = useContext(GlobalContext)
 
@@ -13,7 +20,7 @@ export default function ContactPage(props) {
     <b>
     <div className=" flex flex-col gap-5">
       <PageTitle title="CONTACT US" />
-        <div>Address: H-34/3, Sector-3, Rohini, Delhi, India</div>
+      <div dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.address) : ""}}></div>
         WhatsApp your query<br />
         <div>
         <div>Head: Nikhil Gupta</div>

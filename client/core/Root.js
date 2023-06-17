@@ -23,7 +23,7 @@ export default function Root() {
               </div>
               <div className="text-xl flex font-bold text-blue-A flex-col lg:flex-row lg:gap-12">
                 <div className="py-2 border-blue-A border-t-2 lg:border-none">
-                  <Link to="/">Home</Link>
+                  <Link to="/">HOME</Link>
                 </div>
                 <div className="py-2 border-blue-A border-t-2 lg:border-none">
                   <Link to="/board">EDITORIAL BOARD</Link>

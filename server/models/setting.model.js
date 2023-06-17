@@ -57,6 +57,10 @@ const Setting = sequelize.define('settings', {
     short_name: {
       type: DataTypes.STRING(100),
       allowNull: true,
+    },
+    address: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     }
   }, {
     sequelize,
