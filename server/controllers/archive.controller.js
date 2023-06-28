@@ -32,6 +32,8 @@ const addArticle = async (req, res) => {
       throw 'duplicate_reference_number'
     if (await Archive.findOne({ where: { title: data.title } }))
       throw 'duplicate_title'
+    if (await Archive.findOne({ where: { txnid: data.txnid } }))
+      throw 'duplicate_txnid'
 
     const setting = await Setting.findOne({ raw: true })
     const rows = await transactiondb.query(`

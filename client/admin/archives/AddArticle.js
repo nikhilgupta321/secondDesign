@@ -10,7 +10,7 @@ export default function AddArticle(props) {
   const { year, vol, issue } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isCreated, setIsCreated] = useState(false)
-  
+
   const [article, setArticle] = useState({
     txnid: '',
     ptype: 'paid',
@@ -86,6 +86,8 @@ export default function AddArticle(props) {
           setFlash({ error: true, msg: 'Duplicate reference number' })
         else if(data.error == 'duplicate_title')
           setFlash({ error: true, msg: 'Duplicate title' })
+        else if(data.error == 'duplicate_txnid')
+          setFlash({ error: true, msg: 'Transaction ID Already Used' })
         else if(data.error == 'invalid_txnid')
           setFlash({ error: true, msg: 'Invalid transaction id' })
         else if(data.error == 'invalid_pagenumber')
