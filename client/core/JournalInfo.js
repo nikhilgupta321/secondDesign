@@ -33,23 +33,7 @@ export default function JournalInfo(props) {
             {settings && settings.issn && settings.issn.split(",")[1]}
           </td>
           <td>
-            <a
-              className="link"
-              href={RJIFIndex.link}
-            >
-              Research Journal
-              <br />
-              {settings.impactfactor}
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>
             Indexed Journal <br /> Refereed Journal <br /> Peer Reviewed Journal
-          </td>
-          <td>
-            Cover Page <br /> Index Page <br />
-            Editorial Page
           </td>
         </tr>
       </tbody>

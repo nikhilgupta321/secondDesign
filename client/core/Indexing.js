@@ -15,8 +15,7 @@ export default function Indexing(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        const enabledIndex = data.filter(index => index.status === "enabled");
-        setIndexing(enabledIndex)
+        setIndexing(data.filter(index => index.status === "enabled").sort((a, b) => a.sortnumber - b.sortnumber))
       }
     })
 
