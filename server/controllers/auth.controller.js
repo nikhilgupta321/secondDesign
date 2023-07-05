@@ -77,6 +77,7 @@ const verifyToken = async (req, res) => {
 const login = async (req, res) => {
   try {
     let user = await User.findOne({ where: { "name": req.body.username } })
+    
     if (!user || req.body.password !== user.password)
       throw "invalid_credentials"
 
@@ -87,18 +88,21 @@ const login = async (req, res) => {
         where: { id: 1 },
         attributes: ['allowed_ip']
       });
+
       const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      
       if (!result.allowed_ip.split(',').includes(ip)) {
         console.log(ip)
         throw 'invalid_ip'
       }
 
     const token = jwt.sign({ username: user.name }, config.jwtSecret, { expiresIn: '12h' })
+    
     return res.status(200).json({
       token: token,
       user: user.name
     });
-
+    
   } catch (err) {
     console.log(err)
     return res.status(401).json({ error: err })

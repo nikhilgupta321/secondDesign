@@ -30,9 +30,9 @@ const addEditor = async (req, res) => {
     else {
       imgFile = req.files.imgFile;
       let fileName = new Date().valueOf() + '.' + imgFile.name.split('.').pop();
-      
+
       uploadPath = config.editorsDir + '/' + fileName;
-  
+
       await imgFile.mv(uploadPath)
       data.picture = fileName
       console.log(fileName)
@@ -73,13 +73,13 @@ const updateEditor = async (req, res) => {
     if (req.files && req.files.imgFile) {
       imgFile = req.files.imgFile;
       let fileName = new Date().valueOf() + '.' + imgFile.name.split('.').pop();
-      
+
       uploadPath = config.editorsDir + '/' + fileName;
-  
+
       await imgFile.mv(uploadPath)
       data.picture = fileName
     }
-    
+
     data = {
       ...data,
       updated_at: new Date(),

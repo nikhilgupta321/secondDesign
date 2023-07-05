@@ -23,20 +23,19 @@ export default function JournalInfo(props) {
   }, []);
 
   const { settings } = useContext(GlobalContext)
+  
   return (
-    <table className="journalInfo">
-      <tbody>
-        <tr>
-          <td>
-            {settings && settings.issn && settings.issn.split(",")[0]}
-            <br />
-            {settings && settings.issn && settings.issn.split(",")[1]}
-          </td>
-          <td>
-            Indexed Journal <br /> Refereed Journal <br /> Peer Reviewed Journal
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  );
+      <div className="font-bold text-3xl text-red-500 pt-6 text-center">
+        {settings && settings.issn && settings.issn.split(",")[0]}
+        <br/>
+        {settings && settings.issn && settings.issn.split(",")[1]}
+        <br/>
+        <br/>
+        Indexed Journal
+        <br/>
+        Refered Journal
+        <br/>
+        Peer Reviewed Journal
+      </div>
+  )
 }

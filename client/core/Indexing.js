@@ -28,7 +28,7 @@ export default function Indexing(props) {
     <div className="indexing-grid">
       {indexing.map((indexing, index) => {
         return <a key={`indexing-${index + 1}`} className="indexing-element flex items-center justify-center p-5" href={indexing.link} style={{ pointerEvents: indexing.link ? 'auto' : 'none' }} target="_blank" rel="noopener noreferrer">
-                  <img src={`assets/indexing/${indexing.image}`} className="w-full h-auto" alt={indexing.title} />
+                  <img src={`assets/indexing/${indexing.image}`} className="bg-blue-600 w-full h-auto" alt={indexing.title} />
                </a>
       })}
     </div>
