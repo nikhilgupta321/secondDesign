@@ -26,9 +26,10 @@ export default function JournalInfo(props) {
   
   return (
       <div className="font-bold text-3xl text-red-500 pt-6 text-center">
-        {settings && settings.issn && settings.issn.split(",")[0]}
-        <br/>
-        {settings && settings.issn && settings.issn.split(",")[1]}
+        {settings && settings.issn && <>
+          {settings.issn.split(",")[0]}
+          {settings.issn.split(",")[1] && <><br/>{settings.issn.split(",")[1]}</>}
+        </>}
         <br/>
         <br/>
         Indexed Journal
