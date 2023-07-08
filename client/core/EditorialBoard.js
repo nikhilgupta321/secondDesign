@@ -19,6 +19,7 @@ export default function EditorialBoard() {
       if (data && data.error) {
         console.log(data.error)
       } else if (data) {
+        console.log(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'associate editor'))
         setAssistantEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'assistant editor'));
         setAssociateEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'associate editor'));
         setChiefEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'chief editor'));
@@ -53,9 +54,9 @@ export default function EditorialBoard() {
       {associateEditors.length > 0 &&
         <Frame title="Associate Editors">
           {
-            editors.map((editor, index) => {
+            associateEditors.map((editor, index) => {
               return (
-                <EditorSlot key={`editor-${index + 1}`} editor={editor} />
+                <EditorSlot key={`associateEditor-${index + 1}`} editor={editor} />
               )
             })
           }
@@ -65,9 +66,9 @@ export default function EditorialBoard() {
       {assistantEditors.length > 0 &&
         <Frame title="Assistant Editors">
           {
-            editors.map((editor, index) => {
+            assistantEditors.map((editor, index) => {
               return (
-                <EditorSlot key={`editor-${index + 1}`} editor={editor} />
+                <EditorSlot key={`assistantEditor-${index + 1}`} editor={editor} />
               )
             })
           }
