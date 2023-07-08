@@ -76,8 +76,9 @@ export default function AddEditor(props) {
         <div><div>CATEGORY *</div>
           <select value={editor.category} onChange={handleChange('category')} className={`w-full border-2 border-gray-300 p-2 focus:outline-emerald-600 ${isSubmitted && editor.category === '' ? 'border-b-red-500' : ''}`}>
             <option value="">Null</option>
-            <option value="Editors">Editors</option>
-            <option value="Editor in chief">Chief Editor</option>
+            <option value="chief editor">Chief Editor</option>
+            <option value="associate editor">Associate Editor</option>
+            <option value="assistant editor">Assistant Editor</option>
           </select>
         </div>
         <div><div>DESIGNATION *</div>
