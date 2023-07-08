@@ -8,7 +8,8 @@ import { GlobalContext } from "../context/GlobalContext";
 export default function EditorialBoard() {
   const { settings } = useContext(GlobalContext)
   const [chiefEditors, setChiefEditors] = useState([]);
-  const [editors, setEditors] = useState([]);
+  const [associateEditors, setAssociateEditors] = useState([]);
+  const [assistantEditors, setAssistantEditors] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -18,8 +19,9 @@ export default function EditorialBoard() {
       if (data && data.error) {
         console.log(data.error)
       } else if (data) {
-        setEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'editors'));
-        setChiefEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'editor in chief'));
+        setAssistantEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'assistant editor'));
+        setAssociateEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'associate editor'));
+        setChiefEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'chief editor'));
       }
     })
 
@@ -37,7 +39,7 @@ export default function EditorialBoard() {
       <PageTitle title="EDITORIAL BOARD" />
 
       {chiefEditors.length > 0 &&
-        <Frame title="EDITOR IN CHIEF">
+        <Frame title="Editor-in-Chief">
           {
             chiefEditors.map((editor, index) => {
               return (
@@ -48,8 +50,20 @@ export default function EditorialBoard() {
         </Frame>
       }
 
-      {editors.length > 0 &&
-        <Frame title="EDITORS">
+      {associateEditors.length > 0 &&
+        <Frame title="Associate Editors">
+          {
+            editors.map((editor, index) => {
+              return (
+                <EditorSlot key={`editor-${index + 1}`} editor={editor} />
+              )
+            })
+          }
+        </Frame>
+      }
+
+      {assistantEditors.length > 0 &&
+        <Frame title="Assistant Editors">
           {
             editors.map((editor, index) => {
               return (
