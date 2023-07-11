@@ -19,7 +19,13 @@ export default function EditorialBoard() {
       if (data && data.error) {
         console.error(data.error)
       } else if (data) {
-        const editors = (data.filter(editor => editor.picture !== 'avatar.png' && editor.email && editor.status === "enabled"))
+        const editors = (data.filter(editor => editor.status === "enabled"))
+        
+        switch(settings.domain) {
+          case 'www.botanyjournals.com':
+            editors = editors.filter(editor => editor.picture !== 'avatar.png' && editor.email)
+        }
+        
         setAssistantEditors(editors.filter(editor => editor.category === 'assistant editor'));
         setAssociateEditors(editors.filter(editor => editor.category === 'associate editor'));
         setChiefEditors(editors.filter(editor => editor.category === 'chief editor'));
