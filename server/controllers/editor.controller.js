@@ -1,10 +1,13 @@
 import Editor from "../models/editor.model.js";
+import Setting from "../models/setting.model.js";
 import { config } from "../../config/config.js";
 const fs = require('fs');
 
 const listEditors = async (req, res) => {
   try {
-    let editors = await Editor.findAll({raw: true})
+    let editors = await Editor.findAll({ raw: true })
+    let settings = await Setting.findOne({ where: { id: 1 }, raw:true })
+    
     let result = editors.map((editor) => {
       if (editor.picture && fs.existsSync(config.editorsDir + '/' + editor.picture)) {
         return { ...editor }
@@ -12,10 +15,16 @@ const listEditors = async (req, res) => {
         return { ...editor, picture: 'avatar.png' }
       }
     })
+    
+    switch (settings.domain) {
+      case 'www.botanyjournals.com':
+        result = result.filter(editor => editor.picture !== 'avatar.png' && editor.email)
+    }
+    
     return res.status(200).json(result);
-  } catch(err) {
+  } catch (err) {
     console.error(err)
-    return res.status(400).json({error: err})
+    return res.status(400).json({ error: err })
   }
 };
 
@@ -37,7 +46,7 @@ const addEditor = async (req, res) => {
       data.picture = fileName
       console.error(fileName)
     }
-    
+
     await Editor.create(data)
 
     res.status(200).json({
@@ -85,7 +94,7 @@ const updateEditor = async (req, res) => {
       updated_at: new Date(),
     }
 
-    await Editor.update(data , {
+    await Editor.update(data, {
       where: {
         id: req.params.id
       }
