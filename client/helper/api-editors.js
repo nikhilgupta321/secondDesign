@@ -11,7 +11,7 @@ const listEditors = async (credentials) => {
     let result = await response.json()
     return result
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -34,7 +34,7 @@ const addEditor = async (data, file, credentials) => {
     })
     return await response.json()
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -48,7 +48,7 @@ const editorById = async (params, signal) => {
     const result = await response.json(); 
     return result
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {error: err}
   }
 }
@@ -72,7 +72,7 @@ const updateEditor = async (params, credentials) => {
     })
     return await response.json()
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

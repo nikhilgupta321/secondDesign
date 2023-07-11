@@ -11,7 +11,7 @@ const sendOtp = async (user) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -29,7 +29,7 @@ const verifyOtp = async (otp) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -47,7 +47,7 @@ const login = async (credentials) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -64,7 +64,7 @@ const verifyToken = async (credentials) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

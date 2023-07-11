@@ -13,7 +13,7 @@ export default function Indexing(props) {
 
     listIndexing(signal).then(data => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         setIndexing(data.filter(index => index.status === "enabled").sort((a, b) => a.sortnumber - b.sortnumber))
       }

@@ -116,7 +116,7 @@ export default function AddArticle(props) {
 
     archivesById(id, signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         setArticle({
           id: data.id,

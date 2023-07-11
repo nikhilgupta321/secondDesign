@@ -14,7 +14,7 @@ const listEditors = async (req, res) => {
     })
     return res.status(200).json(result);
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({error: err})
   }
 };
@@ -35,7 +35,7 @@ const addEditor = async (req, res) => {
 
       await imgFile.mv(uploadPath)
       data.picture = fileName
-      console.log(fileName)
+      console.error(fileName)
     }
     
     await Editor.create(data)
@@ -44,7 +44,7 @@ const addEditor = async (req, res) => {
       message: "Success!"
     });
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({
       error: 'Error!'
     })
@@ -59,7 +59,7 @@ const editorById = async (req, res) => {
 
     return res.status(200).json(editor)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -95,7 +95,7 @@ const updateEditor = async (req, res) => {
       message: "Success!"
     });
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({
       error: 'Error!'
     })

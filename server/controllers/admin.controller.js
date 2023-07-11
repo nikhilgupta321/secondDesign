@@ -8,7 +8,7 @@ const count = async (req, res) => {
     result.editors = await Editor.count()
     res.json(result)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

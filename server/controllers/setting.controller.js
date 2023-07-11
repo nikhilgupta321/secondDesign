@@ -7,7 +7,7 @@ const list = async (req, res) => {
     }})
     res.json(data)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -21,7 +21,7 @@ const update = async (req, res) => {
     })
     res.json({message: 'Success'})
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

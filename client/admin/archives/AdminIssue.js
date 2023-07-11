@@ -69,7 +69,7 @@ export default function AdminIssue(props) {
 
     listAdminIssue({ year, vol, issue }, signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         data.sort((a, b) => parseInt(a.pagenumber) - parseInt(b.pagenumber));
         setIssues(data)

@@ -60,7 +60,7 @@ export default function AdminArchives(props) {
 
     listAdminArchives({ token: jwt.token }, signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         setArchives(data)
       }

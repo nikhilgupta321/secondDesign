@@ -8,7 +8,7 @@ const getCertificate = async (refnumber, author) => {
     })
     return await response.blob()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -25,7 +25,7 @@ const getbulkCertificates = async (selected) => {
     })
     return await response.blob()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -42,7 +42,7 @@ const getCoverpage = async (refnumber) => {
     })
     return await response.blob()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -57,14 +57,14 @@ const getEditorialBoard = async (refnumber) => {
     })
     return await response.blob()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
 
 const getIndexPage = async (selected) => {
   try {
-    console.log(selected)
+    console.error(selected)
     let response = await fetch(`/api/pdf/indexpage`, {
       method: 'POST',
       headers: {
@@ -75,7 +75,7 @@ const getIndexPage = async (selected) => {
     })
     return await response.blob()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -83,7 +83,7 @@ const getIndexPage = async (selected) => {
 
 const getEditorsCertificate = async (selected) => {
   try {
-    console.log(selected)
+    console.error(selected)
     let response = await fetch(`/api/pdf/editorscertificate`, {
       method: 'POST',
       headers: {
@@ -94,7 +94,7 @@ const getEditorsCertificate = async (selected) => {
     })
     return await response.blob()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

@@ -16,7 +16,7 @@ export default function Archives(props) {
     listPublicArchives(signal)
       .then((data) => {
         if (data && data.error) {
-          console.log(data.error)
+          console.error(data.error)
         } else if (data) {
           setArchives(data)
         }

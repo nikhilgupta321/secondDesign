@@ -60,7 +60,7 @@ const generateCertificate = async (req, res) => {
     res.type('application/pdf');
     res.send(pdfBuffer);
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({error: err})
   }
 }
@@ -129,7 +129,7 @@ const generateBulkCertificates = async (req, res) => {
     zip.pipe(res);
     zip.finalize();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(400).json({ error: err });
   }
 };
@@ -170,7 +170,7 @@ const generateCoverpage = async (req, res) => {
     res.type('application/pdf');
     res.send(pdfBuffer);
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({error: err})
   }
 }
@@ -201,7 +201,7 @@ const generateEditorialBoard = async (req, res) => {
     res.type('application/pdf');
     res.send(pdfBuffer);
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({error: err})
   }
 }
@@ -241,7 +241,7 @@ const generateIndexPage = async (req, res) => {
     res.type('application/pdf');
     res.send(pdfBuffer);
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({error: err})
   }
 }
@@ -306,7 +306,7 @@ const generateEditorCertificates = async (req, res) => {
     zip.pipe(res);
     zip.finalize();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(400).json({ error: err });
   }
 };

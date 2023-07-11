@@ -16,7 +16,7 @@ const listPublicArchives = async (req, res) => {
     });
     return res.status(200).json(archives)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -74,7 +74,7 @@ const addArticle = async (req, res) => {
       message: "Success!"
     });
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -115,7 +115,7 @@ const updateArticle = async (req, res) => {
       message: "Success!"
     });
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -129,7 +129,7 @@ const listAdminArchives = async (req, res) => {
     });
     return res.status(200).json(archives)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -154,7 +154,7 @@ const listIssue = async (req, res) => {
     })
     return res.status(200).json(result)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -178,7 +178,7 @@ const archivesByRef = async (req, res) => {
 
     return res.status(200).json(article)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -201,7 +201,7 @@ const archivesById = async (req, res) => {
 
     return res.status(200).json(article)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -221,7 +221,7 @@ const createNewIssue = async (req, res) => {
       message: "Created new archive!"
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }
@@ -257,7 +257,7 @@ const searchArchives = async (req, res) => {
     })
     return res.status(200).json(result)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(400).json({ error: err })
   }
 }

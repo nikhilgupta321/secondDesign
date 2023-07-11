@@ -10,7 +10,7 @@ const listIndexing = async (signal) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

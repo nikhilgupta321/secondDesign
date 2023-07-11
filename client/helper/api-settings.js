@@ -10,7 +10,7 @@ const getSettings = async (credentials) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -26,10 +26,10 @@ const updateSettings = async (data, credentials) => {
         'Authorization': 'Bearer ' + credentials.token
       },
     })
-    console.log(response)
+    console.error(response)
     return await response.json()
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

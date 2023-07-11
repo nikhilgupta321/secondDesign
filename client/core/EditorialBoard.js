@@ -17,12 +17,12 @@ export default function EditorialBoard() {
 
     listEditors(signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else if (data) {
-        console.log(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'associate editor'))
-        setAssistantEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'assistant editor'));
-        setAssociateEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'associate editor'));
-        setChiefEditors(data.filter(editor => editor.status === "enabled" && editor.category.toLowerCase() === 'chief editor'));
+        const editors = (data.filter(editor => editor.picture !== 'avatar.png' && editor.email && editor.status === "enabled"))
+        setAssistantEditors(editors.filter(editor => editor.category === 'assistant editor'));
+        setAssociateEditors(editors.filter(editor => editor.category === 'associate editor'));
+        setChiefEditors(editors.filter(editor => editor.category === 'chief editor'));
       }
     })
 

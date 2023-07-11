@@ -22,7 +22,7 @@ export default function SearchArchives(props) {
 
     searchArchives(query, signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         if (data.length == 0)
           setNotFound(true)

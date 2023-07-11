@@ -6,7 +6,7 @@ import Setting from '../models/setting.model';
 
 const sendOtp = async (req, res) => {
   try {
-    console.log(req.body)
+    console.error(req.body)
     let user = await User.findOne({
       attributes: ['id', 'username', 'phoneNo'],
       where: {
@@ -34,7 +34,7 @@ const sendOtp = async (req, res) => {
       message: `Otp sent to phone no: ${user.phoneNo}`
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(401).json({ error: "Something went wrong" })
   }
 }
@@ -60,7 +60,7 @@ const verifyOtp = async (req, res) => {
       }
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(401).json({ error: err })
   }
 }
@@ -69,7 +69,7 @@ const verifyToken = async (req, res) => {
   try {
     res.status(200).json({ message: "Token Verified" })
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(401).json({ error: err })
   }
 }
@@ -92,7 +92,7 @@ const login = async (req, res) => {
       const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
       
       if (!result.allowed_ip.split(',').includes(ip)) {
-        console.log(ip)
+        console.error(ip)
         throw 'invalid_ip'
       }
 
@@ -104,7 +104,7 @@ const login = async (req, res) => {
     });
     
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(401).json({ error: err })
   }
 }

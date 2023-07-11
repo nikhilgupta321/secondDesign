@@ -35,7 +35,7 @@ export default function Settings(props) {
         setFlash({error: true, msg: "Something went wrong"})
       }
       else {
-        console.log('ping')
+        console.error('ping')
         setFlash({success: true, msg: "Settings updated successfully"})
       }
     })

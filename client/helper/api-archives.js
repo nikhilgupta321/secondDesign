@@ -11,7 +11,7 @@ const createIssue = async (credentials, params) => {
       })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -25,7 +25,7 @@ const listPublicArchives = async (signal) => {
 
     return await response.json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {error: err}
   }
 };
@@ -42,7 +42,7 @@ const listAdminArchives = async (credentials) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -60,7 +60,7 @@ const read = async (params, credentials, signal) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -78,7 +78,7 @@ const update = async (params, credentials, user) => {
     })
     return await response.json()
   } catch(err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -102,7 +102,7 @@ const addArticle = async (data, file, credentials) => {
     })
     return await response.json()
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -126,7 +126,7 @@ const updateArticle = async (params, credentials) => {
     })
     return await response.json()
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -140,7 +140,7 @@ const listPublicIssue = async (params, signal) => {
     const result = await response.json();
     return result
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -154,7 +154,7 @@ const listAdminIssue = async (params, signal) => {
     const result = await response.json();
     return result
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -168,7 +168,7 @@ const archivesByRef = async (ref, signal) => {
     const result = await response.json();
     return result
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {error: err}
   }
 }
@@ -182,7 +182,7 @@ const archivesById = async (id, signal) => {
     const result = await response.json();
     return result
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {error: err}
   }
 }
@@ -196,7 +196,7 @@ const searchArchives = async (query, signal) => {
     let result = await response.json();
     return result
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {error: err}
   }
 };

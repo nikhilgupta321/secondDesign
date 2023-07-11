@@ -5,7 +5,7 @@ const list = async (req, res) => {
     let data = await Indexing.findAll()
     res.json(data)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

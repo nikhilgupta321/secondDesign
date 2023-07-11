@@ -17,7 +17,7 @@ const GlobalProvider = ({ children }) => {
 
     getSettings(signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         setSettings(data)
       }

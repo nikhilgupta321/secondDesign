@@ -7,7 +7,7 @@ const create = async (req, res) => {
       message: "Created new user!"
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -17,7 +17,7 @@ const list = async (req, res) => {
     let users = await User.findAll()
     res.json(users)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -29,7 +29,7 @@ const update = async (req, res) => {
     await user.save()
     res.json(user)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }
@@ -40,7 +40,7 @@ const remove = async (req, res) => {
     await user.destroy()
     res.json(user)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return {error: err}
   }
 }

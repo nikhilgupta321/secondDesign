@@ -20,7 +20,7 @@ export default function Search(props) {
 
     searchArchives(query, signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         const filteredData = data.filter(article => article.status === 'enabled')
         

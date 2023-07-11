@@ -11,7 +11,7 @@ export default function JournalInfo(props) {
 
     listIndexing(signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error);
+        console.error(data.error);
       } else {
         setRJIFIndex(data.find(index => index.title === 'RJIF'))
       }

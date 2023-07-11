@@ -66,7 +66,7 @@ export default function EditEditor(props) {
 
     editorById({id: id}, signal).then((data) => {
       if (data && data.error) {
-        console.log(data.error)
+        console.error(data.error)
       } else {
         setEditor({
           category: data.category || editor.category,
