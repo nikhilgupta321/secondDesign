@@ -91,10 +91,10 @@ const login = async (req, res) => {
 
       const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
       
-      if (!result.allowed_ip.split(',').includes(ip)) {
-        console.error(ip)
-        throw 'invalid_ip'
-      }
+      // if (!result.allowed_ip.split(',').includes(ip)) {
+      //   console.error(ip)
+      //   throw 'invalid_ip'
+      // }
 
     const token = jwt.sign({ username: user.name }, config.jwtSecret, { expiresIn: '12h' })
     
