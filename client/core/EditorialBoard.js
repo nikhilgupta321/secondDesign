@@ -19,9 +19,9 @@ export default function EditorialBoard() {
       if (data && data.error) {
         console.error(data.error)
       } else if (data) {
-        setAssistantEditors(editors.filter(editor => editor.status === "enabled" && editor.category === 'assistant editor'));
-        setAssociateEditors(editors.filter(editor => editor.status === "enabled" && editor.category === 'associate editor'));
-        setChiefEditors(editors.filter(editor => editor.status === "enabled" && editor.category === 'chief editor'));
+        setAssistantEditors(data.filter(editor => editor.status === "enabled" && editor.category === 'assistant editor'));
+        setAssociateEditors(data.filter(editor => editor.status === "enabled" && editor.category === 'associate editor'));
+        setChiefEditors(data.filter(editor => editor.status === "enabled" && editor.category === 'chief editor'));
       }
     })
 
