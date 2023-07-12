@@ -3,7 +3,6 @@ import { GlobalContext } from "../context/GlobalContext";
 import { listIndexing } from "../helper/api-indexing";
 
 export default function JournalInfo(props) {
-  const [RJIFIndex, setRJIFIndex] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
