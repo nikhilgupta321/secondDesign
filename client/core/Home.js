@@ -18,18 +18,18 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="flex w-full flex-col font-bold text-3xl gap-6 items-center">
-        <div className="text-red-500 text-center">
+      <div className="flex w-full flex-col text-blue-A font-bold text-3xl gap-6 items-center">
+        <div className="text-center">
           {settings && settings.issn && settings.issn.split(",")[0]}
           <br />
           {settings && settings.issn && settings.issn.split(",")[1]}
         </div>
-        <div className="text-red-500 text-center">
+        <div className="text-center">
           Indexed Journal<br />
           Refered Journal<br />
           Peer Reviewed Journal
         </div>
-        <div className="text-blue-A text-center">
+        <div className="text-center">
           We send published link, <br />certificate, coverpage in 5 days.
         </div>
       </div>
