@@ -16,7 +16,7 @@ export default function InstructionsPage(props) {
         <div>
           <div>
             <b>Submit Your Article</b><br />
-            <b>{settings.websiteemail}</b>
+            <b><span className="text-blue-A">{settings.websiteemail}</span></b>
           </div>
           <br/>
           <div>
