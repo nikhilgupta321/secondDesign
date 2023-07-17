@@ -1,42 +1,44 @@
 import { sequelize } from "../../config/config";
 import { DataTypes } from "sequelize";
 
-const Setting = sequelize.define('settings', {
+const Setting = sequelize.define(
+  "settings",
+  {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     websitename: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
     },
     websiteemail: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
     },
     impactfactor: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
     },
     issn: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
     },
     whatsup_number: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
     },
     domain: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
     },
     allowed_ip: {
       type: DataTypes.STRING(255),
@@ -66,20 +68,24 @@ const Setting = sequelize.define('settings', {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-  }, {
+    formated_journal_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+  },
+  {
     sequelize,
-    tableName: 'settings',
+    tableName: "settings",
     timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
+        fields: [{ name: "id" }],
       },
-    ]
-  });
+    ],
+  }
+);
 
 export default Setting;

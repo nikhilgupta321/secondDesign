@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link, useSearchParams } from "react-router-dom";
-import auth from "../helper/auth-helper"
 import { searchArchives } from "../helper/api-archives";
 import { decode } from "html-entities";
 
@@ -14,7 +13,6 @@ export default function SearchArchives(props) {
   const query = searchParams.get('q');
   const [articles, setArticles] = useState([])
   const [notFound, setNotFound] = useState(false)
-  const jwt = auth.isAuthenticated()
 
   useEffect(() => {
     const abortController = new AbortController()

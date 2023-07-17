@@ -10,67 +10,78 @@ import SearchBar from "./SearchBar";
 import CoverPage from "./CoverPage";
 import { GlobalContext } from "../context/GlobalContext";
 export default function Root() {
-  const { settings } = useContext(GlobalContext)  
-  
+  const { settings } = useContext(GlobalContext);
+
   return (
     <div>
       <div className="text-base" id="container">
-          <div className="flex gap-12 w-full items-center justify-center flex-col lg:flex-row">
-            <img className="w-48 h-48" src="/assets/images/logo.png" />
-            <div className="flex gap-12 w-full text-center justify-center flex-col">
-              <div className="text-3xl text-center lg:text-left font-bold text-blue-A">
-                {settings.websitename}
+        <div className="flex flex-col items-center justify-center w-full gap-12 lg:flex-row">
+          <img className="w-48 h-48" src="/assets/images/logo.png" />
+          <div className="flex flex-col justify-center w-full gap-12 text-center">
+            <div
+              className="text-3xl font-bold text-center lg:hidden text-blue-A"
+              dangerouslySetInnerHTML={{
+                __html: settings.formated_journal_name,
+              }}
+            ></div>
+            <div
+              className="hidden text-3xl font-bold text-center lg:block lg:text-left text-blue-A"
+              dangerouslySetInnerHTML={{
+                __html: settings.websitename,
+              }}
+            ></div>
+            <div className="flex flex-col text-xl font-bold text-blue-A lg:flex-row lg:gap-12">
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/">HOME</Link>
               </div>
-              <div className="text-xl flex font-bold text-blue-A flex-col lg:flex-row lg:gap-12">
-                <div className="py-2 border-blue-A border-t-2 lg:border-none">
-                  <Link to="/">HOME</Link>
-                </div>
-                <div className="py-2 border-blue-A border-t-2 lg:border-none">
-                  <Link to="/board">EDITORIAL BOARD</Link>
-                </div>
-                <div className="py-2 border-blue-A border-t-2 lg:border-none">
-                  <Link to="/archives">ARCHIVES</Link>
-                </div>
-                <div className="py-2 border-blue-A border-t-2 lg:border-none">
-                  <Link to="/instructions">INSTRUCTIONS</Link>
-                </div>
-                <div className="py-2 border-blue-A border-t-2 lg:border-none">
-                  <Link to="/indexing">INDEXING</Link>
-                </div>
-                <div className="py-2 border-blue-A border-y-2 lg:border-none">
-                  <Link to="/contact">CONTACT US</Link>
-                </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/board">EDITORIAL BOARD</Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/archives">ARCHIVES</Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/instructions">INSTRUCTIONS</Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/indexing">INDEXING</Link>
+              </div>
+              <div className="py-2 border-blue-A border-y-2 lg:border-none">
+                <Link to="/contact">CONTACT US</Link>
               </div>
             </div>
           </div>
+        </div>
         <img id="header-img" src="/assets/images/header.jpg" />
         <div id="body-container-desktop">
           <div className="sidebar">
-            <Email/>
-            <Certificate/>
-            <Contact/>
+            <Email />
+            <Certificate />
+            <Contact />
           </div>
           <div id="page-content">
-            <Outlet/>
+            <Outlet />
           </div>
           <div className="sidebar">
-            <JournalList/>
-            <Whatsapp/>
-            <SearchBar/>
-            <CoverPage/>
+            <JournalList />
+            <Whatsapp />
+            <SearchBar />
+            <CoverPage />
           </div>
         </div>
         <div id="body-container-mobile">
-          <WhatsappSticky/>
-          <SearchBar/>
-          <Outlet/>
-          <Email/>
-          <Contact/>
-          <JournalList/>
-          <CoverPage/>
+          <WhatsappSticky />
+          <SearchBar />
+          <Outlet />
+          <Email />
+          <Contact />
+          <JournalList />
+          <CoverPage />
         </div>
       </div>
-      <div id="footer">Copyright © {new Date().getFullYear()}. All Rights Reserved.</div>
+      <div id="footer">
+        Copyright © {new Date().getFullYear()}. All Rights Reserved.
+      </div>
     </div>
   );
 }
