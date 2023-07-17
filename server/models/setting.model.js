@@ -68,7 +68,7 @@ const Setting = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-    formated_journal_name: {
+    formatted_journal_name: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },

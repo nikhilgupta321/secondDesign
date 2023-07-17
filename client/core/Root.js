@@ -21,7 +21,7 @@ export default function Root() {
             <div
               className="text-3xl font-bold text-center lg:hidden text-blue-A"
               dangerouslySetInnerHTML={{
-                __html: settings.formated_journal_name,
+                __html: settings.formatted_journal_name,
               }}
             ></div>
             <div
