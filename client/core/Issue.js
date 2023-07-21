@@ -104,7 +104,7 @@ export default function Archives(props) {
                         {article.authroname}{" "}
                         <b
                           dangerouslySetInnerHTML={{
-                            __html: decode(article.title),
+                            __html: cleanHtml(decode(article.title)),
                           }}
                         ></b>
                         . {settings.websitename}, Volume {vol}, Issue {issue},{" "}

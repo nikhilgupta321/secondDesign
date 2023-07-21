@@ -6,29 +6,28 @@ import { listPublicArchives } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
 
 export default function Archives(props) {
-  const { settings } = useContext(GlobalContext)  
+  const { settings } = useContext(GlobalContext);
   const [archives, setArchives] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    listPublicArchives(signal)
-      .then((data) => {
-        if (data && data.error) {
-          console.error(data.error)
-        } else if (data) {
-          setArchives(data)
-        }
-      })
+    listPublicArchives(signal).then((data) => {
+      if (data && data.error) {
+        console.error(data.error);
+      } else if (data) {
+        setArchives(data);
+      }
+    });
     return function cleanup() {
       abortController.abort();
     };
   }, []);
 
   useEffect(() => {
-    document.title = 'Archives | ' + settings.websitename
-  }, [settings])
+    window.title = `Archives | ${settings.websitename}`;
+  }, [settings]);
 
   return (
     <div className="page">
@@ -40,8 +39,13 @@ export default function Archives(props) {
               {[...Array(archive.total_issues)].map((e, i) => {
                 const issueIndex = i + 1;
                 return (
-                  <Link key={`issue-${issueIndex}`} to={`/archives/${archive.year}/vol${archive.volume}/issue${issueIndex}`}>
-                    <div className="issue">VOL. {archive.volume} : ISSUE {issueIndex}</div>
+                  <Link
+                    key={`issue-${issueIndex}`}
+                    to={`/archives/${archive.year}/vol${archive.volume}/issue${issueIndex}`}
+                  >
+                    <div className="issue">
+                      VOL. {archive.volume} : ISSUE {issueIndex}
+                    </div>
                   </Link>
                 );
               })}
