@@ -50,11 +50,11 @@ export default function Article(props) {
         />
         {article &&
           article.authorname &&
-          article.authorname.split(",").forEach((author) => {
-            <meta name="citation_author" content={author} />;
+          article.authorname.split(",").map((author) => {
+            return <meta name="citation_author" content={author} />;
           })}
         <meta name="citation_publication_date" content={article.publishdate} />
-        <meta name="citation_journal_title" content={settings.journal_name} />
+        <meta name="citation_journal_title" content={settings.websitename} />
         <meta name="citation_volume" content={article.volume} />
         <meta name="citation_issue" content={article.issue} />
         <meta
