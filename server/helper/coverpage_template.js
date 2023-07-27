@@ -122,11 +122,12 @@ export default (config, article, settings) => {
         .toString("base64")}" />
       <div id="cover-footer">
         ${
-          settings.publication &&
-          `
+          settings.publication
+            ? `
           Published By </br>
           ${settings.publication} </br></br>
         `
+            : ""
         }
         Journal List : www.royalpublications.net<br/>
       </div>
