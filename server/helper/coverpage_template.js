@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 export default (config, article, settings) => {
   return `<!DOCTYPE html>
@@ -99,7 +99,9 @@ export default (config, article, settings) => {
         <div id="cover-row1-right">
           ${settings.domain}<br />
           ${settings.issn.split(",")[0]}<br />
-          ${settings.issn.split(",")[1] ? settings.issn.split(",")[1] : ''}<br />
+          ${
+            settings.issn.split(",")[1] ? settings.issn.split(",")[1] : ""
+          }<br />
         </div>
       </div>
       <div id="cover-row2">
@@ -115,16 +117,21 @@ export default (config, article, settings) => {
       </div>
       <div id="cover-title">${settings.websitename}</div>
       <br/>
-      <img style="height:500px" src="data:image/jpeg;base64,${fs.readFileSync(config.imagesDir + '/coverpage-img.jpg').toString('base64')}" />
+      <img style="height:500px" src="data:image/jpeg;base64,${fs
+        .readFileSync(config.imagesDir + "/coverpage-img.jpg")
+        .toString("base64")}" />
       <div id="cover-footer">
-        ${settings.publication && `
+        ${
+          settings.publication &&
+          `
           Published By </br>
           ${settings.publication} </br></br>
-        `}
-        Journal List : www.academicpublications.net<br/>
+        `
+        }
+        Journal List : www.royalpublications.net<br/>
       </div>
     </div>
   </div>
   </body>
-  </html>`
+  </html>`;
 };

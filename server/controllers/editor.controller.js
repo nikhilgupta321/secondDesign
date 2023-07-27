@@ -1,114 +1,110 @@
 import Editor from "../models/editor.model.js";
 import Setting from "../models/setting.model.js";
 import { config } from "../../config/config.js";
-const fs = require('fs');
+const fs = require("fs");
 
 const listEditors = async (req, res) => {
   try {
-    let editors = await Editor.findAll({ raw: true })
-    let settings = await Setting.findOne({ where: { id: 1 }, raw:true })
-    
+    let editors = await Editor.findAll({ raw: true });
+
     let result = editors.map((editor) => {
-      if (editor.picture && fs.existsSync(config.editorsDir + '/' + editor.picture)) {
-        return { ...editor }
+      if (
+        editor.picture &&
+        fs.existsSync(config.editorsDir + "/" + editor.picture)
+      ) {
+        return { ...editor };
       } else {
-        return { ...editor, picture: 'avatar.png' }
+        return { ...editor, picture: "" };
       }
-    })
-    
-    switch (settings.domain) {
-      case 'www.botanyjournals.com':
-        result = result.filter(editor => editor.picture !== 'avatar.png' && editor.email)
-    }
-    
+    });
+
     return res.status(200).json(result);
   } catch (err) {
-    console.error(err)
-    return res.status(400).json({ error: err })
+    console.error(err);
+    return res.status(400).json({ error: err });
   }
 };
 
 const addEditor = async (req, res) => {
   try {
-    let imgFile
-    let uploadPath
-    let data = req.body
+    let imgFile;
+    let uploadPath;
+    let data = req.body;
 
-    if (!req.files || !req.files.imgFile)
-      data.picture = 'avatar.png'
+    if (!req.files || !req.files.imgFile) data.picture = "avatar.png";
     else {
       imgFile = req.files.imgFile;
-      let fileName = new Date().valueOf() + '.' + imgFile.name.split('.').pop();
+      let fileName = new Date().valueOf() + "." + imgFile.name.split(".").pop();
 
-      uploadPath = config.editorsDir + '/' + fileName;
+      uploadPath = config.editorsDir + "/" + fileName;
 
-      await imgFile.mv(uploadPath)
-      data.picture = fileName
-      console.error(fileName)
+      await imgFile.mv(uploadPath);
+      data.picture = fileName;
+      console.error(fileName);
     }
 
-    await Editor.create(data)
+    await Editor.create(data);
 
     res.status(200).json({
-      message: "Success!"
+      message: "Success!",
     });
   } catch (err) {
-    console.error(err)
+    console.error(err);
     return res.status(400).json({
-      error: 'Error!'
-    })
+      error: "Error!",
+    });
   }
-}
+};
 
 const editorById = async (req, res) => {
   try {
     const editor = await Editor.findOne({ where: { id: req.params.id } });
 
-    if (!editor) throw 'Editor not found'
+    if (!editor) throw "Editor not found";
 
-    return res.status(200).json(editor)
+    return res.status(200).json(editor);
   } catch (err) {
-    console.error(err)
-    return res.status(400).json({ error: err })
+    console.error(err);
+    return res.status(400).json({ error: err });
   }
-}
+};
 
 const updateEditor = async (req, res) => {
   try {
-    let imgFile
-    let uploadPath
-    let data = req.body
+    let imgFile;
+    let uploadPath;
+    let data = req.body;
 
     if (req.files && req.files.imgFile) {
       imgFile = req.files.imgFile;
-      let fileName = new Date().valueOf() + '.' + imgFile.name.split('.').pop();
+      let fileName = new Date().valueOf() + "." + imgFile.name.split(".").pop();
 
-      uploadPath = config.editorsDir + '/' + fileName;
+      uploadPath = config.editorsDir + "/" + fileName;
 
-      await imgFile.mv(uploadPath)
-      data.picture = fileName
+      await imgFile.mv(uploadPath);
+      data.picture = fileName;
     }
 
     data = {
       ...data,
       updated_at: new Date(),
-    }
+    };
 
     await Editor.update(data, {
       where: {
-        id: req.params.id
-      }
-    })
+        id: req.params.id,
+      },
+    });
 
     res.status(200).json({
-      message: "Success!"
+      message: "Success!",
     });
   } catch (err) {
-    console.error(err)
+    console.error(err);
     return res.status(400).json({
-      error: 'Error!'
-    })
+      error: "Error!",
+    });
   }
-}
+};
 
 export default { listEditors, addEditor, updateEditor, editorById };
