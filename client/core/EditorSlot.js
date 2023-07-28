@@ -2,10 +2,11 @@ import React from "react";
 import { decode } from "html-entities";
 
 export default function EditorSlot(props) {
+  const editorPicture = props.editor.picture || "avatar.png";
   return (
     <div className="flex border-t-2 border-blue-600">
-      <div className="p-2 w-1/6 border-r-2 border-blue-600">
-        <img src={`assets/editors/${props.editor.picture}`} />
+      <div className="w-1/6 p-2 border-r-2 border-blue-600">
+        <img src={`assets/editors/${editorPicture}`} />
       </div>
       <div className="w-5/6 p-2">
         <div>
