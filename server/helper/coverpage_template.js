@@ -129,7 +129,6 @@ export default (config, article, settings) => {
         `
             : ""
         }
-        Journal List : www.royalpublications.net<br/>
       </div>
     </div>
   </div>
