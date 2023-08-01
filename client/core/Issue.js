@@ -88,7 +88,7 @@ export default function Archives(props) {
                           <>
                             <a
                               href={`/assets/archives/${article.year}/vol${article.volume}issue${article.issue}/${article.file}`}
-                              download={`article-${article.refnumber}.pdf`}
+                              target="_blank"
                             >
                               <b>Download</b>
                             </a>
