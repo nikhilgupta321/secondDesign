@@ -75,7 +75,7 @@ export default function Article(props) {
               title={`VOL. ${article.volume}, ISSUE ${article.issue} (${article.year})`}
             />
             <div
-              className="article-title"
+              className="text-justify article-title"
               dangerouslySetInnerHTML={{
                 __html: cleanHtml(decode(article.title)),
               }}
@@ -91,6 +91,7 @@ export default function Article(props) {
                 <b>Abstract</b>
               </div>
               <div
+                className="text-justify"
                 dangerouslySetInnerHTML={{ __html: decode(article.abstract) }}
               ></div>
             </div>
@@ -112,7 +113,7 @@ export default function Article(props) {
               <div className="text-blue">
                 <b>How to cite this article:</b>
               </div>
-              <div>
+              <div className="text-justify">
                 {article.authorname && formatAuthorNames(article.authorname)} "
                 <span
                   dangerouslySetInnerHTML={{

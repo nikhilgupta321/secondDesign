@@ -59,7 +59,7 @@ export default function Archives(props) {
                   <td>{index + 1}</td>
                   <td>
                     <div className="article-info">
-                      <div>
+                      <div className="text-justify">
                         <b
                           dangerouslySetInnerHTML={{
                             __html: cleanHtml(decode(article.title)),
@@ -93,7 +93,7 @@ export default function Archives(props) {
                       <div className="citation">
                         <b>How to cite this article:</b>
                       </div>
-                      <div>
+                      <div className="text-justify">
                         {article.authorname &&
                           formatAuthorNames(article.authorname)}{" "}
                         "
