@@ -6,7 +6,6 @@ import Setting from "../models/setting.model";
 
 const sendOtp = async (req, res) => {
   try {
-    console.error(req.body);
     let user = await User.findOne({
       attributes: ["id", "username", "phoneNo"],
       where: {

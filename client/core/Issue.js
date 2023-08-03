@@ -5,14 +5,7 @@ import { listPublicIssue } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
 import { decode } from "html-entities";
 import sanitizeHtml from "sanitize-html";
-
-const cleanHtml = (data) => {
-  let cleanData = sanitizeHtml(data, {
-    allowedTags: ["i", "em"],
-    allowedAttributes: {},
-  });
-  return cleanData.replace(/\s+/g, " ");
-};
+import { formatAuthorNames, cleanHtml } from "../helper/helpers";
 
 export default function Archives(props) {
   const params = useParams();
@@ -101,13 +94,15 @@ export default function Archives(props) {
                         <b>How to cite this article:</b>
                       </div>
                       <div>
-                        {article.authroname}{" "}
-                        <b
+                        {article.authorname &&
+                          formatAuthorNames(article.authorname)}{" "}
+                        "
+                        <span
                           dangerouslySetInnerHTML={{
                             __html: cleanHtml(decode(article.title)),
                           }}
-                        ></b>
-                        . {settings.websitename}, Volume {vol}, Issue {issue},{" "}
+                        ></span>
+                        " . {settings.websitename}, Volume {vol}, Issue {issue},{" "}
                         {year}, Pages {article.pagenumber}
                       </div>
                     </div>

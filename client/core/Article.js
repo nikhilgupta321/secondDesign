@@ -6,14 +6,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { decode } from "html-entities";
 import sanitizeHtml from "sanitize-html";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
-const cleanHtml = (data) => {
-  let cleanData = sanitizeHtml(data, {
-    allowedTags: ["i", "em"],
-    allowedAttributes: {},
-  });
-  return cleanData.replace(/\s+/g, " ");
-};
+import { formatAuthorNames, cleanHtml } from "../helper/helpers";
 
 export default function Article(props) {
   const { ref } = useParams();
@@ -120,14 +113,13 @@ export default function Article(props) {
                 <b>How to cite this article:</b>
               </div>
               <div>
-                {article.authroname}{" "}
-                <b
-                  className="article-cite"
+                {article.authorname && formatAuthorNames(article.authorname)} "
+                <span
                   dangerouslySetInnerHTML={{
                     __html: cleanHtml(decode(article.title)),
                   }}
-                ></b>
-                . {settings.websitename}, Volume {article.volume}, Issue{" "}
+                ></span>
+                ". {settings.websitename}, Volume {article.volume}, Issue{" "}
                 {article.issue}, {article.year}, Pages {article.pagenumber}
               </div>
             </div>
