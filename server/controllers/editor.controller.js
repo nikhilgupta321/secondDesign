@@ -1,8 +1,7 @@
 import Editor from "../models/editor.model.js";
-import Setting from "../models/setting.model.js";
 import { config } from "../../config/config.js";
 const fs = require("fs");
-
+//change
 const listEditors = async (req, res) => {
   try {
     let editors = await Editor.findAll({ raw: true });

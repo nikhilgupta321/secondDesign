@@ -120,21 +120,10 @@ const requireSignin = expressJwt({
   algorithms: ["HS256"],
 });
 
-const hasAuthorization = (req, res, next) => {
-  const authorized = req.auth.username == "viki";
-  if (!authorized) {
-    return res.status("403").json({
-      error: "User is not authorized",
-    });
-  }
-  next();
-};
-
 export default {
   sendOtp,
   verifyOtp,
   login,
   requireSignin,
   verifyToken,
-  hasAuthorization,
 };

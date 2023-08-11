@@ -10,14 +10,13 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import MainRouter from "../client/MainRouter";
-import editorRoutes from './routes/editor.routes';
-import archiveRoutes from './routes/archive.routes'
-import authRoutes from './routes/auth.routes';
-import userRoutes from './routes/user.routes';
-import indexingRoutes from './routes/indexing.routes';
-import helperRoutes from './routes/helper.routes';
-import settingRoutes from './routes/setting.routes';
-import pdfRoutes from './routes/pdf.routes';
+import editorRoutes from "./routes/editor.routes";
+import archiveRoutes from "./routes/archive.routes";
+import authRoutes from "./routes/auth.routes";
+import indexingRoutes from "./routes/indexing.routes";
+import helperRoutes from "./routes/helper.routes";
+import settingRoutes from "./routes/setting.routes";
+import pdfRoutes from "./routes/pdf.routes";
 
 import { config } from "../config/config";
 import fileUpload from "express-fileupload";
@@ -31,20 +30,21 @@ app.use(cookieParser());
 app.use(compress());
 app.use(helmet());
 app.use(cors());
-app.use(fileUpload({
-  limits: { fileSize: 5 * 1024 * 1024 },
-}));
+app.use(
+  fileUpload({
+    limits: { fileSize: 5 * 1024 * 1024 },
+  })
+);
 
 app.use("/dist", express.static(path.join(config.rootDir, "dist")));
 app.use(`/assets`, express.static(config.assetsDir));
-app.use('/', authRoutes)
-app.use('/', userRoutes)
-app.use('/', settingRoutes)
-app.use('/', indexingRoutes)
-app.use('/', editorRoutes)
-app.use('/', archiveRoutes)
-app.use('/', helperRoutes)
-app.use('/', pdfRoutes)
+app.use("/", authRoutes);
+app.use("/", settingRoutes);
+app.use("/", indexingRoutes);
+app.use("/", editorRoutes);
+app.use("/", archiveRoutes);
+app.use("/", helperRoutes);
+app.use("/", pdfRoutes);
 
 app.get("*", (req, res) => {
   const context = {};
@@ -58,9 +58,7 @@ app.get("*", (req, res) => {
     return res.redirect(303, context.url);
   }
 
-  res.status(200).send(
-    Template(markup)
-  );
+  res.status(200).send(Template(markup));
 });
 
 app.use((err, req, res, next) => {

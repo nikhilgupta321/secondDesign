@@ -9,6 +9,7 @@ import WhatsappSticky from "./WhatsappSticky";
 import SearchBar from "./SearchBar";
 import CoverPage from "./CoverPage";
 import { GlobalContext } from "../context/GlobalContext";
+
 export default function Root() {
   const { settings } = useContext(GlobalContext);
 

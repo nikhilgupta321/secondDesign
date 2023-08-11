@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 import { listPublicIssue } from "../helper/api-archives";
 import { GlobalContext } from "../context/GlobalContext";
 import { decode } from "html-entities";
-import sanitizeHtml from "sanitize-html";
 import { formatAuthorNames, cleanHtml } from "../helper/helpers";
 
 export default function Archives(props) {
