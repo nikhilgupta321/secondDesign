@@ -28,7 +28,7 @@ export default function AddArticle(props) {
     abstract: "",
   });
 
-  const [pdffile, setPdfFile] = useState(null);
+  const [pdffile, setPdfFile] = useState();
 
   const jwt = auth.isAuthenticated();
 
@@ -41,20 +41,17 @@ export default function AddArticle(props) {
   };
 
   const handleChangeFile = (event) => {
-    // setPdfFile(event.target.files[0]);
     const file = event.target.files[0];
     if (file) {
-      // Check file size (5 MB limit)
-      const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
-      if (file.size > maxSize) {
+      const maxSize = 5 * 1024 * 1024; // 5 MB
+      if (file.size < maxSize) {
+        setPdfFile(file);
+      } else {
         alert("File size exceeds the limit of 5 MB.");
         setPdfFile(null);
-      } else {
-        setPdfFile(file);
       }
     }
   };
-
   const handleSubmit = () => {
     setIsSubmitted(true);
 

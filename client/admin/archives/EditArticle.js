@@ -39,7 +39,16 @@ export default function AddArticle(props) {
   };
 
   const handleChangeFile = (event) => {
-    setPdfFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      const maxSize = 5 * 1024 * 1024;
+      if (file.size < maxSize) {
+        setPdfFile(file);
+      } else {
+        alert("File size exceeds the limit of 5 MB.");
+        setPdfFile(null);
+      }
+    }
   };
 
   const handleChangeInput = (name) => (event) => {
@@ -52,6 +61,7 @@ export default function AddArticle(props) {
     let data = article;
     if (
       // !data.txnid ||
+      !pdffile ||
       !data.ptype ||
       !data.publishdate ||
       !data.authorname ||
@@ -322,12 +332,14 @@ export default function AddArticle(props) {
           ></div>
         </div>
         <div className={`col-span-3`}>
-          <div>UPLOAD</div>
+          <div>UPLOAD *</div>
           <input
             onChange={handleChangeFile}
             type="file"
             accept="application/pdf"
-            className={`w-full bg-white border-2 border-gray-300 rounded p-2 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-emerald-600 file:text-gray-100`}
+            className={`w-full ${
+              isSubmitted && !pdffile ? "border-b-red-500" : ""
+            } bg-white border-2 border-gray-300 rounded p-2 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-emerald-600 file:text-gray-100`}
           />
         </div>
       </div>
