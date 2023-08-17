@@ -14,7 +14,7 @@ transactiondb.authenticate().then(() => {
 .catch((err) => {
   console.error('Unable to connect to the database:', err)
 })
-
+//dfdfd
 app.listen(config.port, (err) => {
     if (err) {
       console.error(err)
