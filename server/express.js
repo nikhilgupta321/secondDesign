@@ -38,6 +38,7 @@ app.use(
 
 app.use("/dist", express.static(path.join(config.rootDir, "dist")));
 app.use(`/assets`, express.static(config.assetsDir));
+app.use(`/download`, express.static('/home/nikhil/production/all-journals/download'));
 app.use("/", authRoutes);
 app.use("/", settingRoutes);
 app.use("/", indexingRoutes);
