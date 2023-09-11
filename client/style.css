@@ -4,7 +4,6 @@
 
 * {
   box-sizing: border-box;
-  background-color: white;
 }
 
 html,
@@ -24,9 +23,7 @@ body {
 }
 
 @keyframes cssAnimation {
-  to {
-    visibility: visible;
-  }
+  to   { visibility: visible; }
 }
 
 
@@ -129,7 +126,9 @@ body {
   color: white;
 }
 
-
+#text-right {
+  text-align: right;
+}
 
 .cover-flex {
   display: flex;
@@ -221,11 +220,6 @@ body {
   padding-bottom: 5px;
 }
 
-.text-black {
-  color: black;
-  padding-bottom: 5px;
-}
-
 .article-info {
   display: flex;
   flex-direction: column;
@@ -286,21 +280,21 @@ table {
 
 #title {
   font-size: 26px;
-  color: purple;
+  color: #040fff;
   font-weight: 700;
   grid-area: title;
 }
 
 a {
   text-decoration: none;
-  /* color: black; */
+  color: #0400ff;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
   max-width: 210px;
-  /* gap: 10px; */
+  gap: 10px;
   flex: 1;
 }
 
@@ -320,17 +314,16 @@ img {
 }
 
 .sidebar-card {
-  border: 1px solid;
+  border: 4px solid #005fff;
   text-align: center;
   font-size: 14px;
-  color: black;
+  color: #0400ff;
   font-weight: bold;
-  background-color: white;
 }
 
 .sidebarCardTitle {
-  /* background-color: #005fff; */
-  color: black;
+  background-color: #005fff;
+  color: white;
   margin: 0px;
   padding: 10px 0px;
   font-weight: bold;
@@ -439,18 +432,13 @@ img {
 .text {
   padding: 10px;
   font-size: 14px;
-  color: #040fff;
+  color: #0400ff;
   text-align: center;
 }
 
 .journalList {
   font-size: 25px;
 }
-
-/* .manuscript {
-  font-size: 18px;
-  color: #32813a;
-} */
 
 input[type=text].searchInput {
   background-color: #fff;
@@ -556,7 +544,7 @@ input[type=text].searchInput:focus {
   padding-top: 20px;
   width: 100%;
   text-align: center;
-  color: purple;
+  color: #0400ff;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -564,8 +552,8 @@ input[type=text].searchInput:focus {
 
 .title {
   padding: 8px;
-  color: purple;
-  background-color: white;
+  color: white;
+  background-color: #005fff;
   text-align: center;
 }
 

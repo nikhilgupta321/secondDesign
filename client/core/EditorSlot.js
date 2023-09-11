@@ -11,7 +11,7 @@ export default function EditorSlot(props) {
       <div className="w-5/6 p-2">
         <div>
           <b>{props.editor.name}</b>&nbsp;
-          {props.editor.degree !== "" && <>({props.editor.degree})</>}
+          {props.editor.degree !== "" && <>( {props.editor.degree} )</>}
         </div>
         <div
           dangerouslySetInnerHTML={{ __html: decode(props.editor.post) }}

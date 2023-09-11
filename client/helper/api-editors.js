@@ -9,7 +9,6 @@ const listEditors = async (credentials) => {
       }
     })
     let result = await response.json()
-   
     return result
   } catch(err) {
     console.error(err)

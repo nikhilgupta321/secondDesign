@@ -5,7 +5,7 @@ const fs = require("fs");
 const listEditors = async (req, res) => {
   try {
     let editors = await Editor.findAll({ raw: true });
-    
+
     let result = editors.map((editor) => {
       if (
         editor.picture &&

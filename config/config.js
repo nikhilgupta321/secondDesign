@@ -31,9 +31,12 @@ const config = {
 const sequelize = new Sequelize({
   database: dbName,
   username: dbUser,
-  host: '68.178.171.26',
+  host: 'localhost',
   password: dbPass,
   dialect: 'mysql',
+  dialectOptions: {
+    socketPath: "/var/run/mysqld/mysqld.sock"
+  },
   timezone: '+05:30'
 });
 

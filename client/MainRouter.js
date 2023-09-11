@@ -25,9 +25,6 @@ import EditEditor from "./admin/editors/EditEditor";
 import Settings from "./admin/settings/Settings";
 import ArchiveSearch from "./admin/SearchArchives";
 import GlobalProvider from "./context/GlobalContext";
-import SubmitManuscript from "./core/SubmitManuscript";
-import About from "./core/About";
-
 
 export default function MainRouter() {
   return (
@@ -37,7 +34,6 @@ export default function MainRouter() {
           <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
             <Route index element={<Home />} />
             <Route path="board" element={<EditorialBoard />} />
-            {/* <Route path="board" element={<EditorialBoardTable />} /> */}
             <Route path="archives">
               <Route index element={<Archives />} />
               <Route path=":year/:vol/:issue" element={<Issue />} />
@@ -46,10 +42,8 @@ export default function MainRouter() {
             <Route path="search?" element={<Search />} />
             <Route path="pdf?" element={<Certificate />} />
             <Route path="instructions" element={<InstructionsPage />} />
-            {/* <Route path="indexing" element={<IndexingPage />} /> */}
-            <Route path="about" element={<About />} />
+            <Route path="indexing" element={<IndexingPage />} />
             <Route path="contact" element={<ContactPage />} />
-            <Route path="manuscript" element={<SubmitManuscript />} />
           </Route>
           <Route path="/admin" element={<Admin />}>
             <Route index element={<Dashboard />} />

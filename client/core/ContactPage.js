@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import PageTitle from "./PageTitle";
 import { GlobalContext } from "../context/GlobalContext";
-import Indexing from "./Indexing";
 
 function htmlDecode(input) {
   var e = document.createElement("textarea");
@@ -19,13 +18,7 @@ export default function ContactPage(props) {
 
   return (
     <b>
-      <img width={350}
-        id="header-img"
-        src="/assets/images/contact.png"
-      />
-      <br />
       <div className="flex flex-col gap-5">
-
         <PageTitle title="CONTACT US" />
         <div
           dangerouslySetInnerHTML={{
@@ -33,7 +26,7 @@ export default function ContactPage(props) {
               typeof window !== "undefined" ? htmlDecode(settings.address) : "",
           }}
         ></div>
-        WhatsApp your Query
+        WhatsApp your query
         <br />
         <div>
           <div>Head: Nikhil Gupta</div>
@@ -46,21 +39,6 @@ export default function ContactPage(props) {
             />
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <Indexing />
       </div>
     </b>
   );
