@@ -61,9 +61,9 @@ export default function Archives(props) {
     setVolList(volArr);
     let s = [];
     for (let i = 0; i < Math.ceil(archives.length / 6); i++) {
-     
-        s.push(6*i);
-     
+
+      s.push(6 * i);
+
     }
     setTableLength(s);
   }, [archives]);
@@ -109,7 +109,7 @@ export default function Archives(props) {
         );
       })} */}
       {tableLength.map((table, tabInd) => {
-        let start=table
+        let start = table
         return (
           <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -124,13 +124,13 @@ export default function Archives(props) {
                         >
                           Issues
                         </th>
-                        {volList.slice(tableLength[tabInd], tableLength[tabInd+1]).map((val, ind) => {
+                        {volList.slice(tableLength[tabInd], tableLength[tabInd + 1]).map((val, ind) => {
                           return (
                             <th
                               scope="col"
                               class="border-r px-6 py-4 dark:border-neutral-500"
                             >
-                              Volume-{val} 
+                              Volume {val}
                             </th>
                           );
                         })}
@@ -141,9 +141,9 @@ export default function Archives(props) {
                         return (
                           <tr class="border-b dark:border-neutral-500">
                             <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                              issue {val}
+                              Issue {val}
                             </td>
-                            {volList.slice(tableLength[tabInd], tableLength[tabInd+1]).map((value, index) => {
+                            {volList.slice(tableLength[tabInd], tableLength[tabInd + 1]).map((value, index) => {
                               let n = archives.filter(
                                 (item) => item.volume == value
                               );
@@ -156,11 +156,9 @@ export default function Archives(props) {
                                       style={{ color: "blue" }}
                                     >
                                       <Link
-                                        to={`/archives/${
-                                          n[n.length - 1].year
-                                        }/vol${
-                                          n[n.length - 1].volume
-                                        }/issue${a}`}
+                                        to={`/archives/${n[n.length - 1].year
+                                          }/vol${n[n.length - 1].volume
+                                          }/issue${a}`}
                                       >
                                         {months[ind]}
                                       </Link>
