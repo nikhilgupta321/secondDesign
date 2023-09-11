@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import PageTitle from "./PageTitle";
 import { GlobalContext } from "../context/GlobalContext";
+import Indexing from "./Indexing";
 
 export default function InstructionsPage(props) {
   const { settings } = useContext(GlobalContext)
@@ -20,7 +21,7 @@ export default function InstructionsPage(props) {
           </div>
           <br/>
           <div>
-            <b>Download Copyright Form <br/> <a href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b>
+            <b>Download Copyright Form <br/> <a className="text-blue-A" href={`/assets/CopyrightAgreementAndAuthorshipResponsibility.doc`} download="copyright.doc">Click Here</a></b>
           </div>
           <br/>
           <div>
@@ -100,6 +101,7 @@ export default function InstructionsPage(props) {
       <div>
         Journal take the responsibility to maintain the integrity and completeness of the scholarly record of the content for all and users very seriously. The journal place great importance on the articles after they have been published.
       </div>
+      <Indexing />
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function Home(props) {
   return (
     <>
       <div className="flex w-full flex-col text-blue-A font-bold text-3xl gap-6 items-center">
-        <div className="text-center">
+        {/* <div className="text-center">
           {settings && settings.issn && settings.issn.split(",")[0]}
           <br />
           {settings && settings.issn && settings.issn.split(",")[1]}
@@ -31,10 +31,10 @@ export default function Home(props) {
         </div>
         <div className="text-center">
           We send published link, <br />certificate, coverpage in 5 days.
-        </div>
+        </div> */}
       </div>
       <div className="pt-6" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
-      <div id="indexing-title">INDEXING</div>
+      <div id="indexing-title"></div>
       <Indexing />
     </>
   );

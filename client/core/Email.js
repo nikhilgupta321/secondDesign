@@ -7,7 +7,7 @@ export default function Email(props) {
 
   return (
     <Card cardTitle="SUBMIT YOUR ARTICLE">
-      <div>{settings.websiteemail}</div>
+      <div className="text-blue-A">{settings.websiteemail}</div>
     </Card>
   );
 }
