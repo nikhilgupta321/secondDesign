@@ -36,7 +36,7 @@ export default function ContactPage(props) {
         WhatsApp your Query
         <br />
         <div>
-          <div>Head: Nikhil Gupta</div>
+          {/* <div>Head: Nikhil Gupta</div> */}
           <div className="phoneno">
             <div>Ph:</div>
             <div id="phone">{`${settings.whatsup_number}`}</div>
