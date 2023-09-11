@@ -120,8 +120,8 @@ export default function EditorialBoard() {
             return (
               <tr key={`showEditors-${index + 1}`} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                 <td> </td>
-                <td className="px-6 py-4  text-sm font-medium text-gray-900">
-                  {editor.name} {editor.post} {editor.content}  {editor.email}
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                  {editor.name} {editor.post} {editor.content}  {editor.email} {editor.phone}
                 </td>
               </tr>)
           })}

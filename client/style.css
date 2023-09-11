@@ -9,14 +9,13 @@
 
 html,
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   height: 100%;
   font-size: 13px;
   line-height: 1.6;
 }
-
 
 .showMe {
   animation: cssAnimation 0s 5s forwards;
@@ -29,16 +28,14 @@ body {
   }
 }
 
-
 #certificate-pdf {
-  font-family: 'Times New Roman';
+  font-family: "Times New Roman";
   color: black;
   line-height: normal;
   width: 100%;
   height: 280mm;
   padding: 30px;
 }
-
 
 #cert-head {
   display: flex;
@@ -51,12 +48,12 @@ body {
   margin: auto;
 }
 
-#cert-body-title>div {
+#cert-body-title > div {
   text-align: center;
   width: 100%;
 }
 
-#cert-body-title>div:last-child {
+#cert-body-title > div:last-child {
   padding: 30px;
 }
 
@@ -108,28 +105,25 @@ body {
 }
 
 #certificate td {
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 20px;
   width: 50%;
 }
 
 #coverpage {
-  background-color: #325BA9;
+  background-color: #325ba9;
   padding-left: 750px;
   height: 280mm;
-  font-family: 'Times New Roman';
+  font-family: "Times New Roman";
   line-height: normal;
 }
 
 #cover-pdf {
-
   display: flex;
   flex-direction: column;
   gap: 30px;
   color: white;
 }
-
-
 
 .cover-flex {
   display: flex;
@@ -145,11 +139,11 @@ body {
   font-size: 27px;
 }
 
-#cover-row1>div {
+#cover-row1 > div {
   flex: 1;
 }
 
-#cover-row2>div {
+#cover-row2 > div {
   flex: 1;
   text-align: center;
 }
@@ -172,7 +166,7 @@ body {
   padding-bottom: 60px;
 }
 
-.cover-flex>div {
+.cover-flex > div {
   flex: 1;
 }
 
@@ -185,7 +179,6 @@ body {
   text-align: center;
   width: 100%;
 }
-
 
 .editor-body-pdf {
   display: flex;
@@ -200,7 +193,7 @@ body {
 
 .article-title {
   font-size: large;
-  font-weight: bolder
+  font-weight: bolder;
 }
 
 .article-abstract {
@@ -210,7 +203,6 @@ body {
 .article-cite {
   text-align: justify;
 }
-
 
 .flex-row {
   display: flex;
@@ -271,7 +263,7 @@ table {
 #header {
   display: grid;
   gap: 10px;
-  grid-template-areas: 'logo title' 'logo menu';
+  grid-template-areas: "logo title" "logo menu";
 }
 
 #cert-logo {
@@ -349,7 +341,7 @@ img {
   gap: 10px;
 }
 
-#contact>div {
+#contact > div {
   display: flex;
   gap: 4px;
 }
@@ -378,10 +370,10 @@ img {
   text-align: center;
   padding: 10px;
   font-size: 14px;
-  color: #0400ff
+  color: #0400ff;
 }
 
-#editor-slot+div {
+#editor-slot + div {
   border-right: 1px solid #0400ff;
 }
 
@@ -452,7 +444,7 @@ img {
   color: #32813a;
 } */
 
-input[type=text].searchInput {
+input[type="text"].searchInput {
   background-color: #fff;
   font-size: 15px;
   margin: 0px;
@@ -463,11 +455,10 @@ input[type=text].searchInput {
   height: 1.5rem;
 }
 
-input[type=text].searchInput:focus {
+input[type="text"].searchInput:focus {
   border: none;
   outline: none;
 }
-
 
 .searchButton {
   background-color: #fff;
@@ -582,12 +573,12 @@ input[type=text].searchInput:focus {
   border-bottom: 2px solid #005fff;
 }
 
-.editor-row>div {
+.editor-row > div {
   padding: 5px;
   border-right: 2px solid #005fff;
 }
 
-.editor-row>div:last-child {
+.editor-row > div:last-child {
   border-right: none;
 }
 
@@ -620,13 +611,13 @@ input[type=text].searchInput:focus {
   border-style: none solid solid solid;
 }
 
-.frame-content>div:last-child {
+.frame-content > div:last-child {
   border: none;
 }
 
 @media only screen and (max-width: 1000px) {
   #header {
-    grid-template-areas: 'logo' 'title' 'menu';
+    grid-template-areas: "logo" "title" "menu";
     justify-items: center;
   }
 
@@ -635,7 +626,6 @@ input[type=text].searchInput:focus {
     text-align: center;
     gap: 0px;
     width: 100%;
-
   }
 
   #menu li {
@@ -666,4 +656,7 @@ input[type=text].searchInput:focus {
   #title {
     text-align: center;
   }
+}
+.indexingcss {
+  margin-bottom: 0%;
 }

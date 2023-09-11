@@ -18,7 +18,7 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="flex w-full flex-col text-blue-A font-bold text-3xl gap-6 items-center">
+      <div className="flex flex-col items-center w-full gap-6 text-3xl font-bold text-blue-A">
         {/* <div className="text-center">
           {settings && settings.issn && settings.issn.split(",")[0]}
           <br />

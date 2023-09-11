@@ -40,7 +40,7 @@ export default function Root() {
             ></div>
           </div>
         </div>
-        <div className="flex flex-col  w-full text-xl font-normal text-black lg:flex-row lg:gap-12">
+        <div className="flex flex-col w-full text-xl font-normal text-black lg:flex-row lg:gap-12">
           <div className="py-2 border-t-2 border-black lg:border-none">
             <Link to="/">HOME</Link>
           </div>
@@ -56,13 +56,13 @@ export default function Root() {
           <div className="py-2 border-t-2 border-black lg:border-none">
             <Link to="/about">ABOUT US</Link>
           </div>
-          <div className="py-2  border-t-2 border-black border-y-2 lg:border-none">
+          <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
             <Link to="/contact">CONTACT US</Link>
           </div>
-          {/* <div className="py-2   border-t-2 border-black border-y-2 lg:border-none">
+          {/* <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
             <Link to="/contact">ABOUT US</Link>
           </div>
-          <div className="py-2  border-t-2 border-black border-y-2 lg:border-none">
+          <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
             <Link to="/contact">CONTACT US</Link>
           </div> */}
         </div>
@@ -86,7 +86,7 @@ export default function Root() {
             <SubmitInfo />
             <Email />
             <Certificate />
-           <Publication />
+            <Publication />
             {/* <Contact /> */}
             <img id="header-img" src="/assets/images/Plagriasim.jpg" />
           </div>
@@ -98,7 +98,7 @@ export default function Root() {
           <Outlet />
           <Email />
           <Certificate />
-         <Publication />
+          <Publication />
           {/* <Contact /> */}
           {/* <JournalList /> */}
           {/* <CoverPage /> */}

@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 require('dotenv').config()
 
 const cwd = __dirname.split("/")
-const rootDir = cwd.slice(0, cwd.length-1).join("/")
+const rootDir = cwd.slice(0, cwd.length - 1).join("/")
 
 const assetsDir = process.env.ASSETS_DIR
 const port = process.env.PORT;
@@ -45,4 +45,4 @@ const transactiondb = new Sequelize({
   dialect: 'mysql',
 });
 
-export {transactiondb, sequelize, config }
+export { transactiondb, sequelize, config }
