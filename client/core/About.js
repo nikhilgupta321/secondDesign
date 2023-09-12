@@ -45,8 +45,10 @@ export default function About(props) {
           <br />
           {settings.short_name} welcomes the submission of documents relating to any branch of the theory of Science, Management, Engineering and its applications in business, industry and other topics.
         </div> */}
-        <div className="pt-6" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
+        <div className="pt-6 text-lg">This journal is indexed, refereed, peer reviewed, open access journal
+          This Journal provides the platform established with the aim of motivating the researchers in the research and development of chemical sciences.</div>
         <div id="indexing-title"></div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <Indexing />
       </div>
     </div>

@@ -33,8 +33,9 @@ export default function Home(props) {
           We send published link, <br />certificate, coverpage in 5 days.
         </div> */}
       </div>
-      <div className="pt-6" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
+      <div className="pt-6 text-lg" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
       <div id="indexing-title"></div>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <Indexing />
     </>
   );

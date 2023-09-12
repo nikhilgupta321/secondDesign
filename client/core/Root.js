@@ -22,8 +22,8 @@ export default function Root() {
       <div className="text-base" id="container">
         <div className="flex flex-col items-center justify-center w-full gap-12 lg:flex-row">
           <img className="w-48 h-48" src="/assets/images/logo.png" />
-          <div className="flex flex-col justify-center w-full gap-12 text-center">
-            <div className="text-right text-blue-A">
+          <div className="flex flex-col justify-center w-full gap-12 text-center ">
+            <div className="text-xl font-bold text-right text-blue-A">
               {settings && settings.issn && settings.issn.split(",")[0]}
             </div>
             <div
@@ -40,7 +40,7 @@ export default function Root() {
             ></div>
           </div>
         </div>
-        <div className="flex flex-col w-full text-xl font-normal text-black lg:flex-row lg:gap-12">
+        <div className="flex flex-col w-full text-xl font-bold text-black lg:flex-row lg:gap-12">
           <div className="py-2 border-t-2 border-black lg:border-none">
             <Link to="/">HOME</Link>
           </div>

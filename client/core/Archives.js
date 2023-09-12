@@ -31,19 +31,27 @@ export default function Archives(props) {
   useEffect(() => {
     window.title = `Archives | ${settings.websitename}`;
   }, [settings]);
+  // const months = [
+  //   "January",
+  //   "February",
+  //   "March",
+  //   "April",
+  //   "May",
+  //   "June",
+  //   "July",
+  //   "August",
+  //   "September",
+  //   "October",
+  //   "November",
+  //   "December",
+  // ];
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Issue 1",
+    "Issue 2",
+    "Issue 3",
+    "Issue 4",
+    "Issue 5",
+    "Issue 6"
   ];
   let volArr = [];
   useEffect(() => {
@@ -74,12 +82,12 @@ export default function Archives(props) {
     "04",
     "05",
     "06",
-    "07",
-    "08",
-    "09",
-    "10",
-    "11",
-    "12",
+    // "07",
+    // "08",
+    // "09",
+    // "10",
+    // "11",
+    // "12",
   ];
   console.log(tableLength)
 
@@ -115,20 +123,20 @@ export default function Archives(props) {
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="inline-block max-w-auto py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
-                  <table class="min-w-full border text-center text-lg font-light dark:border-neutral-500">
+                  <table class="min-w-full border-black text-center text-lg font-light dark:border-neutral-500">
                     <thead class="border-b font-medium dark:border-neutral-500">
                       <tr>
-                        <th
+                        {/* <th
                           scope="col"
                           class="border-r px-6 py-4 dark:border-neutral-500"
                         >
                           Issues
-                        </th>
+                        </th> */}
                         {volList.slice(tableLength[tabInd], tableLength[tabInd + 1]).map((val, ind) => {
                           return (
                             <th
                               scope="col"
-                              class="border-r px-6 py-4 dark:border-neutral-500"
+                              class="border-2 px-10 py-4 dark:border-neutral-500 border-black bg-slate-300"
                             >
                               Volume {val}
                             </th>
@@ -139,10 +147,10 @@ export default function Archives(props) {
                     <tbody>
                       {issues.map((val, ind) => {
                         return (
-                          <tr class="border-b dark:border-neutral-500">
-                            <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
+                          <tr class="border dark:border-neutral-500 border-black">
+                            {/* <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
                               Issue {val}
-                            </td>
+                            </td> */}
                             {volList.slice(tableLength[tabInd], tableLength[tabInd + 1]).map((value, index) => {
                               let n = archives.filter(
                                 (item) => item.volume == value
@@ -152,8 +160,8 @@ export default function Archives(props) {
                                 if (n[n.length - 1]?.total_issues >= a) {
                                   return (
                                     <td
-                                      class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500"
-                                      style={{ color: "blue" }}
+                                      class=" whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500 border-black"
+                                      style={{ color: "gray-600" }}
                                     >
                                       <Link
                                         to={`/archives/${n[n.length - 1].year
@@ -165,11 +173,11 @@ export default function Archives(props) {
                                     </td>
                                   );
                                 } else {
-                                  return (
-                                    <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                      {months[ind]}
-                                    </td>
-                                  );
+                                  // return (
+                                  //   <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
+                                  //     {months[ind]}
+                                  //   </td>
+                                  // );
                                 }
                               }
                             })}

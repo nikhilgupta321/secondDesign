@@ -5,6 +5,7 @@ import EditorSlot from "./EditorSlot";
 import { listEditors } from "../helper/api-editors";
 import { GlobalContext } from "../context/GlobalContext";
 import Indexing from "./Indexing";
+import { Link } from "react-router-dom";
 
 
 function htmlDecode(input) {
@@ -108,7 +109,7 @@ export default function EditorialBoard() {
         </Frame>
       )} */}
 
-      <div className="text-center"
+      <div className="text-xl text-center"
         dangerouslySetInnerHTML={{
           __html:
             typeof window !== "undefined" ? htmlDecode(settings.websitename) : "",
@@ -120,8 +121,8 @@ export default function EditorialBoard() {
             return (
               <tr key={`showEditors-${index + 1}`} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                 <td> </td>
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                  {editor.name} {editor.post} {editor.content}  {editor.email} {editor.phone}
+                <td className="p-6 text-xl font-medium text-gray-600 border-2 border-gray-50 border-b-gray-900">
+                  <p className="text-black">{editor.name}</p> {editor.post} {editor.content} ,<br /> <Link className="text-blue">{editor.email}</Link>, <br /> {editor.phone}
                 </td>
               </tr>)
           })}

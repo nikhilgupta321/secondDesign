@@ -34,6 +34,9 @@ const sequelize = new Sequelize({
   host: 'localhost',
   password: dbPass,
   dialect: 'mysql',
+  dialectOptions: {
+    socketPath: "/var/run/mysqld/mysqld.sock",
+  },
   timezone: '+05:30'
 });
 

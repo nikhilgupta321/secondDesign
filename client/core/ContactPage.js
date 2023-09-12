@@ -19,14 +19,15 @@ export default function ContactPage(props) {
 
   return (
     <b>
-      <img width={350}
+      {/* <img width={350}
         id="header-img"
         src="/assets/images/contact.png"
-      />
+      /> */}
       <br />
       <div className="flex flex-col gap-5">
 
         <PageTitle title="CONTACT US" />
+        <div>{settings.publication}</div>
         <div
           dangerouslySetInnerHTML={{
             __html:
@@ -46,20 +47,7 @@ export default function ContactPage(props) {
             />
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <Indexing />
       </div>
     </b>
