@@ -53,7 +53,7 @@ export default function Search(props) {
             <tr>
               <th>S.No.</th>
               <th>Title and Authors Name</th>
-              <th>Subject</th>
+              {/* <th>Subject</th> */}
               <th>Country</th>
             </tr>
           </thead>
@@ -78,7 +78,7 @@ export default function Search(props) {
                   <div>{article.authroname} <b dangerouslySetInnerHTML={{ __html: decode(article.title) }}></b>. International Journal of Multidisciplinary Research and Development, Volume {article.vol}, Issue {article.issue}, {article.year}, Pages {article.pagenumber}</div>
                 </div>
               </td>
-              <td>{article.subject}</td>
+              {/* <td>{article.subject}</td> */}
               <td>{article.country}</td>
             </tr>
           })}

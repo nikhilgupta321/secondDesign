@@ -46,7 +46,7 @@ export default function Archives(props) {
           <tr>
             <th>S.No.</th>
             <th>Title and Authors Name</th>
-            <th>Subject</th>
+            {/* <th>Subject</th> */}
             <th>Country</th>
           </tr>
         </thead>
@@ -106,7 +106,7 @@ export default function Archives(props) {
                       </div>
                     </div>
                   </td>
-                  <td>{article.subject}</td>
+                  {/* <td>{article.subject}</td> */}
                   <td>{article.country}</td>
                 </tr>
               );
