@@ -80,8 +80,7 @@ export default function Root() {
           </div>
           <div className="sidebar">
             {/* <JournalList /> */}
-            {/* <Whatsapp />
-             */}
+            {/* <Whatsapp /> */}
             {/* <CoverPage /> */}
             <SubmitInfo />
             <Email />
