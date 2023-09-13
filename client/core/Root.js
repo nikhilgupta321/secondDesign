@@ -81,11 +81,12 @@ export default function Root() {
           <div className="sidebar">
             {/* <JournalList /> */}
             {/* <Whatsapp />
-            <SearchBar /> */}
+             */}
             {/* <CoverPage /> */}
             <SubmitInfo />
             <Email />
             <Certificate />
+            <SearchBar />
             <Publication />
             {/* <Contact /> */}
             <img id="header-img" src="/assets/images/Plagriasim.jpg" />
