@@ -40,8 +40,8 @@ const addArticle = async (req, res) => {
       !data.year ||
       !data.volume ||
       !data.issue ||
-      !data.refnumber ||
-      !data.txnid
+      !data.refnumber
+      // !data.txnid
     )
       throw "Invalid request!";
 
@@ -53,14 +53,14 @@ const addArticle = async (req, res) => {
       throw "duplicate_txnid";
 
     const setting = await Setting.findOne({ raw: true });
-    const rows = await transactiondb.query(`
-      SELECT * FROM transactions
-      WHERE journal = '${setting.websitename}'
-      AND txnid = '${data.txnid}'
-      AND status = 'successful'`,
-      { type: Sequelize.QueryTypes.SELECT })
-    if (rows.length != 1)
-      throw 'invalid_txnid'
+    // const rows = await transactiondb.query(`
+    //   SELECT * FROM transactions
+    //   WHERE journal = '${setting.websitename}'
+    //   AND txnid = '${data.txnid}'
+    //   AND status = 'successful'`,
+    //   { type: Sequelize.QueryTypes.SELECT })
+    // if (rows.length != 1)
+    //   throw 'invalid_txnid'
 
     const pagenumbers = await Archive.findAll({
       attributes: ["pagenumber"],
@@ -79,7 +79,7 @@ const addArticle = async (req, res) => {
           return row.pagenumber.split("-")[1];
         })
       );
-      if (data.pagenumber.split("-")[0] < max) throw "invalid_pagenumber";
+      // if (data.pagenumber.split("-")[0] < max) throw "invalid_pagenumber";
     }
 
     const pdfFile = req.files.pdfFile;
@@ -107,20 +107,20 @@ const updateArticle = async (req, res) => {
       !data.year ||
       !data.volume ||
       !data.issue ||
-      !data.refnumber ||
-      !data.txnid
+      !data.refnumber
+      // !data.txnid
     )
       throw "Invalid request!";
     const setting = await Setting.findOne({ raw: true });
 
-    const rows = await transactiondb.query(
-      `
-      SELECT * FROM transactions
-      WHERE journal = '${setting.websitename}'
-      AND txnid = '${data.txnid}'
-      AND status = 'successful'`,
-      { type: Sequelize.QueryTypes.SELECT }
-    );
+    // const rows = await transactiondb.query(
+    //   `
+    //   SELECT * FROM transactions
+    //   WHERE journal = '${setting.websitename}'
+    //   AND txnid = '${data.txnid}'
+    //   AND status = 'successful'`,
+    //   { type: Sequelize.QueryTypes.SELECT }
+    // );
 
     if (rows.length != 1) throw "invalid_txnid";
 

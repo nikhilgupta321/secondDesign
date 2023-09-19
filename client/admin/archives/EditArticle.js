@@ -60,7 +60,7 @@ export default function AddArticle(props) {
 
     let data = article;
     if (
-      !data.txnid ||
+      // !data.txnid ||
       !pdffile ||
       !data.ptype ||
       !data.publishdate ||
@@ -187,9 +187,8 @@ export default function AddArticle(props) {
           <input
             onChange={handleChange("txnid")}
             value={article.txnid}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted && !article.txnid ? "border-b-red-500" : ""
-            }`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.txnid ? "border-b-red-500" : ""
+              }`}
             type="text"
           />
         </div>
@@ -198,9 +197,8 @@ export default function AddArticle(props) {
           <select
             onChange={handleChange("ptype")}
             value={article.ptype}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted && !article.ptype ? "border-b-red-500" : ""
-            }`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.ptype ? "border-b-red-500" : ""
+              }`}
           >
             <option value="paid">Paid</option>
             <option value="free">Free</option>
@@ -211,9 +209,8 @@ export default function AddArticle(props) {
           <input
             onChange={handleChange("publishdate")}
             value={article.publishdate}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted && !article.publishdate ? "border-b-red-500" : ""
-            }`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.publishdate ? "border-b-red-500" : ""
+              }`}
             type="date"
           />
         </div>
@@ -222,9 +219,8 @@ export default function AddArticle(props) {
           <textarea
             onChange={handleChange("authorname")}
             value={article.authorname}
-            className={`h-32 resize-none w-full p-2 focus:outline-emerald-600 border-2 border-gray-300 rounded ${
-              isSubmitted && !article.authorname ? "border-b-red-500" : ""
-            }`}
+            className={`h-32 resize-none w-full p-2 focus:outline-emerald-600 border-2 border-gray-300 rounded ${isSubmitted && !article.authorname ? "border-b-red-500" : ""
+              }`}
           />
         </div>
         <div>
@@ -232,9 +228,8 @@ export default function AddArticle(props) {
           <input
             onChange={handleChange("pagenumber")}
             value={article.pagenumber}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted && !article.pagenumber ? "border-b-red-500" : ""
-            }`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !article.pagenumber ? "border-b-red-500" : ""
+              }`}
             type="text"
           />
         </div>
@@ -262,9 +257,8 @@ export default function AddArticle(props) {
           <input
             onChange={handleChange("refnumber")}
             value={article.refnumber}
-            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted && article.refnumber === "" ? "border-b-red-500" : ""
-            }`}
+            className={`w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && article.refnumber === "" ? "border-b-red-500" : ""
+              }`}
             type="text"
           />
         </div>
@@ -291,11 +285,10 @@ export default function AddArticle(props) {
           <div
             id="rich-title"
             contentEditable={true}
-            className={`h-32 overflow-scroll bg-white w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted && !document.getElementById("rich-title").textContent
+            className={`h-32 overflow-scroll bg-white w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !document.getElementById("rich-title").textContent
                 ? "border-b-red-500"
                 : ""
-            }`}
+              }`}
             dangerouslySetInnerHTML={{ __html: decode(article.title) }}
           ></div>
         </div>
@@ -322,12 +315,11 @@ export default function AddArticle(props) {
           <div
             id="rich-abstract"
             contentEditable={true}
-            className={`h-32 overflow-scroll w-full bg-white border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${
-              isSubmitted &&
-              !document.getElementById("rich-abstract").textContent
+            className={`h-32 overflow-scroll w-full bg-white border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted &&
+                !document.getElementById("rich-abstract").textContent
                 ? "border-b-red-500"
                 : ""
-            }`}
+              }`}
             dangerouslySetInnerHTML={{ __html: decode(article.abstract) }}
           ></div>
         </div>
@@ -337,9 +329,8 @@ export default function AddArticle(props) {
             onChange={handleChangeFile}
             type="file"
             accept="application/pdf"
-            className={`w-full ${
-              isSubmitted && !pdffile ? "border-b-red-500" : ""
-            } bg-white border-2 border-gray-300 rounded p-2 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-emerald-600 file:text-gray-100`}
+            className={`w-full ${isSubmitted && !pdffile ? "border-b-red-500" : ""
+              } bg-white border-2 border-gray-300 rounded p-2 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-emerald-600 file:text-gray-100`}
           />
         </div>
       </div>

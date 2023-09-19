@@ -44,7 +44,7 @@ const transactiondb = new Sequelize({
   database: 'academicpublicationsnet',
   username: 'pbtdhkbkmzn0',
   host: '107.180.51.85',
-  password: 'Ya$7hb2uhloU',
+  password: 'r2M1Q1#7OmTA',
   dialect: 'mysql',
 });
 
