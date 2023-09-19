@@ -4,9 +4,9 @@ import auth from "../helper/auth-helper"
 
 const Card = (props) => {
   return (
-    <Link className="w-64 h-32 shadow-md rounded-lg bg-teal-400 text-green-800" to={props.link}>
+    <Link className="w-64 h-32 text-green-800 bg-teal-400 rounded-lg shadow-md" to={props.link}>
       <div className="m-6 text-3xl text-center">{props.title}</div>
-      {props.content && <div className="m-2 text-center text-lg">{props.content}</div>}
+      {props.content && <div className="m-2 text-lg text-center">{props.content}</div>}
     </Link>
   )
 }
@@ -53,10 +53,10 @@ export default function Dashboard(props) {
   }, [])
 
   return (
-    <div className="flex gap-8 flex-wrap">
+    <div className="flex flex-wrap gap-8">
       <Card title="Archives" content={values.archives} link="/admin/archives" />
       <Card title="Editors" content={values.editors} link="/admin/editors" />
-      <Card title="Settings" link="/admin/settings" />
+      {/* <Card title="Settings" link="/admin/settings" /> */}
     </div>
   )
 }
