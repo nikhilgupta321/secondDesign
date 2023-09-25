@@ -40,7 +40,7 @@ export default function Root() {
             ></div>
           </div>
         </div>
-        <div className="flex flex-col w-full text-xl font-bold text-black lg:flex-row lg:gap-12">
+        <div className="flex flex-col w-full text-xl font-bold text-center text-black lg:flex-row lg:gap-12">
           <div className="py-2 border-t-2 border-black lg:border-none">
             <Link to="/">HOME</Link>
           </div>

@@ -18,7 +18,7 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="flex flex-col items-center w-full gap-6 text-3xl font-bold text-blue-A">
+      <div className="flex flex-col items-center w-full gap-6 text-3xl font-bold text-blue-A ">
         {/* <div className="text-center">
           {settings && settings.issn && settings.issn.split(",")[0]}
           <br />
@@ -33,9 +33,9 @@ export default function Home(props) {
           We send published link, <br />certificate, coverpage in 5 days.
         </div> */}
       </div>
-      <div className="pt-6 text-lg" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
+      <div className="pt-6 text-lg sm:mb-70 md:mb-20" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
       <div id="indexing-title"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
       <Indexing />
     </>
   );

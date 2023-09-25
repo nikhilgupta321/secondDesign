@@ -19,11 +19,11 @@ function SearchBar(props) {
 
   return (
     <Card cardTitle="SEARCH">
-      <form onSubmit={handleSubmit} className="search">
+      <form onSubmit={handleSubmit} className="search" style={{ border: "1px solid black" }}>
         <input
           onChange={handleChange}
           placeholder="Search..."
-          className="searchInput text-black font-normal"
+          className="font-normal text-black searchInput"
           type="text"
           value={query}
         />
