@@ -648,12 +648,13 @@ input[type="text"].searchInput:focus {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 20px;
+    padding: 30px;
   }
 
   #header-img {
-    height: 280px;
+    height: 100%;
   }
+  
 
   #title {
     text-align: center;

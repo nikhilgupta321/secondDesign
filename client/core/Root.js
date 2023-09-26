@@ -102,7 +102,7 @@ export default function Root() {
           {/* <Contact /> */}
           {/* <JournalList /> */}
           {/* <CoverPage /> */}
-          <img id="header-img" src="/assets/images/Plagriasim.jpg" />
+          <img id="body-container-mobile" src="/assets/images/Plagriasim.jpg" />
         </div>
       </div>
       <div id="footer">
