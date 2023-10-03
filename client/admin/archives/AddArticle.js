@@ -116,7 +116,7 @@ export default function AddArticle(props) {
                     certificate and coverpage from the given link.
                   </b>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-blue-700">
                   <div>Link:&nbsp;</div>
                   <Link
                     to={`/pdf?refno=${article.refnumber}`}
@@ -128,7 +128,7 @@ export default function AddArticle(props) {
                 <div>
                   <b>2. Also add your article in Google Scholar for citation</b>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-blue-700">
                   <div>Link:&nbsp;</div>
                   <Link to="https://scholar.google.com">
                     https://scholar.google.com
@@ -140,7 +140,7 @@ export default function AddArticle(props) {
                 <div>
                   3. Watch video on how to create Google Scholar profile
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-blue-700">
                   <div>Link:&nbsp;</div>
                   <Link to="https://www.youtube.com/watch?v=6JZ6TQoWc58">
                     https://www.youtube.com/watch?v=6JZ6TQoWc58
@@ -153,7 +153,7 @@ export default function AddArticle(props) {
                   4. Watch video on how to upload published article in Google
                   Scholar
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-blue-700">
                   <div>Link:&nbsp;</div>
                   <Link to="https://www.youtube.com/watch?v=VMjncGlNn0w">
                     https://www.youtube.com/watch?v=VMjncGlNn0w

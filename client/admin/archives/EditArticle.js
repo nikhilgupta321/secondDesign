@@ -115,7 +115,7 @@ export default function AddArticle(props) {
                     link.
                   </b>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 text-blue-700">
                   <div>Link:</div>
                   <Link
                     to={`/pdf?refno=${article.refnumber}`}
