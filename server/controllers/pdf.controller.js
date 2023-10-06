@@ -304,22 +304,22 @@ const generateEditorCertificates = async (req, res) => {
 
     const date = new Date();
     const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
     ];
-    const formattedCertificateDate = `${date.getDate()} ${
+    const formattedCertificateDate = `${date.getDate()}-${
       months[date.getMonth()]
-    }, ${date.getFullYear()}`;
+    }-${date.getFullYear()}`;
 
     const pdfBuffers = [];
     const browser = await puppeteer.launch();
