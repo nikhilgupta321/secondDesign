@@ -57,7 +57,7 @@ export default function AddArticle(props) {
 
     let data = article;
     if (
-      // !data.txnid ||
+      !data.txnid ||
       !data.ptype ||
       !data.publishdate ||
       !data.authorname ||
