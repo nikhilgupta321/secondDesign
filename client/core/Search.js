@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
 import { searchArchives } from "../helper/api-archives";
 import { decode } from "html-entities";
+import { cleanHtml, formatAuthorNames } from "../helper/helpers";
 
 export default function Search(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -113,8 +114,9 @@ export default function Search(props) {
                               __html: cleanHtml(decode(article.title)),
                             }}
                           ></span>
-                          " . {settings.websitename}, Volume {vol}, Issue{" "}
-                          {issue}, {year}, Pages {article.pagenumber}
+                          " .  {settings.websitename}, Volume {article.volume},
+                          Issue {article.issue}, {article.year}, Pages{" "}
+                          {article.pagenumber}
                         </div>
                       </div>
                     </td>
