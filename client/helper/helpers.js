@@ -1,5 +1,5 @@
 import sanitizeHtml from "sanitize-html";
-
+ 
 function formatAuthorNames(authorString) {
   const authorNames = authorString && authorString.split(", ");
   const formattedNames = authorNames.map((name) => {

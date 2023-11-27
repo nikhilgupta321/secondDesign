@@ -54,6 +54,9 @@ export default function Root() {
             <Link to="/instructions">INSTRUCTIONS</Link>
           </div>
           <div className="py-2 border-t-2 border-black lg:border-none">
+            <Link to="/indexing">INDEXING</Link>
+          </div>
+          <div className="py-2 border-t-2 border-black lg:border-none">
             <Link to="/about">ABOUT US</Link>
           </div>
           <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">

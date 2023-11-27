@@ -6,7 +6,7 @@ export default function SubmitInfo(props) {
   return (
     <Card >
     <div className="blinkbox"> 
-     <Link to="/manuscript"><div className="text manuscript">Submit Research Paper</div></Link>
+     <Link to="/manuscript"><div className="text manuscript">Submit Online</div></Link>
     </div>
     </Card>
   );

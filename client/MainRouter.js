@@ -46,7 +46,7 @@ export default function MainRouter() {
             <Route path="search?" element={<Search />} />
             <Route path="pdf?" element={<Certificate />} />
             <Route path="instructions" element={<InstructionsPage />} />
-            {/* <Route path="indexing" element={<IndexingPage />} /> */}
+            <Route path="indexing" element={<IndexingPage />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="manuscript" element={<SubmitManuscript />} />
