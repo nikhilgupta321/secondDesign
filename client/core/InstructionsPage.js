@@ -28,21 +28,21 @@ export default function InstructionsPage(props) {
             <b>Send Article in MS Word file</b>
           </div>
         </div>
-        <table className="border-separate border-spacing-0">
+        <table className=" border-spacing-0">
           <thead>
             <tr>
-              <th className="border-2 p-2 border-r-0 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tl-md">Region</th>
-              <th className="border-2 p-2 border-b-0 border-slate-800 text-left bg-gray-300 rounded-tr-md">Fees</th>
+              <th className="p-2 text-left bg-gray-300 border-2 border-b-0 border-r-0 border-slate-800 rounded-tl-md">Region</th>
+              <th className="p-2 text-left bg-gray-300 border-2 border-b-0 border-slate-800 rounded-tr-md">Fees</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border-2 font-bold p-2 border-r-0 border-b-0 border-slate-800">India</td>
-              <td className="border-2 font-bold p-2 border-b-0 border-slate-800">{settings.fee_rupee}</td>
+              <td className="p-2 font-bold border-2 border-b-0 border-r-0 border-slate-800">India</td>
+              <td className="p-2 font-bold border-2 border-b-0 border-slate-800">{settings.fee_rupee}</td>
             </tr>
             <tr>
-              <td className="border-2 font-bold p-2 border-r-0 border-slate-800 rounded-bl-md">Other Countries</td>
-              <td className="border-2 font-bold p-2 border-slate-800 rounded-br-md">{settings.fee_dollar}</td>
+              <td className="p-2 font-bold border-2 border-r-0 border-slate-800 rounded-bl-md">Other Countries</td>
+              <td className="p-2 font-bold border-2 border-slate-800 rounded-br-md">{settings.fee_dollar}</td>
             </tr>
           </tbody>
         </table>
