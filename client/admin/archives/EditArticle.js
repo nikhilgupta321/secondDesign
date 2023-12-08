@@ -60,7 +60,7 @@ export default function AddArticle(props) {
 
     let data = article;
     if (
-      !data.txnid ||
+      // !data.txnid ||
       !pdffile ||
       !data.ptype ||
       !data.publishdate ||
