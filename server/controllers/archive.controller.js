@@ -104,7 +104,7 @@ const updateArticle = async (req, res) => {
     const data = req.body;
 
     if (
-      // !data.txnid ||
+      !data.txnid ||
       !data.year ||
       !data.volume ||
       !data.issue ||
@@ -113,16 +113,16 @@ const updateArticle = async (req, res) => {
       throw "Invalid request!";
     const setting = await Setting.findOne({ raw: true });
 
-    // const rows = await transactiondb.query(
-    //   `
-    //   SELECT * FROM transactions
-    //   WHERE journal = '${setting.websitename}'
-    //   AND txnid = '${data.txnid}'
-    //   AND status = 'successful'`,
-    //   { type: Sequelize.QueryTypes.SELECT }
-    // );
+    const rows = await transactiondb.query(
+      `
+      SELECT * FROM transactions
+      WHERE journal = '${setting.websitename}'
+      AND txnid = '${data.txnid}'
+      AND status = 'successful'`,
+      { type: Sequelize.QueryTypes.SELECT }
+    );
 
-    // if (rows.length != 1) throw "invalid_txnid";
+    if (rows.length != 1) throw "invalid_txnid";
 
     if (req.files && req.files.pdfFile) {
       const pdfFile = req.files.pdfFile;

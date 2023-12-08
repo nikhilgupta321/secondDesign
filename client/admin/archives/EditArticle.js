@@ -60,7 +60,7 @@ export default function AddArticle(props) {
 
     let data = article;
     if (
-      // !data.txnid ||
+      !data.txnid ||
       !pdffile ||
       !data.ptype ||
       !data.publishdate ||
@@ -286,8 +286,8 @@ export default function AddArticle(props) {
             id="rich-title"
             contentEditable={true}
             className={`h-32 overflow-scroll bg-white w-full border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted && !document.getElementById("rich-title").textContent
-                ? "border-b-red-500"
-                : ""
+              ? "border-b-red-500"
+              : ""
               }`}
             dangerouslySetInnerHTML={{ __html: decode(article.title) }}
           ></div>
@@ -316,9 +316,9 @@ export default function AddArticle(props) {
             id="rich-abstract"
             contentEditable={true}
             className={`h-32 overflow-scroll w-full bg-white border-2 border-gray-300 rounded p-2 focus:outline-emerald-600 ${isSubmitted &&
-                !document.getElementById("rich-abstract").textContent
-                ? "border-b-red-500"
-                : ""
+              !document.getElementById("rich-abstract").textContent
+              ? "border-b-red-500"
+              : ""
               }`}
             dangerouslySetInnerHTML={{ __html: decode(article.abstract) }}
           ></div>
