@@ -83,7 +83,7 @@ const addArticle = async (req, res) => {
     }
 
     const pdfFile = req.files.pdfFile;
-    data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`;
+    data.file = `${data.refnumber}.pdf`;
     const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
 
     if (!fs.existsSync(path)) fs.mkdirSync(path, { recursive: true });
@@ -126,7 +126,7 @@ const updateArticle = async (req, res) => {
 
     if (req.files && req.files.pdfFile) {
       const pdfFile = req.files.pdfFile;
-      data.file = `${data.refnumber}-${new Date().valueOf()}.pdf`;
+      data.file = `${data.refnumber}.pdf`;
       const path = `${config.archivesDir}/${data.year}/vol${data.volume}issue${data.issue}`;
 
       if (!fs.existsSync(path)) fs.mkdirSync(path, { recursive: true });
