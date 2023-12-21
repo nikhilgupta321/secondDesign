@@ -37,26 +37,26 @@ export default function EditorialBoard() {
               editor.status === "enabled"
           )
         );
-        // setAssistantEditors(
-        //   data.filter(
-        //     (editor) =>
-        //       editor.status === "enabled" &&
-        //       editor.category === "assistant editor"
-        //   )
-        // );
-        // setAssociateEditors(
-        //   data.filter(
-        //     (editor) =>
-        //       editor.status === "enabled" &&
-        //       editor.category === "associate editor"
-        //   )
-        // );
-        // setChiefEditors(
-        //   data.filter(
-        //     (editor) =>
-        //       editor.status === "enabled" && editor.category === "chief editor"
-        //   )
-        // );
+        setAssistantEditors(
+          data.filter(
+            (editor) =>
+              editor.status === "enabled" &&
+              editor.category === "assistant editor"
+          )
+        );
+        setAssociateEditors(
+          data.filter(
+            (editor) =>
+              editor.status === "enabled" &&
+              editor.category === "associate editor"
+          )
+        );
+        setChiefEditors(
+          data.filter(
+            (editor) =>
+              editor.status === "enabled" && editor.category === "chief editor"
+          )
+        );
       }
     });
 
@@ -72,8 +72,14 @@ export default function EditorialBoard() {
   return (
     <div className="page">
       <PageTitle title="EDITORIAL BOARD" />
+      <div className="text-xl text-center"
+        dangerouslySetInnerHTML={{
+          __html:
+            typeof window !== "undefined" ? htmlDecode(settings.websitename) : "",
+        }}
+      ></div>
 
-      {/* {chiefEditors.length > 0 && (
+      {chiefEditors.length > 0 && (
         <Frame title="Editor-in-Chief">
           {chiefEditors.map((editor, index) => {
             return (
@@ -107,9 +113,9 @@ export default function EditorialBoard() {
             );
           })}
         </Frame>
-      )} */}
+      )}
 
-      <div className="text-xl text-center"
+      {/* <div className="text-xl text-center"
         dangerouslySetInnerHTML={{
           __html:
             typeof window !== "undefined" ? htmlDecode(settings.websitename) : "",
@@ -127,7 +133,7 @@ export default function EditorialBoard() {
               </tr>)
           })}
         </tbody>
-      </table>
+      </table> */}
       <Indexing />
     </div>
   );
