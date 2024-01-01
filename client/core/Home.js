@@ -11,6 +11,14 @@ function htmlDecode(input) {
 
 export default function Home(props) {
   const { settings } = useContext(GlobalContext)
+  const [hide, setHide] = React.useState(false);
+
+  useEffect(() => {
+    const journals = [ 'www.chemistryjournal.in']
+
+    journals.includes(settings.domain) ? setHide(true) : setHide(false)
+  
+  }, [settings])
 
   useEffect(() => {
     document.title = settings.websitename
@@ -33,6 +41,7 @@ export default function Home(props) {
           We send published link, <br />certificate, coverpage in 5 days.
         </div> */}
       </div>
+     {hide && (<div className="pt-2 text-2xl font-bold text-green-600">NAAS SCORE: 4.14</div>)}
       <div className="pt-6 text-lg md:mb-96" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
       <div id="indexing-title"></div>
       {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
