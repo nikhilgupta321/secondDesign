@@ -49,16 +49,16 @@ export default function LogIn(props) {
     )}                                           
     <div className='min-h-screen bg-gray-100'>
       <div className="flex items-center justify-center pt-40">
-        <div className="p-6 flex flex-col gap-4 items-center justify-center shadow-lg bg-white">
+        <div className="flex flex-col items-center justify-center gap-4 p-6 bg-white shadow-lg">
           <div className="text-center">
             <div className='text-2xl font-bold '>Login to your account</div>
             <p className='h-4 text-red-500'>{values.error}</p>
           </div>
-          <form className="flex flex-col gap-4 items-center justify-center" onSubmit={onFormSubmit}>
+          <form className="flex flex-col items-center justify-center gap-4" onSubmit={onFormSubmit}>
           <input type="text" placeholder="Username" value={values.username} onChange={handleChange('username')}
-            className="w-44 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" />
+            className="px-4 py-2 border rounded-md w-44 focus:outline-none focus:ring-1 focus:ring-blue-600" />
           <input type="password" placeholder="password" value={values.password} onChange={handleChange('password')}
-            className="w-44 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" />
+            className="px-4 py-2 border rounded-md w-44 focus:outline-none focus:ring-1 focus:ring-blue-600" />
           <button type="submit"
             className="px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-900">Log In</button>
           </form>

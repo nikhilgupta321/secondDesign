@@ -41,7 +41,7 @@ export default function Home(props) {
           We send published link, <br />certificate, coverpage in 5 days.
         </div> */}
       </div>
-     {hide && (<div className="w-1/4 pt-2 text-2xl font-bold text-green-600 blinkBox">NAAS SCORE: 4.14</div>)}
+     {hide && (<div className="w-1/4 pt-2 text-2xl font-bold text-green-600 blinkBox">NAAS SCORE 2024: 4.14</div>)}
       <div className="pt-6 text-lg md:mb-96" dangerouslySetInnerHTML={{ __html: typeof window !== 'undefined' ? htmlDecode(settings.home_content) : "" }}></div>
       <div id="indexing-title"></div>
       {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
