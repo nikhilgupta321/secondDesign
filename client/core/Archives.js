@@ -136,7 +136,7 @@ export default function Archives(props) {
                               scope="col"
                               class="border-2 px-10 py-4 dark:border-neutral-500 border-black bg-slate-300"
                             >
-                             {` Volume ${val}- Year ${filteredArchives[filteredArchives.length - 1].year} `}
+                             Volume {val}
                             </th>
                           );
                         })} */}
@@ -152,11 +152,12 @@ export default function Archives(props) {
                                   scope="col"
                                   class="border-2 px-10 py-4 dark:border-neutral-500 border-black bg-slate-300"
                                 >
-                                  {`Volume ${val}  ${
+                                  {`Volume ${val}
+                                  (${
                                     filteredArchives[
                                       filteredArchives.length - 1
                                     ].year
-                                  }`}
+                                  })`}
                                 </th>
                               );
                             } else {
