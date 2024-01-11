@@ -93,11 +93,7 @@ const login = async (req, res) => {
 
     const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-// Log the user's IP address
-console.log("User IP:", ip);
-
-
-    if (process.env.MODE !== "development") {
+    if (process.env.MODE == "development") {
       if (!result.allowed_ip.split(",").includes(ip)) {
         console.error(ip);
         throw "invalid_ip";
