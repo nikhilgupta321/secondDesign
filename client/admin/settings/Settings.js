@@ -68,16 +68,16 @@ export default function Settings(props) {
   return (
     <div>
       <div className="flex gap-4">
-        <Link to="/admin" className="p-2 mb-4 text-center rounded w-16 bg-gray-200 text-gray-500"><i className="fa fa-arrow-left" aria-hidden="true" /></Link>
-        <button onClick={handleSubmit} className="p-2 mb-4 rounded w-24 bg-sky-600 text-gray-100">Submit</button>
+        <Link to="/admin" className="w-16 p-2 mb-4 text-center text-gray-500 bg-gray-200 rounded"><i className="fa fa-arrow-left" aria-hidden="true" /></Link>
+        <button onClick={handleSubmit} className="w-24 p-2 mb-4 text-gray-100 rounded bg-sky-600">Submit</button>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <div><div>Journal Name</div><input value={settings.websitename} onChange={handleChange('websitename')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>EMAIL</div><input value={settings.websiteemail} onChange={handleChange('websiteemail')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>Impact Factor</div><input value={settings.impactfactor} onChange={handleChange('impactfactor')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>ISSN</div><input value={settings.issn} onChange={handleChange('issn')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>Whatsapp</div><input value={settings.whatsup_number} onChange={handleChange('whatsup_number')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
-        <div><div>Domain</div><input value={settings.domain} onChange={handleChange('domain')} className="w-full border-2 border-gray-300 p-2 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Journal Name</div><input value={settings.websitename} onChange={handleChange('websitename')} className="w-full p-2 border-2 border-gray-300 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>EMAIL</div><input value={settings.websiteemail} onChange={handleChange('websiteemail')} className="w-full p-2 border-2 border-gray-300 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Impact Factor</div><input value={settings.impactfactor} onChange={handleChange('impactfactor')} className="w-full p-2 border-2 border-gray-300 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>ISSN</div><input value={settings.issn} onChange={handleChange('issn')} className="w-full p-2 border-2 border-gray-300 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Whatsapp</div><input value={settings.whatsup_number} onChange={handleChange('whatsup_number')} className="w-full p-2 border-2 border-gray-300 focus:outline-emerald-600" type="text"></input ></div>
+        <div><div>Domain</div><input value={settings.domain} onChange={handleChange('domain')} className="w-full p-2 border-2 border-gray-300 focus:outline-emerald-600" type="text"></input ></div>
       </div>
     </div>
   )

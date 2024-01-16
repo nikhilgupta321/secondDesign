@@ -18,7 +18,7 @@ const getSettings = async (credentials) => {
 const updateSettings = async (data, credentials) => {
   try {
     let response = await fetch(`/api/settings`, {
-      method: "POST",
+      method: "POST",  
       body: JSON.stringify(data),
       headers: {
         Accept: "application/json",

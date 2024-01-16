@@ -86,19 +86,19 @@ const login = async (req, res) => {
 
     if (user.status == "disabled") throw "disabled";
 
-    let result = await Setting.findOne({
-      where: { id: 1 },
-      attributes: ["allowed_ip"],
-    });
+    // let result = await Setting.findOne({
+    //   where: { id: 1 },
+    //   attributes: ["allowed_ip"],
+    // });
 
-    const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+    // const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-    if (process.env.MODE == "development") {
-      if (!result.allowed_ip.split(",").includes(ip)) {
-        console.error(ip);
-        throw "invalid_ip";
-      }
-    }
+    // if (process.env.MODE == "development") {
+    //   if (!result.allowed_ip.split(",").includes(ip)) {
+    //     console.error(ip);
+    //     throw "invalid_ip";
+    //   }
+    // }
 
     const token = jwt.sign({ username: user.name }, config.jwtSecret, {
       expiresIn: "12h",

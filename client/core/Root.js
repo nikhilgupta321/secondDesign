@@ -4,7 +4,7 @@ import Email from "./Email";
 import Certificate from "./CertificateImg";
 import Contact from "./Contact";
 // import JournalList from "./JournalList";
-// import Whatsapp from "./Whatsapp";
+import Whatsapp from "./Whatsapp";
 // import WhatsappSticky from "./WhatsappSticky";
 import SearchBar from "./SearchBar";
 import CoverPage from "./CoverPage";
@@ -83,9 +83,9 @@ export default function Root() {
           </div>
           <div className="sidebar">
             {/* <JournalList /> */}
-            {/* <Whatsapp /> */}
+            <Whatsapp />
             {/* <CoverPage /> */}
-            <SubmitInfo />
+            {/* <SubmitInfo /> */}
             <Email />
             <Certificate />
             <SearchBar />

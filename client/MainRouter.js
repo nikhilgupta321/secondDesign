@@ -27,6 +27,7 @@ import ArchiveSearch from "./admin/SearchArchives";
 import GlobalProvider from "./context/GlobalContext";
 import SubmitManuscript from "./core/SubmitManuscript";
 import About from "./core/About";
+import Account from "./admin/Account";
 
 
 export default function MainRouter() {
@@ -66,6 +67,7 @@ export default function MainRouter() {
             <Route path="settings" element={<Settings />} />
             <Route path="search?" element={<ArchiveSearch />} />
             <Route path="not-found" element={<div>Not Found!</div>} />
+            <Route path="account" element={<Account />} />
           </Route>
           <Route path="/admin/login" element={<LogIn />} />
         </Routes>

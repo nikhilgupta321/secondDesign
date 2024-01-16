@@ -17,6 +17,7 @@ import indexingRoutes from "./routes/indexing.routes";
 import helperRoutes from "./routes/helper.routes";
 import settingRoutes from "./routes/setting.routes";
 import pdfRoutes from "./routes/pdf.routes";
+import userRoutes from "./routes/user.routes";
 
 import { config } from "../config/config";
 import fileUpload from "express-fileupload";
@@ -46,6 +47,7 @@ app.use("/", editorRoutes);
 app.use("/", archiveRoutes);
 app.use("/", helperRoutes);
 app.use("/", pdfRoutes);
+app.use("/", userRoutes);
 
 app.get("*", (req, res) => {
   const context = {};
