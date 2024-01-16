@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import Email from "./Email";
 import Certificate from "./CertificateImg";
 import Contact from "./Contact";
-// import JournalList from "./JournalList";
+import JournalList from "./JournalList";
 import Whatsapp from "./Whatsapp";
 // import WhatsappSticky from "./WhatsappSticky";
 import SearchBar from "./SearchBar";
@@ -82,14 +82,14 @@ export default function Root() {
             <Outlet />
           </div>
           <div className="sidebar">
-            {/* <JournalList /> */}
+            <JournalList />
             <Whatsapp />
             {/* <CoverPage /> */}
             {/* <SubmitInfo /> */}
             <Email />
             <Certificate />
             <SearchBar />
-            <Publication />
+            {/* <Publication /> */}
             {/* <Contact /> */}
             <img id="header-img" src="/assets/images/Plagriasim.jpg" />
           </div>
@@ -103,7 +103,7 @@ export default function Root() {
           <Certificate />
           <Publication />
           {/* <Contact /> */}
-          {/* <JournalList /> */}
+          <JournalList />
           {/* <CoverPage /> */}
           <img id="body-container-mobile" src="/assets/images/Plagriasim.jpg" />
         </div>
