@@ -82,7 +82,7 @@ export default function Admin(props) {
               >
                 Site
               </Link>
-{/* // Account Page */}
+
 
               <Link to="/admin/account"
               className="m-3 text-slate-100">

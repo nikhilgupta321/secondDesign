@@ -19,11 +19,11 @@ export default function EditorSlot(props) {
         <div>{props.editor.content}</div>
         <div className="text-blue">
           {/* <b>Email: </b> */}
-          {props.editor.email}
+          {/* {props.editor.email} */}
         </div>
         <div>
           {/* <b>Phone: </b> */}
-          {props.editor.phone}
+          {/* {props.editor.phone} */}
         </div>
       </div>
     </div>

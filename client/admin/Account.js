@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import auth from "../helper/auth-helper";
-import { getUser, updateUser } from "../helper/api-user";
+import { updateUser, userById } from "../helper/api-user";
 import { GlobalContext } from "../context/GlobalContext";
 
 function convertNullToEmptyString(obj) {
@@ -12,16 +12,22 @@ function convertNullToEmptyString(obj) {
   }, {});
 }
 
-export default function Account() {
+export default function Account(props) {
   const { flash, setFlash } = useContext(GlobalContext);
+  const {id} = useParams();
   const [values, setValues] = useState({
-    user: "",
-    password: "",
+    name: '',
+    password: '',
   });
+
   const jwt = auth.isAuthenticated();
 
+  const handleChange = (name) => (event) => {
+    setValues({ ...values, [name]: event.target.value, error: "" });
+  };
+
   const handleSubmit = () => {
-    updateUser(values, { token: jwt.token }).then((data) => {
+    updateUser(values,{id:id,data:data}, { token: jwt.token }).then((data) => {
       if (data && data.error) {
         setFlash({ error: true, msg: "Something went wrong" });
       } else {
@@ -31,20 +37,16 @@ export default function Account() {
     });
   };
 
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: event.target.value, error: "" });
-  };
-
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
-
-    getUser(signal).then((data) => {
+debugger
+    userById({id: id}, signal).then((data) => {
       if (data && data.error) {
         setFlash({ error: true, msg: "Something went wrong" });
       } else {
         setValues({
-          user: data.user || values.user,
+          name: data.name || values.name,
           password: data.password || values.password,
         });
       }
@@ -57,7 +59,7 @@ export default function Account() {
 
   return (
     <div className="border-b-2">
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <Link
           to="/admin"
           className="w-12 p-2 text-center text-gray-900 rounded bg-slate-200 "
@@ -65,21 +67,21 @@ export default function Account() {
           <HiOutlineArrowLeft style={{ height: "20px", width: "30px" }} />
         </Link>
         <button
+          onClick={handleSubmit}
           type="submit"
           className="w-16 p-2 text-gray-100 rounded bg-sky-600"
-          onClick={handleSubmit}
         >
           Submit
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-4 p-2 ">
+      <div className="grid grid-cols-3 gap-4 p-2 mt-2 ">
         <div>
           <div className="text-xs">USERNAME</div>
           <input
             className={`w-full border-2 border-gray-300  `}
             type="text"
-            value={values.user}
-            onChange={handleChange("user")}
+            value={values.name}
+            onChange={handleChange("name")}
           />
         </div>
         <div>

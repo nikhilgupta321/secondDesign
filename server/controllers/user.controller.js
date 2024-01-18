@@ -22,6 +22,19 @@ const list = async (req, res) => {
   }
 }
 
+const userById = async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { id: req.params.id } });
+
+    if (!user) throw "User not found";
+
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ error: err });
+  }
+};
+
 const update = async (req, res) => {
   try {
     let user = await User.findByPk(req.params.ref)
@@ -45,4 +58,4 @@ const remove = async (req, res) => {
   }
 }
 
-export default { create, list, remove, update }
+export default { create, list, remove, update ,userById }
