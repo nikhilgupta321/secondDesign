@@ -1,4 +1,4 @@
-import { transactiondb, sequelize, config } from './../config/config'
+import { transactiondb, sequelize, config, webdatadb } from './../config/config'
 import app from './express'
 
 sequelize.authenticate().then(() => {
@@ -14,6 +14,13 @@ transactiondb.authenticate().then(() => {
 .catch((err) => {
   console.error('Unable to connect to the database:', err)
 })
+
+webdatadb.authenticate().then(() => {
+  console.error('Database connected successfully')
+})
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err)
+  })
 // Vipin
 app.listen(config.port, (err) => {
     if (err) {

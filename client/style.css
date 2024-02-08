@@ -28,6 +28,37 @@ body {
   }
 }
 
+.bar-add {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  gap: 10px;
+}
+
+.bar-nav {
+  overflow-wrap: normal;
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  /* gap: 3px; */
+}
+
 #certificate-pdf {
   font-family: "Times New Roman";
   color: black;

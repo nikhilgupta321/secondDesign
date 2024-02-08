@@ -18,6 +18,7 @@ import helperRoutes from "./routes/helper.routes";
 import settingRoutes from "./routes/setting.routes";
 import pdfRoutes from "./routes/pdf.routes";
 import userRoutes from "./routes/user.routes";
+import webentryRoutes from "./routes/webentry.routes"
 
 import { config } from "../config/config";
 import fileUpload from "express-fileupload";
@@ -48,6 +49,7 @@ app.use("/", archiveRoutes);
 app.use("/", helperRoutes);
 app.use("/", pdfRoutes);
 app.use("/", userRoutes);
+app.use("/", webentryRoutes);
 
 app.get("*", (req, res) => {
   const context = {};

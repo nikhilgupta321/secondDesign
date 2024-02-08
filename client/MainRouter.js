@@ -28,6 +28,10 @@ import GlobalProvider from "./context/GlobalContext";
 import SubmitManuscript from "./core/SubmitManuscript";
 import About from "./core/About";
 import Account from "./admin/Account";
+import Login from "./webdata/Login";
+import Web_dataList from "./webdata/Webdatalist";
+import Add_data from "./webdata/Adddata";
+import Navbar from "./webdata/Navbar";
 
 
 export default function MainRouter() {
@@ -67,9 +71,19 @@ export default function MainRouter() {
             <Route path="settings" element={<Settings />} />
             <Route path="search?" element={<ArchiveSearch />} />
             <Route path="not-found" element={<div>Not Found!</div>} />
-            <Route path="account" element={<Account />} />
+            <Route path="account/:id" element={<Account />} />
           </Route>
           <Route path="/admin/login" element={<LogIn />} />
+     
+     {/* web data */}
+      
+     <Route path="/webdata/*" element={<Navbar />}>
+            <Route index element={<Web_dataList />} />
+            <Route path="addentris" element={<Add_data />} />
+            <Route path=":filterType" element={<Web_dataList />} />
+          </Route>
+          <Route path="/webdata/login" element={<Login />} />
+
         </Routes>
       </GlobalProvider>
     </React.StrictMode>

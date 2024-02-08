@@ -11,7 +11,7 @@ export default function Admin(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
-
+  
   function handleChange(event) {
     setQuery(event.target.value);
   }
@@ -84,7 +84,7 @@ export default function Admin(props) {
               </Link>
 
 
-              <Link to="/admin/account"
+              <Link to={`/admin/account/${user.id}`}
               className="m-3 text-slate-100">
                 <button>ACCOUNT</button>
               </Link>
