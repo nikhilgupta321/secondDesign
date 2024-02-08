@@ -75,7 +75,6 @@ export default function MainRouter() {
           <Route path="/admin/login" element={<LogIn />} />
 
           {/* web data */}
-
           <Route path="/webdata/*" element={<Navbar />}>
             <Route index element={<Web_dataList />} />
             <Route path="addentris" element={<Add_data />} />
