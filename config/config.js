@@ -40,17 +40,17 @@ const sequelize = new Sequelize({
   timezone: '+05:30'
 });
 
-
 const webdatadb = new Sequelize({
-
-  dialect: 'mysql',
-  host: '68.178.171.26',
-  username: 'remote',
-  password: '8FK1_AYV.$dq',
   database: 'webdata',
+  username: 'admin',
+  host: 'localhost',
+  password: 'J]w7fx69MR!}', 
+  dialect: 'mysql',
   timezone:"+05:30",
 
 });
+
+
 
 const transactiondb = new Sequelize({
   database: 'academicpublicationsnet',

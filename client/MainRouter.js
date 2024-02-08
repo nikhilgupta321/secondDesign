@@ -33,7 +33,6 @@ import Web_dataList from "./webdata/Webdatalist";
 import Add_data from "./webdata/Adddata";
 import Navbar from "./webdata/Navbar";
 
-
 export default function MainRouter() {
   return (
     <React.StrictMode>
@@ -74,16 +73,15 @@ export default function MainRouter() {
             <Route path="account/:id" element={<Account />} />
           </Route>
           <Route path="/admin/login" element={<LogIn />} />
-     
-     {/* web data */}
-      
-     <Route path="/webdata/*" element={<Navbar />}>
+
+          {/* web data */}
+
+          <Route path="/webdata/*" element={<Navbar />}>
             <Route index element={<Web_dataList />} />
             <Route path="addentris" element={<Add_data />} />
             <Route path=":filterType" element={<Web_dataList />} />
           </Route>
           <Route path="/webdata/login" element={<Login />} />
-
         </Routes>
       </GlobalProvider>
     </React.StrictMode>
