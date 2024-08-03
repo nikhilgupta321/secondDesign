@@ -8,9 +8,6 @@ export default function Contact(props) {
     <Card cardTitle="CONTACT US">
       <div id="contact">
         <div>
-          <div>Head: Nikhil Gupta</div>
-        </div>
-        <div>
           <div>Ph:</div>
           <div>{`${settings.whatsup_number}`}</div>
           <img

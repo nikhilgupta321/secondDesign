@@ -72,12 +72,14 @@ export default function EditorialBoard() {
   return (
     <div className="page">
       <PageTitle title="EDITORIAL BOARD" />
-      <div className="text-xl text-center"
+      {/* <div className="text-xl text-center"
         dangerouslySetInnerHTML={{
           __html:
             typeof window !== "undefined" ? htmlDecode(settings.websitename) : "",
         }}
-      ></div>
+      ></div> */}
+
+      
 
       {chiefEditors.length > 0 && (
         <Frame title="Editor-in-Chief">
@@ -134,7 +136,7 @@ export default function EditorialBoard() {
           })}
         </tbody>
       </table> */}
-      <Indexing />
+      {/* <Indexing /> */}
     </div>
   );
 }

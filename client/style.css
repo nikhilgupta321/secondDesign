@@ -323,7 +323,7 @@ a {
   display: flex;
   flex-direction: column;
   max-width: 210px;
-  /* gap: 10px; */
+  gap: 10px;
   flex: 1;
 }
 
@@ -343,17 +343,20 @@ img {
 }
 
 .sidebar-card {
-  border: 1px solid;
+  /* border: 1px solid;
   text-align: center;
   font-size: 14px;
   color: black;
   font-weight: bold;
-  background-color: white;
+  background-color: white; */
+   text-align: center;
+   font-size: 14px;
+   font-weight: bold;
 }
 
 .sidebarCardTitle {
-  /* background-color: #005fff; */
-  color: black;
+  background-color: #005fff;
+  color: white;
   margin: 0px;
   padding: 10px 0px;
   font-weight: bold;
@@ -361,7 +364,9 @@ img {
 }
 
 .sidebarContent {
-  padding: 10px;
+  color: blue;
+  border: 4px solid #005fff;
+  padding: 10px 0px;
 }
 
 #contact {
@@ -455,7 +460,7 @@ img {
 
 .blinkBox {
   animation: blink 0.25s step-end infinite alternate;
-  border: 2px solid red;
+  border: 4px solid red;
   padding: none;
 }
 
@@ -582,25 +587,43 @@ input[type="text"].searchInput:focus {
 }
 
 #indexing-title {
-  padding-top: 20px;
+  /* padding-top: 20px;
   width: 100%;
   text-align: center;
   color: purple;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 20px; */
+  /* background-color: #005fff; */
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  /* color: rgb(48, 48, 48); */
+  color: blue;
+  font-size: 22px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
 .title {
+  background-color: #005fff;
   padding: 8px;
-  color: purple;
-  background-color: white;
+  /* width: 100%; */
   text-align: center;
+  /* color: rgb(48, 48, 48); */
+  color: white;
+  font-size: 20px;
+  /* font-weight: bold; */
+  /* margin-bottom: 20px; */
+  /* padding: 8px; */
+  /* color: purple;
+  background-color: white;
+  text-align: center; */
 }
 
 .page-title {
   font-size: 20px;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 
 .flx-row {

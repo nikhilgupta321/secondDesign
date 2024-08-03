@@ -1,31 +1,157 @@
-import React, { useContext, useState, useEffect } from "react";
+// import React, { useContext, useState, useEffect } from "react";
+// import { Outlet, Link } from "react-router-dom";
+// import Email from "./Email";
+// import Certificate from "./CertificateImg";
+// import Contact from "./Contact";
+// import JournalList from "./JournalList";
+// import Whatsapp from "./Whatsapp";
+// // import WhatsappSticky from "./WhatsappSticky";
+// import SearchBar from "./SearchBar";
+// import CoverPage from "./CoverPage";
+// import { GlobalContext } from "../context/GlobalContext";
+// import SubmitInfo from "../SubmitInfo";
+// import Publication from "./Publication";
+
+
+// export default function Root() {
+//   const { settings } = useContext(GlobalContext);
+
+
+//   return (
+//     <div>
+//       <div className="text-base" id="container">
+//         <div className="flex flex-col items-center justify-center w-full gap-12 lg:flex-row">
+//           <img className="w-48 h-48" src="/assets/images/logo.png" />
+//           <div className="flex flex-col justify-center w-full gap-12 text-center ">
+//             <div className="text-xl font-bold text-right text-blue-A">
+//               {settings && settings.issn && settings.issn.split(",")[0]}
+//             </div>
+//             <div
+//               className="text-3xl font-bold text-center lg:hidden text-blue-A"
+//               dangerouslySetInnerHTML={{
+//                 __html: settings.formatted_journal_name,
+//               }}
+//             ></div>
+//             <div
+//               className="hidden text-4xl font-bold text-center lg:block lg:text-left text-blue-A"
+//               dangerouslySetInnerHTML={{
+//                 __html: settings.websitename,
+//               }}
+//             ></div>
+//           </div>
+//         </div>
+//         <div className="flex flex-col w-full text-xl font-bold text-center text-black lg:flex-row lg:gap-12">
+//           <div className="py-2 border-t-2 border-black lg:border-none">
+//             <Link to="/">HOME</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black lg:border-none">
+//             <Link to="/board">EDITORIAL BOARD</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black lg:border-none">
+//             <Link to="/archives">ARCHIVES</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black lg:border-none">
+//             <Link to="/instructions">INSTRUCTIONS</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black lg:border-none">
+//             <Link to="/indexing">INDEXING</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black lg:border-none">
+//             <Link to="/about">ABOUT US</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
+//             <Link to="/contact">CONTACT US</Link>
+//           </div>
+//           {/* <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
+//             <Link to="/contact">ABOUT US</Link>
+//           </div>
+//           <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
+//             <Link to="/contact">CONTACT US</Link>
+//           </div> */}
+//         </div>
+
+//         {/* <img id="header-img" src="/assets/images/header.jpg" /> */}
+//         <div id="body-container-desktop">
+//           {/* <div className="sidebar">
+//             <CoverPage />
+//             <Certificate />
+//             <SubmitInfo />
+//             <Contact />
+//           </div> */}
+//           <div id="page-content">
+//             <Outlet />
+//           </div>
+//           <div className="sidebar">
+//             <JournalList />
+//             <Whatsapp />
+//             {/* <CoverPage /> */}
+//             {/* <SubmitInfo /> */}
+//             <Email />
+//             <Certificate />
+//             <SearchBar />
+//             {/* <Publication /> */}
+//             {/* <Contact /> */}
+//             <img id="header-img" src="/assets/images/Plagriasim.jpg" />
+//           </div>
+//         </div>
+//         <div id="body-container-mobile">
+//           {/* <WhatsappSticky /> */}
+//           <SearchBar />
+//           <Outlet />
+//           <Email />
+//           <Certificate />
+//           <Publication />
+//           {/* <Contact /> */}
+//           <JournalList />
+//           {/* <CoverPage /> */}
+//           <img id="body-container-mobile" src="/assets/images/Plagriasim.jpg" />
+//         </div>
+//       </div>
+//       <div id="footer">
+//         Copyright © {new Date().getFullYear()}. All Rights Reserved.
+//       </div>
+//     </div>
+//   );
+// }
+
+import React, { useContext, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Email from "./Email";
 import Certificate from "./CertificateImg";
 import Contact from "./Contact";
 import JournalList from "./JournalList";
 import Whatsapp from "./Whatsapp";
-// import WhatsappSticky from "./WhatsappSticky";
+import WhatsappSticky from "./WhatsappSticky";
 import SearchBar from "./SearchBar";
 import CoverPage from "./CoverPage";
 import { GlobalContext } from "../context/GlobalContext";
-import SubmitInfo from "../SubmitInfo";
-import Publication from "./Publication";
-
+import Indexing from "./Indexing";
 
 export default function Root() {
   const { settings } = useContext(GlobalContext);
+  const [hide, setHide] = React.useState(true);
 
+  //   useEffect(() => {
+  //   const journals = [
+  //     "www.botanyjournals.com",
+  //     "www.entomologyjournals.com",
+  //     "www.fishjournals.com",
+  //     "www.foodsciencejournal.com",
+  //     "www.chemicaljournals.com",
+  //     "www.chemistryjournal.in",
+  //     "www.pharmacyjournal.net",
+  //     "www.pharmacyjournal.in",
+  //     "www.biologyjournal.in",
+  //   ];
+  //   journals.includes(settings.domain) ? setHide(false) : setHide(true);
+  // }, [settings]);
 
   return (
     <div>
       <div className="text-base" id="container">
         <div className="flex flex-col items-center justify-center w-full gap-12 lg:flex-row">
-          <img className="w-48 h-48" src="/assets/images/logo.png" />
-          <div className="flex flex-col justify-center w-full gap-12 text-center ">
-            <div className="text-xl font-bold text-right text-blue-A">
-              {settings && settings.issn && settings.issn.split(",")[0]}
-            </div>
+          <img className="w-48 h-48" src="/assets/images/logo.png" alt="Logo" />
+          <div className="flex flex-col justify-center w-full gap-12 text-center">
             <div
               className="text-3xl font-bold text-center lg:hidden text-blue-A"
               dangerouslySetInnerHTML={{
@@ -33,82 +159,66 @@ export default function Root() {
               }}
             ></div>
             <div
-              className="hidden text-4xl font-bold text-center lg:block lg:text-left text-blue-A"
-              dangerouslySetInnerHTML={{
-                __html: settings.websitename,
-              }}
+              className="hidden text-3xl font-bold text-center lg:block lg:text-left text-blue-A"
+              dangerouslySetInnerHTML={{ __html: settings.websitename }}
             ></div>
+            <div className="flex flex-col text-xl font-bold text-blue-A lg:flex-row lg:gap-12">
+              <div className="py-2 border-t-2 text-blue-A border-blue-A lg:border-none">
+                <Link to="/">HOME </Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/board">EDITORIAL BOARD</Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/archives">ARCHIVES</Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/instructions">INSTRUCTIONS</Link>
+              </div>
+              <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                <Link to="/indexing">INDEXING</Link>
+              </div>
+              {!hide && (
+                <div className="py-2 border-t-2 border-blue-A lg:border-none">
+                  <Link to="/article">SUBMIT ONLINE</Link>
+                </div>
+              )}
+              <div className="py-2 border-blue-A border-y-2 lg:border-none">
+                <Link to="/contact">CONTACT US</Link>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col w-full text-xl font-bold text-center text-black lg:flex-row lg:gap-12">
-          <div className="py-2 border-t-2 border-black lg:border-none">
-            <Link to="/">HOME</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black lg:border-none">
-            <Link to="/board">EDITORIAL BOARD</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black lg:border-none">
-            <Link to="/archives">ARCHIVES</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black lg:border-none">
-            <Link to="/instructions">INSTRUCTIONS</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black lg:border-none">
-            <Link to="/indexing">INDEXING</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black lg:border-none">
-            <Link to="/about">ABOUT US</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
-            <Link to="/contact">CONTACT US</Link>
-          </div>
-          {/* <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
-            <Link to="/contact">ABOUT US</Link>
-          </div>
-          <div className="py-2 border-t-2 border-black border-y-2 lg:border-none">
-            <Link to="/contact">CONTACT US</Link>
-          </div> */}
-        </div>
-  
-        {/* <img id="header-img" src="/assets/images/header.jpg" /> */}
+        <img id="header-img" src="/assets/images/header.jpg" alt="Header" />
         <div id="body-container-desktop">
-          {/* <div className="sidebar">
-            <CoverPage />
+          <div className="sidebar">
+            {/* {!entomology && <IndexingEntomology />} */}
+            <Email />
             <Certificate />
-            <SubmitInfo />
             <Contact />
-          </div> */}
+          </div>
           <div id="page-content">
             <Outlet />
           </div>
           <div className="sidebar">
             <JournalList />
             <Whatsapp />
-            {/* <CoverPage /> */}
-            {/* <SubmitInfo /> */}
-            <Email />
-            <Certificate />
             <SearchBar />
-            {/* <Publication /> */}
-            {/* <Contact /> */}
-            <img id="header-img" src="/assets/images/Plagriasim.jpg" />
+            <CoverPage />
           </div>
-
         </div>
         <div id="body-container-mobile">
-          {/* <WhatsappSticky /> */}
+          <WhatsappSticky />
           <SearchBar />
           <Outlet />
           <Email />
-          <Certificate />
-          <Publication />
-          {/* <Contact /> */}
+          <Contact />
           <JournalList />
-          {/* <CoverPage /> */}
-          <img id="body-container-mobile" src="/assets/images/Plagriasim.jpg" />
+          <CoverPage />
+          <Certificate />
         </div>
       </div>
-      <div id="footer">
+      <div id="footer" className="py-4 text-center">
         Copyright © {new Date().getFullYear()}. All Rights Reserved.
       </div>
     </div>

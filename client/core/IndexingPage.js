@@ -4,9 +4,9 @@ import Indexing from "./Indexing";
 
 export default function IndexingPage(props) {
   return (
-    <div className="page2">
+    <div className="page">
       <PageTitle title="INDEXING AND ABSTRACTING" />
-      <Indexing/>
+      <Indexing />
     </div>
   )
 }

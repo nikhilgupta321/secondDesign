@@ -101,7 +101,7 @@ export default function InstructionsPage(props) {
       <div>
         Journal take the responsibility to maintain the integrity and completeness of the scholarly record of the content for all and users very seriously. The journal place great importance on the articles after they have been published.
       </div>
-      <Indexing />
+      {/* <Indexing /> */}
     </div>
   );
 }

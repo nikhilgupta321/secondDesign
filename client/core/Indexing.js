@@ -29,12 +29,12 @@ export default function Indexing(props) {
   }, [settings]);
 
   return (
-    <div className="flex">
+    <div className="grid grid-cols-2 ">
       {indexing.map((indexing, index) => {
         return (
           <a
             key={`indexing-${index + 1}`}
-          
+            className="flex items-center justify-center p-7 indexing-element"
             href={indexing.link}
             style={{ pointerEvents: indexing.link ? "auto" : "none" }}
             target="_blank"
