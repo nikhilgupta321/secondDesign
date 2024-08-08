@@ -74,7 +74,7 @@ export default (config, article, author, settings, formattedPublishDate) => {
               ${
                 formattedPublishDate === "1 Jan, 1970"
                   ? `${secondData.getDate()} ${
-                      months[secondData.getMonth()-1]
+                      months[secondData.getMonth()]
                     }, ${article.year}`
                   : `${formattedPublishDate}`
               }
