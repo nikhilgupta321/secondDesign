@@ -3,6 +3,22 @@ import { decode } from "html-entities";
 import cleanHtml from "./clean_html";
 
 export default (config, article, author, settings, formattedPublishDate) => {
+  const secondData = new Date(article.creation);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   return `<!DOCTYPE html>
   <html>
   <head>
@@ -53,7 +69,15 @@ export default (config, article, author, settings, formattedPublishDate) => {
               <tr><td>Reference No.</td>  <td style="padding-left:10px;padding-right:10px">:</td> <td><b>${
                 article.refnumber
               }</b></td></tr>
-              <tr><td>Published Date</td> <td style="padding-left:10px;padding-right:10px">:</td> <td><b>${formattedPublishDate}</b></td></tr>
+              <tr><td>Published Date</td> <td style="padding-left:10px;padding-right:10px">:</td> <td><b>
+              ${
+                formattedPublishDate === "1 Jan, 1970"
+                  ? `${secondData.getDate()} ${
+                      months[secondData.getMonth()-1]
+                    }, ${article.year}`
+                  : `${formattedPublishDate}`
+              }
+              </b></td></tr>
             </tbody>
           </table>
           <img style="width: 100px; margin-top: 40px;" src="data:image/jpeg;base64,${fs
