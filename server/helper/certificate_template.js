@@ -5,6 +5,7 @@ import cleanHtml from "./clean_html";
 export default (config, article, author, settings, formattedPublishDate) => {
   const secondData = new Date(article.creation);
   const months = [
+    "ran",
     "Jan",
     "Feb",
     "Mar",
