@@ -50,7 +50,7 @@ export default (config, article, author, settings, formattedPublishDate) => {
           </div>
           <div style="line-height:normal; margin-top: 40px; text-align:justify; text-justify:inter-word;">
             This certificate confirms that&nbsp;<b>${author}</b>&nbsp;has published article
-            titled&nbsp;<b>${cleanHtml(decode(article.title))}</b>&nbsp;.
+            titled&nbsp;<b>${cleanHtml(decode(article.title))}</b>.
           </div>
           <div style="margin-top: 40px;">Details of Published Article as follow:</div>
           <table style="margin-top: 20px;">
