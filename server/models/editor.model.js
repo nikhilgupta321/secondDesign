@@ -8,6 +8,10 @@ const Editor = sequelize.define('editors', {
     allowNull: false,
     primaryKey: true
   },
+  postion:{
+    type: DataTypes.INTEGER,
+    defaultValue:0,
+  },
   category: {
     type: DataTypes.STRING(255),
     allowNull: false,
